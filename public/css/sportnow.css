@@ -1,18 +1,35 @@
-
-.img-wrapper{
-  border: 1px solid #000;
-  padding: 1em;
+.img-wrapper {
+    border: 1px solid #000;
+    padding: 1em;
 }
-
-.img-main{
-  margin-bottom: 1rem;
+.img-main {
+    margin-bottom: 1rem;
 }
-
 .footer-titles {
-	font-size: 28px;
+    font-size: 28px;
     font-weight: bold;
 }
-
 .grey-text-footer {
-	color: grey;
+    color: grey;
+}
+.parcelamento-wrapper .header, .frete-wrapper .header {
+    border: 1px solid #000;
+    padding: 1rem;
+
+}
+.parcelamento-wrapper .header h6, .frete-wrapper .header h6 {
+    font-weight: bold;
+}
+.parcelamento-wrapper .container-fluid, .frete-wrapper .container-fluid {
+    border: 1px solid #000;
+    border-top: none;
+}
+.parcelamento-wrapper .container-fluid .row, .frete-wrapper .container-fluid .row {
+    padding: 1rem;
+}
+.parcelamento-wrapper .container-fluid .row:first-child, .frete-wrapper .container-fluid .row:first-child {
+    border-top: none;
+}
+.parcelamento-wrapper .container-fluid .row:nth-child(even), .frete-wrapper .container-fluid .row:nth-child(even) {
+    background: #dedede;
 }
