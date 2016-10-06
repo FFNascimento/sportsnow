@@ -68,10 +68,20 @@
                         </form>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="#">Link</a>
+                                <a href="#">
+                                  <button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+</button>
+                                  Carrinho(s)
+                                </a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                  <button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+</button>
+                                  Entrar ou Cadastrar-se<strong class="caret"></strong>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="#">Action</a>
@@ -95,7 +105,7 @@
                 </nav>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <h4>Produto</h4>
@@ -105,8 +115,8 @@
                 </p>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-              <h4>Quantidade</h4>
-                <div class="input-group">
+                <h4 class="header-carrinho">Quantidade</h4>
+                <div class="input-group center-style">
                     <span class="input-group-btn">
         <button class="btn btn-default" type="button">-</button>
       </span>
@@ -117,22 +127,22 @@
                 </div>
                 <!-- /input-group -->
                 <div class="text-center">
-                  <a href="#" class="remover-btn">Remover</a>
+                    <a href="#" class="remover-btn">Remover</a>
                 </div>
 
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <h4>Entrega</h4>
-                <h5>3 dias úteis</h5>
-                <h5>R$ 17,30</h5>
+                <h4 class="header-carrinho">Entrega</h4>
+                <h5 class="header-carrinho center-style">3 dias úteis</h5>
+                <h5 class="header-carrinho">R$ 17,30</h5>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <h4>Valor Unitário</h4>
-                <h2>R$ 123,45</h2>
+                <h4 class="header-carrinho ">Valor Unitário</h4>
+                <h2 class="header-carrinho center-style">R$ 123,45</h2>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <h4>Valor Total</h4>
-                <h2>R$ 740,70</h2>
+                <h4 class="header-carrinho">Valor Total</h4>
+                <h2 class="header-carrinho center-style">R$ 740,70</h2>
             </div>
         </div>
         <hr/>
@@ -144,7 +154,7 @@
                 </p>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <div class="input-group">
+                <div class="input-group center-style">
                     <span class="input-group-btn">
         <button class="btn btn-default" type="button">-</button>
       </span>
@@ -155,91 +165,96 @@
                 </div>
                 <!-- /input-group -->
                 <div class="text-center">
-                  <a href="#" class="remover-btn">Remover</a>
+                    <a href="#" class="remover-btn">Remover</a>
                 </div>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <h5>3 dias úteis</h5>
-                <h5>Grátis</h5>
+                <h5 class="header-carrinho center-style">3 dias úteis</h5>
+                <h5 class="header-carrinho">Grátis</h5>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <h2>R$ 98,76</h2>
+                <h2 class="header-carrinho center-style">R$ 98,76</h2>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <h2>R$ 197,52</h2>
+                <h2 class="header-carrinho center-style">R$ 197,52</h2>
             </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-2 col-md-2 col-lg-2">
-            <h4>Resumo do Carrinho</h4>
-          </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <h4>Resumo do Carrinho</h4>
+            </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <h3>Subtotal Produtos</h3>
-            <h3>Total Frete</h3>
-            <h3>Total</h3>
-            <button type="button" class="btn btn-primary">Continuar Comprando</button>
-          </div>
-          <div class="col-sm-4 col-md-4 col-lg-4">
-            <span>CEP 00000-000 Alterar Cep</span>
-            <button type="button" class="btn btn-default" aria-label="Left Align">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <h3>Subtotal Produtos</h3>
+                <h3>Total Frete</h3>
+                <h3>Total</h3>
+                <button type="button" class="btn btn-primary">Continuar Comprando</button>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <span class="">CEP 00000-000 Alterar Cep</span>
+                <button type="button" class="btn btn-default" aria-label="Left Align">
   <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 </button>
-          </div>
-          <div class="col-sm-2 col-md-2 col-lg-2">
-            <h3>R$ 938,22</h3>
-            <h3>R$ 17,30</h3>
-            <h3>R$ 955,52</h3>
-            <button type="button" class="btn btn-primary">Finalizar Compra</button>
-          </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <h3>R$ 938,22</h3>
+                <h3>R$ 17,30</h3>
+                <h3>R$ 955,52</h3>
+                <button type="button" class="btn btn-primary">Finalizar Compra</button>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <hr />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-md-3">
+                        <div class="grey-text-footer">
+                            <p>Horário de atendimento:</p>
+                            <p>Segunda a sexta-feira 07:30 ás 21:30</p>
+                            <p>Sábados das 08:00 ás 20:00</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-titles">Institucional</div>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#">Sobre a SportNow</a></li>
+                            <li><a href="#">Políticas do site</a></li>
+                            <li><a href="#">Políticas de privacidade</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-titles">Fale Conosco</div>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#">Tire suas dúvidas</a></li>
+                            <li><a href="#">Central de atendimento</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-titles">Redes Sociais</div>
+                        <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social"></i></a>
+                        <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <p>SportsNow Ltda / www.sportsnow.com.br</p>
+                            <p>Avenida Zaion de Zorg, 333 / São Paulo - SP - 00011-222</p>
+                            <p>© CopyRight</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="container text-center">
-        <hr />
-      	<div class="row">
-        	<div class="col-lg-12">
-    	      	<div class="col-md-3">
-    	        	<ul class="nav nav-pills nav-stacked">
-    	        		<li><a href="#">About us</a></li>
-    	        		<li><a href="#">Blog</a></li>
-    	        	</ul>
-    	    	</div>
-    	      	<div class="col-md-3">
-    	      		<div class="footer-titles">Institucional</div>
-    	        	<ul class="nav nav-pills nav-stacked">
-    	          		<li><a href="#">Sobre a SportNow</a></li>
-    	        		<li><a href="#">Políticas do site</a></li>
-    	        		<li><a href="#">Políticas de privacidade</a></li>
-    	        	</ul>
-    	      	</div>
-    	      	<div class="col-md-3">
-    	      		<div class="footer-titles">Fale Conosco</div>
-    	        	<ul class="nav nav-pills nav-stacked">
-    	        		<li><a href="#">Tire suas dúvidas</a></li>
-    	          		<li><a href="#">Central de atendimento</a></li>
-    	        	</ul>
-    	      	</div>
-    	      	<div class="col-md-3">
-    	    		<ul class="nav nav-pills nav-stacked">
-    	          		<li><a href="#">Tire suas dúvidas</a></li>
-    	          		<li><a href="#">Central de atendimento</a></li>
-    	        	</ul>
-    	      	</div>
-        	</div>
-      	</div>
-      	<hr>
-    	<div class="row">
-        	<div class="col-lg-12">
-            	<ul class="nav nav-pills nav-justified">
-                	<li><a href="/">© 2013 Company Name.</a></li>
-                	<li><a href="#">Terms of Service</a></li>
-                	<li><a href="#">Privacy</a></li>
-            	</ul>
-        	</div>
-    	</div>
-    </div>
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>

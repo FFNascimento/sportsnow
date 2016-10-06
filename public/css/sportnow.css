@@ -35,3 +35,12 @@
 .parcelamento-wrapper .container-fluid .row:nth-child(even), .frete-wrapper .container-fluid .row:nth-child(even) {
     background: #dedede;
 }
+
+.header-carrinho{
+  text-align: center;
+}
+
+.center-style{
+  width: 100%;
+  margin-top: 50%;
+}
