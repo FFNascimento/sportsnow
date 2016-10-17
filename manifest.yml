@@ -1,0 +1,10 @@
+applications:
+  - services:
+    - Cloudant NoSQL DB Dedicated-93
+  - disk_quota: 1024M
+    host: SmartSelling
+    name: SmartSelling
+    path: .
+    domain: w3ibm.mybluemix.net
+    instances: 1
+    memory: 256M
