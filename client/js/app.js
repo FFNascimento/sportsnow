@@ -1,4 +1,9 @@
-app.config(function($stateProvider, $urlRouterProvider) {
+'use strict';
+
+// Declare app level module which depends on views, and components
+var app = angular.module('app', [
+  'ngRoute'
+]).config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 	.state('login', {
 		url: '/login',
