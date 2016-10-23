@@ -10,10 +10,8 @@ var router   = express.Router();
 module.exports = {
 	addUser: addUser,
 	deleteUser: deleteUser,
-	getUsers: getUsers,
 	updateUser: updateUser,
-	getUser: getUser,
-	bulkUsers: bulkUsers
+	getUser: getUser
 };
 
 function addUser(req, res) {
@@ -38,17 +36,9 @@ function deleteUser(req, res) {
 	});
 };
 
-function getUsers(req, res) {
-	User.get_users().then(function(body) {
-		res.status(200).json(body);
-	}).fail(function(err) {
-		res.status(400).json(err);
-	});
-};
-
 function getUser(req, res) {
-	var mail = req.params.email;
-	User.get_user(mail).then(function(body) {
+	var params = req.body;
+	User.get_user(params).then(function(body) {
 		res.status(200).json(body);
 	}).fail(function(err) {
 		res.status(400).json(err);
@@ -67,12 +57,3 @@ function updateUser(req, res) {
 		res.status(400).json(err);
 	});
 };
-
-function bulkUsers(req, res) {
-	var parameters = req.body.users;
-	User.bulk_users(parameters).then(function(body) {
-		res.status(200).json(body);
-	}).fail(function(err) {
-		res.status(400).json(err);
-	});
-}

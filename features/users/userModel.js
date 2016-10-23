@@ -12,10 +12,8 @@ var joiHelper   = require('../../lib/joi.helper');
 module.exports = {
 	add_user: add_user,
 	delete_user: delete_user,
-	get_users: get_users,
 	update_user: update_user,
-	get_user: get_user,
-	bulk_users: bulk_users
+	get_user: get_user
 }
 
 /**
@@ -27,7 +25,7 @@ function add_user(user) {
 	var q = Q.defer();
 	user.type = type;
 
-	var query = { include_docs: true , key: user.PERMISSION_EMAIL};
+	var query = { include_docs: true , key: user.email};
 
 	db.view('users', 'getAllUsers', query, function(err, body){
 		if(err) { q.reject(err); }
@@ -45,7 +43,7 @@ function add_user(user) {
 	 } else {
 		 var prevented = false;
 		 for(var i = 0; i < body.length; i++) {
-			 if(body[i].PERMISSION_EMAIL === user.PERMISSION_EMAIL) {
+			 if(body[i].email === user.email) {
 				 prevented = true;
 				 break;
 			 }
@@ -88,25 +86,10 @@ function delete_user(_id) {
 }
 
 /**
- * Get all users
- * @return {Promise}
- */
-function get_users() {
-	var q = Q.defer();
-
-	db.view('users', 'getAllUsers', {include_docs: true}, function(err, body) {
-		if(err) { q.reject(err); return; }
-		var teste = couchHelper.onlyDocs(body);
-		q.resolve(teste);
-	});
-	return q.promise;
-}
-
-/**
  * Get a specific users
  * @return {Promise}
  */
-function get_user(email) {
+function get_user(params) {
 	var q = Q.defer();
 
 	db.view('users', 'getAllUsers', {include_docs: true}, function(err, body) {
@@ -114,7 +97,7 @@ function get_user(email) {
 		var body = couchHelper.onlyDocs(body);
 
 		for(var i = 0; i < body.length; i++) {
-			if(body[i].PERMISSION_EMAIL === email) {
+			if(body[i].email === params.email && body[i].password === params.password) {
 				q.resolve(body[i]);
 				break;
 			}
@@ -143,53 +126,6 @@ function update_user(user) {
 					q.resolve(body);
 				}
 		 });
-	});
-	return q.promise;
-}
-
-function bulk_users(users) {
-	var q = Q.defer();
-
-	db.view('users', 'getAllUsers', {include_docs: true}, function(err, body) {
-		if(err) { q.reject(err); return; }
-		var body = couchHelper.onlyDocs(body);
-
-		for(var i = 0; i < users.length; i++) {
-			users[i].type = type;
-			var isNew = true;
-			for(var j = 0; j < body.length; j++) {
-				if(users[i].PERMISSION_EMAIL === body[j].PERMISSION_EMAIL) {
-					body[j].PERMISSION_PROFILE = users[i].PERMISSION_PROFILE;
-					isNew = false;
-				}
-			}
-
-			if(isNew) {
-				body.push(users[i]);
-			}
-		}
-
-		for(var i = 0; i < body.length; i++) {
-			var exists = false;
-			for(var j = 0; j < users.length; j++) {
-				if(users[j].PERMISSION_EMAIL === body[i].PERMISSION_EMAIL) {
-					exists = true;
-					break;
-				}
-			}
-
-			if(!exists) {
-				body[i]._deleted = true;
-			}
-		}
-
-		joiHelper.validateMultiple(body, UserSchema).then(function(body){
-			db.bulk({docs: body}, function(error, body) {
-				q.resolve(body);
-			});
-		}).fail(function(error) {
-			q.reject(error);
-		});
 	});
 	return q.promise;
 }
