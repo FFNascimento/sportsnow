@@ -1,0 +1,68 @@
+var Q = require('q');
+var _ = require('lodash');
+var Joi = require('joi');
+var express  = require('express');
+var Product  = require('./productModel');
+var schema = require('../../lib/schema');
+var ProductSchema = require('./productSchema');
+var router   = express.Router();
+
+module.exports = {
+	addProduct: addProduct,
+	deleteProduct: deleteProduct,
+	updateProduct: updateProduct,
+	getProduct: getProduct
+};
+
+function addProduct(req, res) {
+	var parameters = req.body;
+	schema.validate(parameters, ProductSchema).then(function(body) {
+		Product.add_product(parameters).then(function(body) {
+			res.status(200).json(body);
+		}).fail(function(err) {
+			res.status(400).json(err);
+		});
+	}).fail(function(err) {
+		res.status(400).json(err);
+	});
+};
+
+function deleteProduct(req, res) {
+	var id = req.params.id;
+	Product.delete_product(id).then(function(body) {
+		res.status(200).json(body);
+	}).fail(function(err) {
+		res.status(400).json(err);
+	});
+};
+
+function getProduct(req, res) {
+	var params = req.params.id;
+	Product.get_product(params).then(function(body) {
+		res.status(200).json(body);
+	}).fail(function(err) {
+		res.status(400).json(err);
+	});
+};
+
+function updateProduct(req, res) {
+	var parameters = req.body;
+	schema.validate(parameters, ProductSchema).then(function(body) {
+		Product.update_product(parameters).then(function(body) {
+			res.status(200).json(body);
+		}).fail(function(err) {
+			res.status(400).json(err);
+		});
+	}).fail(function(err) {
+		res.status(400).json(err);
+	});
+};
+
+function sellProduct(req, res) {
+	var parameters = req.body;
+	Product.update_product(parameters).then(function(body) {
+		res.status(200).json(body);
+	}).fail(function(err) {
+		res.status(400).json(err);
+	});
+}
