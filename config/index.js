@@ -28,7 +28,7 @@ var all = {
 	// Server IP
 	ip: (process.env.IP) || '0.0.0.0',
 	// List of databases
-	views: ['users'],
+	views: ['users', 'products'],
 	// Movo everything to a only one database
 	database: (process.env['database']) || 'sportsnow_local',
 	couch: {
