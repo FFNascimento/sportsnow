@@ -89,6 +89,8 @@ function sell_product(params) {
 	db.get(params._id, {include_docs: true}, function(err, body) {
 	
 		if(params.quantity <= body.quantity) {
+			body.quantity -= params.quantity;
+
 			if(err) { q.reject(err); }
 			 	db.insert(product, {_id: params._id}, function(err, body) {
 					if(err) {
