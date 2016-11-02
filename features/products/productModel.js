@@ -13,9 +13,61 @@ module.exports = {
 	add_product: add_product,
 	delete_product: delete_product,
 	update_product: update_product,
-	get_product: get_product
+	get_product: get_product,
+	get_products: get_products
 }
 
+/**
+ * Add a new user in the database.
+ * @param  {Object}  user object validated by the Joi.
+ * @return {Promise}
+ */
+function add_product(product) {
+	var q = Q.defer();
+	product.type = type;
+
+	var query = { include_docs: true };
+
+	db.view('products', 'getAllProducts', query, function(err, body){
+		if(err) { q.reject(err); }
+
+
+		console.log(JSON.stringify(body));
+
+		console.log(body.rows);
+
+		if(body.rows.length == 0) {
+			db.insert(product, uuid.v1(), function(err, body) {
+				if(err) {
+					q.reject({error: 'Something is wrong.'});
+				} else {
+					q.resolve(body);
+				}
+	 		});
+	 	} else {
+			var prevented = false;
+			for(var i = 0; i < body.length; i++) {
+				if(body[i].name === product.name) {
+				prevented = true;
+				break;
+			}
+		}
+
+		 if(!prevented) {
+			 db.insert(product, uuid.v1(), function(err, body) {
+ 				 if(err) { 
+ 					 q.reject({error: 'Something is wrong.'});
+ 				 } else {
+ 					 q.resolve(body);
+ 				 }
+			 });
+		 } else {
+			 q.reject({error: 'Product already exists.'});
+		 }
+	 }
+ });
+	return q.promise;
+}
 
 /**
  * Remove a user.
@@ -44,7 +96,7 @@ function delete_product(_id) {
 function get_product(product) {
 	var q = Q.defer();
 
-	db.view('users', 'getAllProducts', {include_docs: true}, function(err, body) {
+	db.view('products', 'getAllProducts', {include_docs: true}, function(err, body) {
 		if(err) { q.reject(err); return; }
 		var body = couchHelper.onlyDocs(body);
 
@@ -55,6 +107,18 @@ function get_product(product) {
 			}
 		}
 
+		q.resolve({permission: "UNAUTHORIZED"});
+	});
+	return q.promise;
+}
+
+function get_products() {
+	var q = Q.defer();
+
+	db.view('products', 'getAllProducts', {include_docs: true}, function(err, body) {
+		if(err) { q.reject(err); return; }
+		var body = couchHelper.onlyDocs(body);
+		q.resolve(body);
 		q.resolve({permission: "UNAUTHORIZED"});
 	});
 	return q.promise;

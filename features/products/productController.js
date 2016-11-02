@@ -11,7 +11,8 @@ module.exports = {
 	addProduct: addProduct,
 	deleteProduct: deleteProduct,
 	updateProduct: updateProduct,
-	getProduct: getProduct
+	getProduct: getProduct,
+	getProducts: getProducts
 };
 
 function addProduct(req, res) {
@@ -39,6 +40,14 @@ function deleteProduct(req, res) {
 function getProduct(req, res) {
 	var params = req.params.id;
 	Product.get_product(params).then(function(body) {
+		res.status(200).json(body);
+	}).fail(function(err) {
+		res.status(400).json(err);
+	});
+};
+
+function getProducts(req, res) {
+	Product.get_products().then(function(body) {
 		res.status(200).json(body);
 	}).fail(function(err) {
 		res.status(400).json(err);

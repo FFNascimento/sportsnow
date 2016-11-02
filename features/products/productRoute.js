@@ -19,7 +19,11 @@ router
 	.get(controller.getProduct);
 
 router
+	.route('/get/products')
+	.get(controller.getProducts);
+
+/*router
 	.route('/sell/product')
 	.post(controller.sellProduct);
-
+*/
 module.exports = router;
