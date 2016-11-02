@@ -14,7 +14,8 @@ module.exports = {
 	delete_product: delete_product,
 	update_product: update_product,
 	get_product: get_product,
-	get_products: get_products
+	get_products: get_products,
+	sell_products: sell_products
 }
 
 /**
@@ -30,11 +31,6 @@ function add_product(product) {
 
 	db.view('products', 'getAllProducts', query, function(err, body){
 		if(err) { q.reject(err); }
-
-
-		console.log(JSON.stringify(body));
-
-		console.log(body.rows);
 
 		if(body.rows.length == 0) {
 			db.insert(product, uuid.v1(), function(err, body) {
@@ -147,16 +143,24 @@ function update_product(product) {
 	return q.promise;
 }
 
-function sell_product(params) {
+function sell_products(params) {
 	var q = Q.defer();
 
-	db.get(params._id, {include_docs: true}, function(err, body) {
-	
-		if(params.quantity <= body.quantity) {
-			body.quantity -= params.quantity;
+	for(var i = 0; i < params.length; i++) {
 
-			if(err) { q.reject(err); }
-			 	db.insert(product, {_id: params._id}, function(err, body) {
+		var obj = params[i];
+
+		db.get(params[i]._id, {include_docs: true}, function(err, body) {
+
+			if(obj.quantity <= body.quantity) {
+				body.quantity -= obj.quantity;
+
+				if(body.quantity == 0) {
+					body._deleted = true;
+				}
+
+				if(err) { q.reject(err); }
+			 	db.insert(body, {_id: body._id}, function(err, body) {
 					if(err) {
 						q.reject({error: 'Something is wrong.'});
 					} else {
@@ -164,7 +168,8 @@ function sell_product(params) {
 					}
 			 	});
 			}
-	});
+		});
+	}
 
-	return q.promise;	
+	return q.promise;
 }

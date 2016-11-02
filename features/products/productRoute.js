@@ -22,8 +22,8 @@ router
 	.route('/get/products')
 	.get(controller.getProducts);
 
-/*router
-	.route('/sell/product')
-	.post(controller.sellProduct);
-*/
+router
+	.route('/sell/products')
+	.post(controller.sellProducts);
+
 module.exports = router;

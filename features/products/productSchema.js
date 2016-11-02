@@ -8,8 +8,8 @@
 		name: Joi.string().optional(),
 		description: Joi.string().optional(),
 		photo: Joi.string().optional(),
-		quantity: Joi.string().optional(),
-		price: Joi.string().optional(),
+		quantity: Joi.any().optional(),
+		price: Joi.any().optional(),
 		type: Joi.string().optional(),
 		_deleted: Joi.boolean().optional()
 	};
