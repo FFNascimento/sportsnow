@@ -5,19 +5,18 @@
 
 'use strict';
 
-angular.module('app.home', ['ngRoute', 'LocalStorageModule'])
+angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule'])
 
 // Routing configuration for this module
 .config(['$routeProvider', function($routeprovider) {
-    $routeprovider.when('/', {
-        controller: 'HomeController',
+    $routeprovider.when('/detalhes/:id', {
+        controller: 'DetalhesController',
         templateUrl: 'components/views/home.html'
     });
 }])
 
 // Controller definition for this module
-.controller('HomeController', ['$scope', 'localStorageService', function($scope, localStorageService) {
-
+.controller('DetalhesController', ['$scope', 'localStorageService', '$routeParams', '$location', function($scope, localStorageService, $routeParams, $location) {
     // Just a housekeeping.
     // In the init method we are declaring all the
     // neccesarry settings and assignments to be run once
@@ -27,6 +26,16 @@ angular.module('app.home', ['ngRoute', 'LocalStorageModule'])
 
     function init() {
         $scope.userLogged = localStorageService.get('loggedUser');
+        var _id = $routeParams.id;
+        if (_id) {
+            $http({
+                method: 'GET',
+                url: 'api/get/product/',
+                params: {}
+            })
+        } else {
+            $location.path('/');
+        }
     };
 
 }]);
