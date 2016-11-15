@@ -5,14 +5,16 @@
 
 'use strict';
 
-angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule'])
+angular.module('app.detalhes', ['ui.router', 'LocalStorageModule'])
 
 // Routing configuration for this module
-.config(['$routeProvider', function($routeprovider) {
-    $routeprovider.when('/detalhes/:id', {
-        controller: 'DetalhesController',
-        templateUrl: 'components/views/home.html'
-    });
+.config(['$stateProvider', function($stateProvider) {
+    $stateProvider
+        .state('detalhes', {
+            url: '/detalhes/:id',
+            controller: 'DetalhesController',
+            templateUrl: 'components/views/home.html'
+        });
 }])
 
 // Controller definition for this module
@@ -35,9 +37,10 @@ angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule'])
                     id: _id
                 }
             }).then(function success(res) {
-
+                // Preenche a tela com os dados do produto
             })
         } else {
+            console.log('Não');
             $location.path('/');
         }
     };

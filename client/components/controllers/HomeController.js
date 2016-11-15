@@ -5,14 +5,16 @@
 
 'use strict';
 
-angular.module('app.home', ['ngRoute', 'LocalStorageModule'])
+angular.module('app.home', ['ngRoute', 'LocalStorageModule', 'ui.router'])
 
 // Routing configuration for this module
-.config(['$routeProvider', function($routeprovider) {
-    $routeprovider.when('/', {
-        controller: 'HomeController',
-        templateUrl: 'components/views/home.html'
-    });
+.config(['$stateProvider', function($stateProvider) {
+    $stateProvider
+        .state('home', {
+            url: '/',
+            controller: 'HomeController',
+            templateUrl: 'components/views/home.html'
+        });
 }])
 
 // Controller definition for this module

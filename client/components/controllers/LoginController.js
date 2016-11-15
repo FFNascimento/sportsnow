@@ -5,14 +5,16 @@
 
 'use strict';
 
-angular.module('app.login', ['ngRoute', 'LocalStorageModule'])
+angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router'])
 
 // Routing configuration for this module
-.config(['$routeProvider', function($routeprovider) {
-    $routeprovider.when('/login', {
-        controller: 'LoginController',
-        templateUrl: 'components/views/login.html'
-    });
+.config(['$stateProvider', function($stateProvider) {
+    $stateProvider
+        .state('login', {
+            url: '/login',
+            controller: 'LoginController',
+            templateUrl: 'components/views/login.html'
+        });
 }])
 
 // Controller definition for this module

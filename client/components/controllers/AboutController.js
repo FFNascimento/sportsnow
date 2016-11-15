@@ -5,29 +5,31 @@
 
 'use strict';
 
-angular.module('app.about', ['ngRoute'])
+angular.module('app.about', ['ngRoute', 'ui.router'])
 
 // Routing configuration for this module
-.config(['$routeProvider',function($routeprovider){
-	$routeprovider.when('/about', {
-		controller: 'AboutController',
-		templateUrl: 'components/views/aboutView.html'
-	});
+.config(['$stateProvider', function($stateProvider) {
+    $stateProvider
+        .state('sobre', {
+            url: '/about',
+            controller: 'AboutController',
+            templateUrl: 'components/views/aboutView.html'
+        });
 }])
 
 // Controller definition for this module
 .controller('AboutController', ['$scope', function($scope) {
 
-	// Just a housekeeping.
-	// In the init method we are declaring all the
-	// neccesarry settings and assignments to be run once
-	// controller is invoked
-	init();
+    // Just a housekeeping.
+    // In the init method we are declaring all the
+    // neccesarry settings and assignments to be run once
+    // controller is invoked
+    init();
 
-	function init(){
-	
-	};
+    function init() {
 
-	this.message = "Hello About!";
+    };
+
+    this.message = "Hello About!";
 
 }]);
