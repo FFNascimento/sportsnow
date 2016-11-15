@@ -2,6 +2,7 @@
 
 // Defining Angular app model with all other dependent modules
 var app = angular.module('app',['ngRoute',
+	'ui.router',
 	'app.home',
 	'app.about',
 	'app.login'

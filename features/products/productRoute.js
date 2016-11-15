@@ -26,4 +26,8 @@ router
 	.route('/sell/products')
 	.post(controller.sellProducts);
 
+router
+	.route('get/products/filter/:type')
+	.get(controller.getFilterProducts);
+
 module.exports = router;
