@@ -2,19 +2,14 @@
 
 angular.module('app.productList', ['ui.router', 'ngRoute'])
 .controller('ProductListController', ['$scope', '$http', '$timeout', '$stateParams', function($scope, $http, $timeout, $stateParams) {
-    
-	alert("eita");
-
-
 	$scope.products = {};
 
     $scope.getAPIData = function() {
         $http({
             method: 'GET',
-            url: '/get/products/filter/MASCULINO'
+            url: '/api/get/products/filter/' + $stateParams.type
         }).then(function success(res) {
-            $scope.products = res;
-            alert(JSON.stringify($scope.products));
+            $scope.products = res.data;
         }, function error(err) {
             alert(JSON.stringify(err));
         });
