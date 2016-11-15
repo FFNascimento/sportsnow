@@ -12,7 +12,7 @@ var app = angular.module('app', [
 ]);
 
 app.run(function($rootScope, $location, localStorageService) {
-    $rootScope.on('signout', function() {
+    $rootScope.$on('signout', function() {
         localStorageService.clearAll();
         $location.path('/');
     })
