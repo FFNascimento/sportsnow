@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('app.login', ['ngRoute'])
+angular.module('app.login', ['ngRoute', 'LocalStorageModule'])
 
 // Routing configuration for this module
 .config(['$routeProvider', function($routeprovider) {
@@ -16,7 +16,7 @@ angular.module('app.login', ['ngRoute'])
 }])
 
 // Controller definition for this module
-.controller('LoginController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+.controller('LoginController', ['$scope', '$http', '$timeout', 'localStorageService', '$location', function($scope, $http, $timeout, localStorageService, $location) {
 
     $scope.pwdMatch = true;
     // Objeto para criar novo usuário
@@ -65,10 +65,12 @@ angular.module('app.login', ['ngRoute'])
             url: 'api/authorize/user',
             data: JSON.stringify($scope.login)
         }).then(function success(res) {
-            console.log('OI SUMIDO!');
+            // Armazenar em localstorage
+            localStorageService.set('loggedUser', $scope.login.email);
+            $location.path('/');
         }, function error(err) {
             console.log('Não vai passar ninguem!');
-        })
+        });
     };
 
     $scope.compare = function() {

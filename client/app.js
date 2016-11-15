@@ -1,30 +1,41 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var app = angular.module('app',[
-	'ngRoute',
-	'ui.router',
-	'app.productList',
-	'app.home',
-	'app.about',
-	'app.login'
+var app = angular.module('app', [
+    'ngRoute',
+    'ui.router',
+    'app.productList',
+    'app.home',
+    'app.about',
+    'app.login',
+    'LocalStorageModule'
 ]);
 
-app.config(function($routeProvider, $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
+app.run(function($rootScope, $location, localStorageService) {
+    $rootScope.$on('signout', function() {
+        localStorageService.clearAll();
+        $location.path('/');
+    })
+})
 
-	// Settings for http communications
-	$httpProvider.defaults.useXDomain = true;
-	delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-	$stateProvider
+app.config(function($routeProvider, $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
 
-	.state('products', {
-    	url: '/products/:type',
-        templateUrl: "components/views/produtos.html",
-        controller: 'ProductListController'
-    });
+    localStorageServiceProvider
+        .setPrefix('myApp')
+        .setStorageType('sessionStorage')
+        .setNotify(true, true)
 
-    $routeProvider.otherwise({
-        redirectTo: '/'
-    });
+    // Settings for http communications
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+    $stateProvider
+        .state('products', {
+            url: '/products/:type',
+            templateUrl: "components/views/produtos.html",
+            controller: 'ProductListController'
+        });
+
+    $urlRouterProvider.otherwise('/');
 });

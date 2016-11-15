@@ -5,29 +5,28 @@
 
 'use strict';
 
-angular.module('app.home', ['ngRoute'])
+angular.module('app.home', ['ngRoute', 'LocalStorageModule'])
 
 // Routing configuration for this module
-.config(['$routeProvider',function($routeprovider){
-	$routeprovider.when('/', {
-		controller: 'HomeController',
-		templateUrl: 'components/views/home.html'
-	});
+.config(['$routeProvider', function($routeprovider) {
+    $routeprovider.when('/', {
+        controller: 'HomeController',
+        templateUrl: 'components/views/home.html'
+    });
 }])
 
 // Controller definition for this module
-.controller('HomeController', ['$scope', function($scope) {
+.controller('HomeController', ['$scope', 'localStorageService', function($scope, localStorageService) {
 
-	// Just a housekeeping.
-	// In the init method we are declaring all the
-	// neccesarry settings and assignments to be run once
-	// controller is invoked
-	init();
+    // Just a housekeeping.
+    // In the init method we are declaring all the
+    // neccesarry settings and assignments to be run once
+    // controller is invoked
+    $scope.userLogged = null
+    init();
 
-	function init(){
-
-	};
-
-	this.message = "Hello Home!";
+    function init() {
+        $scope.userLogged = localStorageService.get('loggedUser');
+    };
 
 }]);

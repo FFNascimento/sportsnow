@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('app.productList', ['ui.router', 'ngRoute'])
+
 .controller('ProductListController', ['$scope', '$http', '$timeout', '$stateParams', function($scope, $http, $timeout, $stateParams) {
-	$scope.products = {};
+    $scope.products = {};
 
     $scope.getAPIData = function() {
         $http({
@@ -11,7 +12,6 @@ angular.module('app.productList', ['ui.router', 'ngRoute'])
         }).then(function success(res) {
             $scope.products = res.data;
         }, function error(err) {
-            alert(JSON.stringify(err));
         });
     };
 
