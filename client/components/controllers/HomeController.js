@@ -11,7 +11,7 @@ angular.module('app.home', ['ngRoute'])
 .config(['$routeProvider',function($routeprovider){
 	$routeprovider.when('/', {
 		controller: 'HomeController',
-		templateUrl: 'components/views/homeView.html'
+		templateUrl: 'components/views/home.html'
 	});
 }])
 
@@ -25,7 +25,7 @@ angular.module('app.home', ['ngRoute'])
 	init();
 
 	function init(){
-	
+
 	};
 
 	this.message = "Hello Home!";

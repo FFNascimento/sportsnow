@@ -70,3 +70,18 @@
 .cep {
     margin-top: 50%;
 }
+
+.erro-campo {
+    transition: 0.3s;
+    background-color: #EA898B;
+    border-color: #972629;
+}
+
+.address input[type="password"], .address input[type="email"] {
+    border: 1px solid #242424;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 10px;
+    font-family: 'Lato', sans-serif;
+}

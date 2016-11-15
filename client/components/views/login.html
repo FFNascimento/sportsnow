@@ -1,0 +1,66 @@
+<!--start-account-->
+<div class="account">
+	<div class="container">
+		<div class="account-bottom">
+			<div class="col-md-6 account-left">
+				<form name="criarUsuario">
+					<div class="account-top heading">
+						<h3>Novo Usuário</h3>
+					</div>
+					<div class="address">
+						<span>Nome</span>
+						<input type="text" ng-model="user.firstName" ng-required="true">
+					</div>
+					<div class="address">
+						<span>Sobrenome</span>
+						<input type="text" ng-model="user.lastName" ng-required="true">
+					</div>
+					<div class="address">
+						<span>CPF</span>
+						<input type="text" name="cpf" ng-model="user.cpf" ng-required="true">
+					</div>
+					<div class="address">
+						<span>RG</span>
+						<input type="text" name="rg" ng-model="user.rg" ng-required="true">
+					</div>
+					<div class="address">
+						<span>Email</span>
+						<input type="email" ng-model="user.email" ng-required="true">
+					</div>
+					<div class="address">
+						<span>Senha</span>
+						<input type="password" name="password" ng-model="user.password" ng-class="{'erro-campo':!pwdMatch && criarUsuario.password.$dirty}" ng-required="true">
+					</div>
+					<div class="address">
+						<span>Confirme a senha</span>
+						<input type="password" ng-model="user.passwordConfirmation" name="confirmpwd" ng-blur="compare()" ng-class="{'erro-campo':!pwdMatch && criarUsuario.confirmpwd.$dirty}" ng-required="true">
+					</div>
+					<div class="address new">
+						<input type="submit" value="submit" ng-click="criarUsuario.$valid && cadastrarUsuario()" ng-disabled="!pwdMatch">
+					</div>
+				</form>
+			</div>
+			<div class="col-md-6 account-left">
+				<form name="login">
+					<div class="account-top heading">
+						<h3>Usuário Cadastrado</h3>
+					</div>
+					<div class="address">
+						<span>Email</span>
+						<input type="email" ng-model="login.email" ng-required="true">
+					</div>
+					<div class="address">
+						<span>Senha</span>
+						<input type="password" ng-model="login.password" ng-required="true">
+					</div>
+					<div class="address">
+						<a class="forgot" href="#">Esqueceu sua senha?</a>
+						<input type="submit" value="Login" ng-click="login.$valid && signup()">
+					</div>
+			</div>
+			</form>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!--end-account-->

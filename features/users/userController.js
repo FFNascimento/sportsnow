@@ -41,7 +41,7 @@ function getUser(req, res) {
 	User.get_user(params).then(function(body) {
 		res.status(200).json(body);
 	}).fail(function(err) {
-		res.status(400).json(err);
+		res.status(403).json(err);
 	});
 };
 

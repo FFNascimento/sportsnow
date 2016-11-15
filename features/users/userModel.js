@@ -103,7 +103,7 @@ function get_user(params) {
 			}
 		}
 
-		q.resolve({permission: "UNAUTHORIZED"});
+		q.reject({permission: "UNAUTHORIZED"});
 	});
 	return q.promise;
 }
