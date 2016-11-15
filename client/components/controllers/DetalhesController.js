@@ -31,7 +31,7 @@ angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule'])
             $http({
                 method: 'GET',
                 url: 'api/get/product/',
-                params: {}
+                params: {id}
             })
         } else {
             $location.path('/');

@@ -15,7 +15,8 @@ module.exports = {
 	update_product: update_product,
 	get_product: get_product,
 	get_products: get_products,
-	sell_products: sell_products
+	sell_products: sell_products,
+	get_products_filter: get_products_filter
 }
 
 /**
@@ -171,5 +172,24 @@ function sell_products(params) {
 		});
 	}
 
+	return q.promise;
+}
+
+function get_products_filter(params) {
+	var q = Q.defer();
+
+	db.view('products', 'getAllProducts', {include_docs: true}, function(err, body) {
+		if(err) { q.reject(err); return; }
+		var body = couchHelper.onlyDocs(body);
+
+		var array = [];
+		for(var i = 0; i < body.length; i++) {
+			if(body[i].productType === params) {
+				array.push(body[i]);
+			}
+		}
+
+		q.resolve(array);
+	});
 	return q.promise;
 }

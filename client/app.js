@@ -1,7 +1,10 @@
 'use strict';
 
 // Defining Angular app model with all other dependent modules
-var app = angular.module('app', ['ngRoute',
+var app = angular.module('app', [
+    'ngRoute',
+    'ui.router',
+    'app.productList',
     'app.home',
     'app.about',
     'app.login',
@@ -15,25 +18,24 @@ app.run(function($rootScope, $location, localStorageService) {
     })
 })
 
-app.config(function($routeProvider, $locationProvider, $httpProvider, localStorageServiceProvider) {
 
-    // Declaration of the default route if neither of the controllers
-    // is supporting the request path
-    $routeProvider.otherwise({
-        redirectTo: '/'
-    });
+app.config(function($routeProvider, $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+
+    localStorageServiceProvider
+        .setPrefix('myApp')
+        .setStorageType('sessionStorage')
+        .setNotify(true, true)
 
     // Settings for http communications
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-    // disabling # in Angular urls
-    // $locationProvider.html5Mode({
-    // 		enabled: true,
-    //      requireBase: false
-    // });
-    localStorageServiceProvider
-        .setPrefix('myApp')
-        .setStorageType('sessionStorage')
-        .setNotify(true, true)
+    $stateProvider
+        .state('products', {
+            url: '/products/:type',
+            templateUrl: "components/views/produtos.html",
+            controller: 'ProductListController'
+        });
+
+    $urlRouterProvider.otherwise('/');
 });

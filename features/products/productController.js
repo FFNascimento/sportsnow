@@ -13,7 +13,8 @@ module.exports = {
 	updateProduct: updateProduct,
 	getProduct: getProduct,
 	getProducts: getProducts,
-	sellProducts: sellProducts
+	sellProducts: sellProducts,
+	getFilterProducts: getFilterProducts
 };
 
 function addProduct(req, res) {
@@ -71,6 +72,15 @@ function updateProduct(req, res) {
 function sellProducts(req, res) {
 	var parameters = req.body;
 	Product.sell_products(parameters).then(function(body) {
+		res.status(200).json(body);
+	}).fail(function(err) {
+		res.status(400).json(err);
+	});
+}
+
+function getFilterProducts(req, res) {
+	var params = req.params.type;
+	Product.get_products_filter(params).then(function(body) {
 		res.status(200).json(body);
 	}).fail(function(err) {
 		res.status(400).json(err);
