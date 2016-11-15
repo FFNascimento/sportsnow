@@ -24,5 +24,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider, $stateProv
         controller: 'ProductListController'
     });
 
-    $urlRouterProvider.otherwise('/');
+    $routeProvider.otherwise({
+        redirectTo: '/'
+    });
 });
