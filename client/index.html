@@ -95,13 +95,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="memenu skyblue">
 					<li class="active"><a href="index.html">Home</a>
 					</li>
-					<li class="grid"><a ui-sref="productList({filter: 'MASCULINO'})">Masculino</a>
+					<li class="grid"><a ui-sref="products({type: 'MASCULINO'})">Masculino</a>
 					</li>
-					<li class="grid"><a ui-sref="productList({filter: 'FEMININO'})">Feminino</a>
+					<li class="grid"><a ui-sref="products({type: 'FEMININO'})">Feminino</a>
 					</li>
-					<li class="grid"><a ui-sref="productList({filter: 'INFANTIL'})">Infantil</a>
+					<li class="grid"><a ui-sref="products({type: 'INFANTIL'})">Infantil</a>
 					</li>
-					<li class="grid"><a ui-sref="productList({filter: 'ESPORTE'})">Esporte</a>
+					<li class="grid"><a ui-sref="products({type: 'ESPORTE'})">Esporte</a>
 					</li>
 				</ul>
 			</div>
@@ -192,10 +192,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <script src="resources/bower/angular/angular.js"></script>
         <script src="resources/bower/angular-route/angular-route.min.js"></script>
         <script src="resources/bower/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="app.js"></script>
+        <script src="components/controllers/ProductListController.js"></script>
         <script src="components/controllers/AboutController.js"></script>
-        <script src="components/controllers/HomeController.js"></script>
         <script src="components/controllers/LoginController.js"></script>
+        <script src="components/controllers/HomeController.js"></script>
+        <script src="app.js"></script>
 </body>
 
 </html>
