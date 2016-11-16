@@ -8,6 +8,7 @@ var app = angular.module('app', [
     'app.home',
     'app.about',
     'app.login',
+    'app.detalhes',
     'LocalStorageModule'
 ]);
 
@@ -31,8 +32,8 @@ app.config(function($routeProvider, $locationProvider, $httpProvider, $stateProv
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     $stateProvider
-        .state('products', {
-            url: '/products/:type',
+        .state('produtos', {
+            url: '/produtos/:type',
             templateUrl: "components/views/produtos.html",
             controller: 'ProductListController'
         });

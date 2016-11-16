@@ -30,4 +30,8 @@ router
 	.route('/get/products/filter/:type')
 	.get(controller.getFilterProducts);
 
+router
+	.route('/get/products/related/:type/:id')
+	.get(controller.getAllRelatedProducts);
+
 module.exports = router;
