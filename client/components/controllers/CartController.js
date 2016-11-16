@@ -33,10 +33,12 @@ var cart = angular.module('app.cart', ['ngRoute', 'LocalStorageModule', 'ui.rout
 
     function getTotal() {
         var total = 0;
-        angular.forEach($scope.cart.itens, function(item) {
-            total += item.price * item.quantity;
-        });
-        $scope.total = total;
+        if ($scope.cart) {
+            angular.forEach($scope.cart.itens, function(item) {
+                total += item.price * item.quantity;
+            });
+            $scope.total = total;
+        }
     }
 
     $scope.increaseQt = function(item) {
