@@ -3,8 +3,8 @@
 	<div class="container">
 		<div class="breadcrumbs-main">
 			<ol class="breadcrumb">
-				<li><a href="index.html">Home</a></li>
-				<li class="active">Checkout</li>
+				<li><a ui-sref="home">Home</a></li>
+				<li class="active">Carrinho</li>
 			</ol>
 		</div>
 	</div>
@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="ckeckout-top">
 			<div class=" cart-items heading">
-				<h3>My Shopping Bag (3)</h3>
+				<h3>Meu carrinho ({{cart.itens.length}})</h3>
 				<script>
 					$(document).ready(function(c) {
 						$('.close1').on('click', function(c) {
@@ -25,67 +25,73 @@
 						});
 					});
 				</script>
-				<script>
-					$(document).ready(function(c) {
-						$('.close2').on('click', function(c) {
-							$('.cart-header1').fadeOut('slow', function(c) {
-								$('.cart-header1').remove();
-							});
-						});
-					});
-				</script>
-				<script>
-					$(document).ready(function(c) {
-						$('.close3').on('click', function(c) {
-							$('.cart-header2').fadeOut('slow', function(c) {
-								$('.cart-header2').remove();
-							});
-						});
-					});
-				</script>
 
-				<div class="in-check">
-					<ul class="unit">
-						<li><span>Item</span></li>
-						<li><span>Product Name</span></li>
-						<li><span>Unit Price</span></li>
-						<li><span>Stock Status</span></li>
-						<li> </li>
-						<div class="clearfix"> </div>
-					</ul>
-					<ul class="cart-header">
-						<div class="close1"> </div>
-						<li class="ring-in">
-							<a href="single.html"><img src="images/s-1.jpg" class="img-responsive" alt=""></a>
-						</li>
-						<li><span>Woo Dress</span></li>
-						<li><span>$ 290.00</span></li>
-						<li><span>In Stock</span></li>
-						<li> <a href="single.html" class="add-cart cart-check">ADD TO CART</a></li>
-						<div class="clearfix"> </div>
-					</ul>
-					<ul class=" cart-header1">
-						<div class="close2"> </div>
-						<li class="ring-in">
-							<a href="single.html"><img src="images/s-2.jpg" class="img-responsive" alt=""></a>
-						</li>
-						<li><span>Elliot Shoes</span></li>
-						<li><span>$ 300.00</span></li>
-						<li><span>In Stock</span></li>
-						<li> <a href="single.html" class="add-cart cart-check">ADD TO CART</a></li>
-						<div class="clearfix"> </div>
-					</ul>
-					<ul class="cart-header2">
-						<div class="close3"> </div>
-						<li class="ring-in">
-							<a href="single.html"><img src="images/s-4.jpg" class="img-responsive" alt=""></a>
-						</li>
-						<li><span>Woo Dress</span></li>
-						<li><span>$ 360.00</span></li>
-						<li><span>In Stock</span></li>
-						<li> <a href="single.html" class="add-cart cart-check">ADD TO CART</a></li>
-						<div class="clearfix"> </div>
-					</ul>
+				<div class="in-check" ng-if="cart.itens.length > 0">
+					<div class="row header">
+						<div class="col-lg-6 col-md-6">
+							<span>Item</span>
+						</div>
+						<div class="col-lg-2 col-md-2">
+							<span>Preço Unitário</span>
+						</div>
+						<div class="col-lg-2 col-md-2">
+							<span>Quantidade</span>
+						</div>
+						<div class="col-lg-2 col-md-2">
+							<span>Total</span>
+						</div>
+					</div>
+					<div class="row items" ng-repeat="item in cart.itens">
+						<!-- Item -->
+						<div class="col-lg-1 col-md-1 text-center remove-block">
+							<span class="glyphicon glyphicon-remove-circle remove-btn" ng-click="remove(item)"></span>
+						</div>
+						<div class="col-lg-2 col-md-2">
+							<img src="" alt="" class="img-responsive" />
+						</div>
+						<div class="col-lg-3 col-md-3">
+							<span>{{item.name}}</span>
+						</div>
+						<!-- / Item -->
+						<div class="col-lg-2 col-md-2">
+							{{item.price | currency}}
+						</div>
+						<div class="col-lg-2 col-md-2">
+							<div class="input-group quantity-controller">
+								<span class="input-group-addon" ng-click="increaseQt(item)"><span class="glyphicon glyphicon-plus"></span></span>
+								<input type="text" ng-model="item.quantity" class="form-control">
+								<span class="input-group-addon" ng-click="decreaseQt(item)"><span class="glyphicon glyphicon-minus"></span></span>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-2">
+							{{(item.price * item.quantity) | currency}}
+						</div>
+					</div>
+				</div>
+				<div class="row" ng-if="cart.itens.length > 0">
+					<div class="col-lg-6 col-md-6 resume">
+						<div class="row">
+							<span class="col-lg-6 col-md-6">Subtotal <ng-pluralize count="cart.itens.length" when="{'0':'Nehum item adicionado ao carrinho','1':'({{cart.itens.length}} item):','other':'({{cart.itens.length}} itens):'}"></ng-pluralize></span>
+							<span class="col-lg-6 col-md-6 text-right">{{total | currency}}</span>
+						</div>
+						<div class="row">
+							<span class="col-lg-6 col-md-6">Frete:</span>
+							<span class="col-lg-6 col-md-6 text-right" ng-show="frete > 0">{{frete}}</span>
+							<span class="col-lg-6 col-md-6 text-right" ng-show="frete <= 0">-</span>
+						</div>
+						<div class="row resume-total">
+							<span class="col-lg-6 col-md-6">Total:</span>
+							<span class="col-lg-6 col-md-6 text-right">{{(total + frete) | currency}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="row buy" ng-if="cart.itens.length > 0">
+					<a ui-sref="comprar" class="btn btn-primary">Comprar</a>
+				</div>
+				<div class="row" ng-if="cart.itens.length === 0">
+					<div class="col-lg-12">
+						<span>Não há produtos adicionados ao carrinho</span>
+					</div>
 				</div>
 			</div>
 		</div>

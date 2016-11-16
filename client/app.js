@@ -10,7 +10,8 @@ var app = angular.module('app', [
     'app.login',
     'app.detalhes',
     'app.cart',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ngLocale'
 ]);
 
 app.run(function($rootScope, $location, localStorageService) {

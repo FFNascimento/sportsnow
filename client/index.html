@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html ng-app="app">
 
 <head>
-    <title>Free Style A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+    <title>SPORTS NOW - A maior loja de artigos esportivos da galáxia</title>
     <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="resources/js/jquery-2.2.4.min.js"></script>
@@ -66,113 +66,115 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-4 top-header-left">
                     <div class="search-bar">
                         <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                        <input type="submit" value="">
+                        <input type="submit" value=""><span class="glyphicon glyphicon-search"></span>
                     </div>
                 </div>
                 <div class="col-md-4 top-header-middle">
-                    <a href="index.html"><img src="resources/img/sportsnow-logo.png" alt="Sports Now" /></a>
+                    <a ui-sref="home"><img src="resources/img/sportsnow-logo.png" alt="Sports Now" /></a>
                 </div>
-                <div class="col-md-4 top-header-right">
+                <div class="col-md-4 top-header-right" ng-controller="CartController">
                     <div class="cart box_1">
-                        <a href="checkout.html">
-                            <h3> <div class="total">
-							<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)<span class="glyphicon glyphicon-shopping-cart"></span></div>
-
-						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-						<div class="clearfix"> </div>
-					</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-</div>
-<!--top-header-->
-	<!--bottom-header-->
-	<div class="header-bottom">
-		<div class="container">
-			<div class="top-nav">
-				<ul class="memenu skyblue">
-					<li class="active"><a href="index.html">Home</a>
-					</li>
-					<li class="grid"><a ui-sref="produtos({type: 'MASCULINO'})">Masculino</a>
-					</li>
-					<li class="grid"><a ui-sref="produtos({type: 'FEMININO'})">Feminino</a>
-					</li>
-					<li class="grid"><a ui-sref="produtos({type: 'INFANTIL'})">Infantil</a>
-					</li>
-					<li class="grid"><a ui-sref="produtos({type: 'ESPORTE'})">Esporte</a>
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!--bottom-header-->
-
-	<ui-view></ui-view>
-
-	<!--start-footer-->
-	<div class="footer">
-		<div class="container">
-			<div class="footer-top">
-				<div class="col-md-3 footer-left">
-					<h3>ABOUT US</h3>
-                            <ul>
-                                <li><a href="#">Who We Are</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                                <li><a href="#">Our Sites</a></li>
-                                <li><a href="#">In The News</a></li>
-                                <li><a href="#">Team</a></li>
-                                <li><a href="#">Carrers</a></li>
-                            </ul>
+                        <a ui-sref="cart">
+                            <h3>
+                              <div class="total">
+                                <ng-pluralize count="cart.itens.length" when="{'0':'Vazio','1':'({{cart.itens.length}} item)','other':'({{cart.itens.length}} itens)'}"></ng-pluralize>
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </div>
+                          </h3>
+                        </a>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="col-md-3 footer-left">
-                        <h3>YOUR ACCOUNT</h3>
-                        <ul>
-                            <li><a href="account.html">Your Account</a></li>
-                            <li><a href="#">Personal Information</a></li>
-                            <li><a href="contact.html">Addresses</a></li>
-                            <li><a href="#">Discount</a></li>
-                            <li><a href="#">Track your order</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 footer-left">
-                        <h3>CUSTOMER SERVICES</h3>
-                        <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Cancellation</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Bulk Orders</a></li>
-                            <li><a href="#">Buying Guides</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 footer-left">
-                        <h3>CATEGORIES</h3>
-                        <ul>
-                            <li><a href="#">Sports Shoes</a></li>
-                            <li><a href="#">Casual Shoes</a></li>
-                            <li><a href="#">Formal Shoes</a></li>
-                            <li><a href="#">Party Shoes</a></li>
-                            <li><a href="#">Ethnic</a></li>
-                        </ul>
-                    </div>
-                    <div class="clearfix"> </div>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
-        <!--end-footer-->
-        <!--end-footer-text-->
-        <div class="footer-text">
-            <div class="container">
-                <div class="footer-main">
-                    <p class="footer-class">© 2015 Free Style All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-                </div>
+    </div>
+    <!--top-header-->
+    <!--bottom-header-->
+    <div class="header-bottom">
+        <div class="container">
+            <div class="top-nav">
+                <ul class="memenu skyblue">
+                    <li class="active"><a ui-sref="home">Home</a>
+                    </li>
+                    <li class="grid"><a ui-sref="produtos({type: 'MASCULINO'})">Masculino</a>
+                    </li>
+                    <li class="grid"><a ui-sref="produtos({type: 'FEMININO'})">Feminino</a>
+                    </li>
+                    <li class="grid"><a ui-sref="produtos({type: 'INFANTIL'})">Infantil</a>
+                    </li>
+                    <li class="grid"><a ui-sref="produtos({type: 'ESPORTE'})">Esporte</a>
+                    </li>
+                </ul>
             </div>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    /*
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!--bottom-header-->
+
+    <ui-view></ui-view>
+
+    <!--start-footer-->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="col-md-3 footer-left">
+                    <h3>ABOUT US</h3>
+                    <ul>
+                        <li><a href="#">Who We Are</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Our Sites</a></li>
+                        <li><a href="#">In The News</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Carrers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-left">
+                    <h3>YOUR ACCOUNT</h3>
+                    <ul>
+                        <li><a href="account.html">Your Account</a></li>
+                        <li><a href="#">Personal Information</a></li>
+                        <li><a href="contact.html">Addresses</a></li>
+                        <li><a href="#">Discount</a></li>
+                        <li><a href="#">Track your order</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-left">
+                    <h3>CUSTOMER SERVICES</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Cancellation</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Bulk Orders</a></li>
+                        <li><a href="#">Buying Guides</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-left">
+                    <h3>CATEGORIES</h3>
+                    <ul>
+                        <li><a href="#">Sports Shoes</a></li>
+                        <li><a href="#">Casual Shoes</a></li>
+                        <li><a href="#">Formal Shoes</a></li>
+                        <li><a href="#">Party Shoes</a></li>
+                        <li><a href="#">Ethnic</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!--end-footer-->
+    <!--end-footer-text-->
+    <div class="footer-text">
+        <div class="container">
+            <div class="footer-main">
+                <p class="footer-class">© 2015 Free Style All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                /*
 										var defaults = {
 								  			containerID: 'toTop', // fading element id
 											containerHoverID: 'toTopHover', // fading element hover id
@@ -180,27 +182,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											easingType: 'linear'
 								 		};
 										*/
-                    $().UItoTop({
-                        easingType: 'easeOutQuart'
-                    });
-
+                $().UItoTop({
+                    easingType: 'easeOutQuart'
                 });
-            </script>
-            <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-        </div>
-        <!--end-footer-text-->
-        <script src="resources/bower/angular/angular.js"></script>
-        <script src="resources/bower/angular-route/angular-route.min.js"></script>
-        <script src="resources/bower/angular-local-storage/angular-local-storage.min.js"></script>
-        <script src="app.js"></script>
-        <script src="resources/bower/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="components/controllers/ProductListController.js"></script>
-        <script src="components/controllers/AboutController.js"></script>
-        <script src="components/controllers/LoginController.js"></script>
-        <script src="components/controllers/HomeController.js"></script>
-        <script src="components/controllers/DetalhesController.js"></script>
-        <script src="components/controllers/CartController.js"></script>
-        <script src="app.js"></script>
+            });
+        </script>
+        <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    </div>
+    <!--end-footer-text-->
+    <script src="resources/bower/angular/angular.js"></script>
+    <script src="resources/bower/angular-route/angular-route.min.js"></script>
+    <script src="resources/bower/angular-local-storage/angular-local-storage.min.js"></script>
+    <script src="resources/js/angular-locale_pt-br.js"></script>
+    <script src="app.js"></script>
+    <script src="resources/bower/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="components/controllers/ProductListController.js"></script>
+    <script src="components/controllers/AboutController.js"></script>
+    <script src="components/controllers/LoginController.js"></script>
+    <script src="components/controllers/HomeController.js"></script>
+    <script src="components/controllers/DetalhesController.js"></script>
+    <script src="components/services/cartService.js"></script>
+    <script src="components/controllers/CartController.js"></script>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ angular.module('app.home', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     // In the init method we are declaring all the
     // neccesarry settings and assignments to be run once
     // controller is invoked
-    $scope.userLogged = null
+    $scope.userLogged = null;
     init();
 
     function init() {

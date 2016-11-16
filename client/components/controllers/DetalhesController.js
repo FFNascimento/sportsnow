@@ -75,6 +75,7 @@ angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule', 'ui.router'])
             _id: $scope.produto._id,
             name: $scope.produto.name,
             description: $scope.produto.description,
+            price: $scope.produto.price,
             quantity: 1,
             addedOn: Date.now()
         }

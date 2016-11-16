@@ -85,3 +85,55 @@
     padding: 10px 10px;
     font-family: 'Lato', sans-serif;
 }
+
+.in-check .header {
+    background-color: #000;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 1rem;
+}
+
+.in-check .items {
+    padding: 1em;
+    background-color: #f8f8f8;
+    margin-top: 1em;
+    border-bottom: 1px solid #000;
+}
+
+.in-check .remove-block {
+    height: 100%;
+    font-size: 1.2em;
+}
+
+.resume {
+    padding: 1em;
+    background-color: #f0f0f0;
+    margin-top: 1em;
+    font-size: 1.2em;
+}
+
+.resume .resume-total {
+    position: relative;
+    padding: 1em 0 0;
+}
+
+.resume .resume-total::before {
+    content: '';
+    width: calc(100% - 30px);
+    border-top: 1px solid #702428;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0.5em;
+    margin: auto;
+}
+
+.buy {
+    padding: 1em 0;
+}
+
+.buy .btn.btn-primary {
+    border-radius: 0px!important;
+    background-color: #702428;
+    border-color: #510F12;
+}
