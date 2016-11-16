@@ -7,7 +7,10 @@
 		_rev: Joi.string().optional(),
 		name: Joi.string().optional(),
 		description: Joi.string().optional(),
-		photo: Joi.string().optional(),
+		photo: Joi.array().object({
+			name: Joi.string().required(),
+			type: Joi.string().required().valid('PRINCIPAL', 'DETALHES')
+		}),
 		quantity: Joi.any().optional(),
 		price: Joi.any().optional(),
 		type: Joi.string().optional(),
