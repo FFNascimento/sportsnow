@@ -17,7 +17,7 @@
 					</div>
 					<div class="address">
 						<span>CPF</span>
-						<input type="text" name="cpf" ng-model="user.cpf" ng-required="true">
+						<input type="text" name="cpf" ng-model="user.cpf" ng-class="{'erro-campo':!criarUsuario.cpf.$valid && criarUsuario.cpf.$dirty}" ui-mask="999.999.999-99" ng-cpf ng-required="true" maxlength="11">
 					</div>
 					<div class="address">
 						<span>RG</span>
