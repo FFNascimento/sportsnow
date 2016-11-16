@@ -9,6 +9,7 @@ var app = angular.module('app', [
     'app.about',
     'app.login',
     'app.detalhes',
+    'app.cart',
     'LocalStorageModule'
 ]);
 

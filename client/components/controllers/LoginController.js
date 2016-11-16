@@ -2,7 +2,6 @@
 // For distribution, all controllers
 // are concatanated into single app.js file
 // by using Gulp
-
 'use strict';
 
 angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router'])
@@ -18,7 +17,7 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router'])
 }])
 
 // Controller definition for this module
-.controller('LoginController', ['$scope', '$http', '$timeout', 'localStorageService', '$location', function($scope, $http, $timeout, localStorageService, $location) {
+.controller('LoginController', ['$scope', '$http', '$timeout', 'localStorageService', '$state', function($scope, $http, $timeout, localStorageService, $state) {
 
     $scope.pwdMatch = true;
     // Objeto para criar novo usuário
@@ -69,7 +68,7 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router'])
         }).then(function success(res) {
             // Armazenar em localstorage
             localStorageService.set('loggedUser', $scope.login.email);
-            $location.path('/');
+            $state.go('home');
         }, function error(err) {
             console.log('Não vai passar ninguem!');
         });

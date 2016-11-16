@@ -80,17 +80,17 @@
 								<li><a href="#">7</a></li>
 								<li><a href="#">6</a></li>
 							</ul> -->
-							<div class="quantity_box">
+							<!-- <div class="quantity_box">
 								<ul class="product-qty">
 									<span>Quantidade:</span>
 									<select>
-										<option ng-repeat="qtd in produto.qtdList">{{qtd}}</option>
+										<option ng-repeat="qtd in produto.qtdList" ng-change="setQtd(qtd)">{{qtd}}</option>
 									</select>
 								</ul>
-							</div>
+							</div> -->
 							<div class="clearfix"> </div>
 							<div class="single-but item_add">
-								<input type="submit" value="Adicionar ao Carrinho" />
+								<input type="submit" value="Adicionar ao Carrinho" ng-click="addCarrinho()" />
 							</div>
 						</div>
 					</div>

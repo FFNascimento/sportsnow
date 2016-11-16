@@ -27,6 +27,7 @@ angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     $scope.produto = null;
     $scope.relacionados = null;
     $scope.maxRelated = 6;
+    $scope.sendCartStructure = null;
     init();
 
     function init() {
@@ -64,5 +65,48 @@ angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule', 'ui.router'])
         }
         return qtdArray;
     }
+
+    function alreadyOnCart(item) {
+        return item._id === $scope.produto._id;
+    }
+
+    function getBasicStructure() {
+        return {
+            _id: $scope.produto._id,
+            name: $scope.produto.name,
+            description: $scope.produto.description,
+            quantity: 1,
+            addedOn: Date.now()
+        }
+    }
+
+    $scope.setQtd = function(qtd) {
+        $scope.produto.selectedQtd = qtd;
+    }
+
+    $scope.addCarrinho = function() {
+        $scope.sendCartStructure = localStorageService.get('cart');
+        if (!$scope.sendCartStructure) {
+            $scope.sendCartStructure = {
+                itens: []
+            }
+            $scope.sendCartStructure.itens.push(getBasicStructure());
+            console.log($scope.sendCartStructure.itens);
+            localStorageService.set('cart', $scope.sendCartStructure);
+            $state.go('cart');
+
+        } else {
+            if (!$scope.sendCartStructure.itens.some(alreadyOnCart)) {
+                $scope.sendCartStructure.itens.push(getBasicStructure());
+                console.log($scope.sendCartStructure.itens);
+                localStorageService.set('cart', $scope.sendCartStructure);
+                $state.go('cart');
+            } else {
+                $state.go('cart');
+            }
+        }
+    }
+
+
 
 }]);
