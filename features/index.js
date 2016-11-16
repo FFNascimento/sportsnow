@@ -9,5 +9,6 @@ router.all('/', function(req, res) {
 
 router.use(require('./users/userRoute'));
 router.use(require('./products/productRoute'));
+router.use(require('./cart/cartRoute'));
 
 module.exports = router;
