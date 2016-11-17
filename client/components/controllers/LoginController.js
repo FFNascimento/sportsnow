@@ -79,10 +79,13 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
                 // Armazenar em localstorage
                 localStorageService.set('loggedUser', {
                     _id: res.data._id,
+                    _rev: res.data._rev,
                     name: res.data.name,
                     email: res.data.email,
                     permission: res.data.permission,
-                    password: res.data.password
+                    password: res.data.password,
+                    rg: res.data.rg,
+                    cpf: res.data.cpf
                 });
                 $state.go('home');
             }, function error(err) {
@@ -99,6 +102,11 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
             localStorageService.clearAll();
             $scope.userLogged = null;
             $rootScope.$broadcast("update-login");
+            $rootScope.$broadcast("update-cart");
+        }
+
+        $scope.update = function () {
+          
         }
     }
 ]);

@@ -106,8 +106,15 @@
 					<input type="password" ng-model="userLogged.password">
 				</div>
 			</div>
-			<div class="col-md-12 logout">
-				<button type="button" class="btn btn-primary" ng-click="logout()">LOGOUT</button>
+			<div class="col-md-12 ">
+				<div class="row">
+					<div class="col-md-6 logout">
+						<button type="button" class="btn btn-primary" ng-click="update()"><span class="glyphicon glyphicon-floppy-disk"></span> SALVAR</button>
+					</div>
+					<div class="col-md-6 logout text-right">
+						<button type="button" class="btn btn-primary" ng-click="logout()"><span class="glyphicon glyphicon-off"></span> LOGOUT</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

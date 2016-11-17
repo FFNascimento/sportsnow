@@ -27,10 +27,10 @@ var cart = angular.module('app.cart', ['ngRoute', 'LocalStorageModule', 'ui.rout
         function init() {
             $scope.userLogged = localStorageService.get('loggedUser');
             getTotal();
-            $rootScope.$broadcast("update");
+            $rootScope.$broadcast("update-cart");
         }
 
-        $rootScope.$on("update", function() {
+        $rootScope.$on("update-cart", function() {
             cartService.set('cart', localStorageService.get('cart') || []);
             $scope.cart = cartService.value.cart || {
                 itens: []
@@ -45,7 +45,7 @@ var cart = angular.module('app.cart', ['ngRoute', 'LocalStorageModule', 'ui.rout
             localStorageService.set('cart', $scope.cart);
             cartService.set('cart', localStorageService.get('cart') || []);
             getTotal();
-            $rootScope.$broadcast("update");
+            $rootScope.$broadcast("update-cart");
         }
 
         function getTotal() {
