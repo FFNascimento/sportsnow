@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<!-- <div class="account" ng-if="!userLogged">
+<div class="account" ng-if="!userLogged">
     <div class="container">
         <div class="account-bottom">
             <div class="col-md-6 account-left">
@@ -53,7 +53,7 @@
                 </form>
             </div>
             <div class="col-md-6 account-left">
-                <form name="login">
+                <form name="loginForm">
                     <div class="account-top heading">
                         <h3>Usuário Cadastrado</h3>
                     </div>
@@ -67,14 +67,14 @@
                     </div>
                     <div class="address">
                         <a class="forgot" href="#">Esqueceu sua senha?</a>
-                        <input type="submit" value="Login" ng-click="login.$valid && signup()">
+                        <input type="submit" value="Login" ng-click="loginForm.$valid && signup()">
                     </div>
             </div>
             </form>
             <div class="clearfix"> </div>
         </div>
     </div>
-</div> -->
+</div>
 <!--start-new address-->
 <div class="account" ng-if="userLogged">
     <div class="container">
@@ -85,10 +85,8 @@
                         <h3>Cadastrar Endereço de Entrega</h3>
                     </div>
                     <div class="address">
-                        <span>Tipo de Logradouro</span>
-                        <select ng-model="address.tipo" ng-options="tipo.tipo for tipo in tipoLogradouro">
-                          <option value="">Selecione</option>
-                        </select>
+                        <span>Tipo Logradouro</span>
+                        <input type="text" ng-model="address.tipo" ng-required="true">
                     </div>
                     <div class="address">
                         <span>Endereço</span>

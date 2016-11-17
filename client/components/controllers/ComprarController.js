@@ -18,7 +18,7 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
 }])
 
 // Controller definition for this module
-.controller('ComprarController', ['$scope', '$http', 'localStorageService', function($scope, $http, localStorageService) {
+.controller('ComprarController', ['$scope', '$http', 'localStorageService', '$rootScope', function($scope, $http, localStorageService, $rootScope) {
 
     // Just a housekeeping.
     // In the init method we are declaring all the
@@ -31,13 +31,13 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
         $scope.userLogged = localStorageService.get('loggedUser');
     };
 
-    $scope.tipoLogradouro = [{
-        tipo: 'Avenida'
-    }, {
-        tipo: 'Rua'
-    }, {
-        tipo: 'Rodovia'
-    }];
+    // $scope.tipoLogradouro = [{
+    //     tipo: 'Avenida'
+    // }, {
+    //     tipo: 'Rua'
+    // }, {
+    //     tipo: 'Rodovia'
+    // }];
 
     $scope.address = {
         tipo: '',
@@ -50,16 +50,28 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
         cep: ''
     };
 
+    // Objeto para login, está separado do de usuário para evitar problemas com o Two way databind
+    $scope.login = {
+        email: '',
+        password: ''
+    };
+
     $scope.cadastrarEndereco = function() {
         $scope.endereco = $scope.address.tipo + " " + $scope.address.logradouro + ", " + $scope.address.numero + " - " + $scope.address.cidade + "/" + $scope.address.estado
 
         // Ajusta ao padrão do usuário
         var usuario = {
-            id: $scope.userLogged._id,
-            rev: $scope.userLogged._rev,
-            endereco: $scope.endereco
+            _id: $scope.userLogged._id,
+            _rev: $scope.userLogged._rev,
+            email: $scope.userLogged.email,
+            permission: $scope.userLogged.permission,
+            password: $scope.userLogged.password,
+            endereco: $scope.endereco,
+            name: $scope.userLogged.name,
+            rg: $scope.userLogged.rg,
+            cpf: $scope.userLogged.cpf
         }
-
+        console.log(usuario);
         $http({
             method: 'POST',
             url: 'api/update/user',
@@ -67,10 +79,34 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
         }).then(function success(res) {
             alert("Endereço cadastrado com sucesso!")
         }, function error(err) {
-          alert("Endereço não cadastrado!")
-            // console.log('Cadastrou não migão');
+            alert("Endereço não cadastrado!")
+                // console.log('Cadastrou não migão');
         });
 
     }
+
+    $scope.signup = function() {
+        $http({
+            method: 'POST',
+            url: 'api/authorize/user',
+            data: JSON.stringify($scope.login)
+        }).then(function success(res) {
+            // Armazenar em localstorage
+            localStorageService.set('loggedUser', {
+                _id: res.data._id,
+                _rev: res.data._rev,
+                name: res.data.name,
+                email: res.data.email,
+                permission: res.data.permission,
+                password: res.data.password,
+                rg: res.data.rg,
+                cpf: res.data.cpf
+            });
+            $rootScope.$broadcast("update-login");
+            $scope.userLogged = localStorageService.get('loggedUser');
+        }, function error(err) {
+            alert('Dados de login inválidos!');
+        });
+    };
 
 }]);
