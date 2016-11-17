@@ -43,22 +43,27 @@
 <div class="banner-bottom">
     <div class="container">
         <div class="banner-bottom-top">
-            <div class="col-md-6 banner-bottom-left">
-                <div class="bnr-one">
-                    <div class="bnr-left">
-                        <h1><a href="single.html">Duis dictum volutpat</a></h1>
-                        <p>Nulla tempus facilisis purus at.</p>
-                        <div class="b-btn">
-                            <a href="single.html">SHOP NOW</a>
-                        </div>
-                    </div>
-                    <div class="bnr-right">
-                        <a href="single.html"><img src="images/b-1.jpg" alt="" /></a>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
+            <div class="col-md-12 banner-bottom-left">
+
+              <div ng-repeat="product in products | limitTo: 2" class="col-md-6 product-left single-left">
+    						<div class="abt-one">
+    							<a ui-sref="detalhes({productId:product._id})">
+    								<img src="{{product.photo}}" alt="{{product.name}}" width="150px" height="150px" />
+    							</a>
+    							<h4><a ui-sref="detalhes({productId:product._id})">{{product.name}}</a></h4>
+    							<p>{{product.description}}</p>
+    						</div>
+    					</div>
+
+
+              <!-- <div class="abt-one">
+                  <a href="single.html"><img src="images/abt-1.jpg" alt="" /></a>
+                  <h4><a href="single.html">Cras dolor ligula</a></h4>
+                  <p>Phasellus auctor vulputate egestas. Nulla facilisi. Cras dolor ligula, pharetra vitae efficitur ac, tempus vitae nisl. Aliquam erat volutpat. </p>
+              </div> -->
+
             </div>
-            <div class="col-md-6 banner-bottom-right">
+            <!-- <div class="col-md-6 banner-bottom-right">
                 <div class="bnr-two">
                     <div class="bnr-left">
                         <h2><a href="single.html">Phasellus quis nunc</a></h2>
@@ -73,7 +78,7 @@
                     <div class="clearfix"> </div>
                 </div>
             </div>
-            <div class="clearfix"> </div>
+            <div class="clearfix"> </div> -->
         </div>
     </div>
 </div>
@@ -200,9 +205,10 @@
         </div>
     </div>
 </div>
+<hr>
 <!--end-shoes-->
 <!--start-abt-shoe-->
-<div class="abt-shoe">
+<!-- <div class="abt-shoe">
     <div class="container">
         <div class="abt-shoe-main">
             <div class="col-md-4 abt-shoe-left">
@@ -229,5 +235,5 @@
             <div class="clearfix"> </div>
         </div>
     </div>
-</div>
+</div> -->
 <!--end-abt-shoe-->

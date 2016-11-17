@@ -1,0 +1,125 @@
+<!--start-breadcrumbs-->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a ui-sref="home">Home</a></li>
+                <li><a ui-sref="cart">Carrinho</a></li>
+                <li class="active">Finalizar</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="account" ng-if="!userLogged">
+    <div class="container">
+        <div class="account-bottom">
+            <div class="col-md-6 account-left">
+                <form name="criarUsuario">
+                    <div class="account-top heading">
+                        <h3>Novo Usuário</h3>
+                    </div>
+                    <div class="address">
+                        <span>Nome</span>
+                        <input type="text" ng-model="user.firstName" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Sobrenome</span>
+                        <input type="text" ng-model="user.lastName" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>CPF</span>
+                        <input type="text" name="cpf" ng-model="user.cpf" ng-class="{'erro-campo':!criarUsuario.cpf.$valid && criarUsuario.cpf.$dirty}" ui-mask="999.999.999-99" ng-cpf ng-required="true" maxlength="11">
+                    </div>
+                    <div class="address">
+                        <span>RG</span>
+                        <input type="text" name="rg" ng-model="user.rg" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Email</span>
+                        <input type="email" ng-model="user.email" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Senha</span>
+                        <input type="password" name="password" ng-model="user.password" ng-class="{'erro-campo':!pwdMatch && criarUsuario.password.$dirty}" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Confirme a senha</span>
+                        <input type="password" ng-model="user.passwordConfirmation" name="confirmpwd" ng-blur="compare()" ng-class="{'erro-campo':!pwdMatch && criarUsuario.confirmpwd.$dirty}" ng-required="true">
+                    </div>
+                    <div class="address new">
+                        <input type="submit" value="submit" ng-click="criarUsuario.$valid && cadastrarUsuario()" ng-disabled="!pwdMatch">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 account-left">
+                <form name="login">
+                    <div class="account-top heading">
+                        <h3>Usuário Cadastrado</h3>
+                    </div>
+                    <div class="address">
+                        <span>Email</span>
+                        <input type="email" ng-model="login.email" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Senha</span>
+                        <input type="password" ng-model="login.password" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <a class="forgot" href="#">Esqueceu sua senha?</a>
+                        <input type="submit" value="Login" ng-click="login.$valid && signup()">
+                    </div>
+            </div>
+            </form>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div> -->
+<!--start-new address-->
+<div class="account" ng-if="userLogged">
+    <div class="container">
+        <div class="account-bottom">
+            <div class="col-md-6 account-left">
+                <form name="criarEndereco">
+                    <div class="account-top heading">
+                        <h3>Cadastrar Endereço de Entrega</h3>
+                    </div>
+                    <div class="address">
+                        <span>Tipo de Logradouro</span>
+                        <select ng-model="address.tipo" ng-options="tipo.tipo for tipo in tipoLogradouro">
+                          <option value="">Selecione</option>
+                        </select>
+                    </div>
+                    <div class="address">
+                        <span>Endereço</span>
+                        <input type="text" ng-model="address.logradouro" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Número</span>
+                        <input type="text" ng-model="address.numero" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Complemento</span>
+                        <input type="text" ng-model="address.complemento" ng-required="false">
+                    </div>
+                    <div class="address">
+                        <span>Bairro</span>
+                        <input type="text" ng-model="address.bairro" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Cidade</span>
+                        <input type="text" ng-model="address.cidade" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>Estado</span>
+                        <input type="text" ng-model="address.estado" ng-required="true">
+                    </div>
+                    <div class="address">
+                        <span>CEP</span>
+                        <input type="text" ng-model="address.cep" ng-required="true">
+                    </div>
+                    <div class="address new">
+                        <input type="submit" value="Finalizar Compra" ng-click="cadastrarEndereco()">
+                    </div>
+                </form>
+            </div>

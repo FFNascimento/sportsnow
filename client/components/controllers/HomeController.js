@@ -18,7 +18,7 @@ angular.module('app.home', ['ngRoute', 'LocalStorageModule', 'ui.router'])
 }])
 
 // Controller definition for this module
-.controller('HomeController', ['$scope', 'localStorageService', function($scope, localStorageService) {
+.controller('HomeController', ['$scope', '$http', 'localStorageService', function($scope, $http, localStorageService) {
 
     // Just a housekeeping.
     // In the init method we are declaring all the
@@ -30,5 +30,18 @@ angular.module('app.home', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     function init() {
         $scope.userLogged = localStorageService.get('loggedUser');
     };
+
+    $scope.products = {};
+
+    $scope.getAPIData = function() {
+        $http({
+            method: 'GET',
+            url: '/api/get/products'
+        }).then(function success(res) {
+            $scope.products = res.data;
+        }, function error(err) {});
+    };
+
+    $scope.getAPIData();
 
 }]);

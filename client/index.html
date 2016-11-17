@@ -121,45 +121,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="footer-top">
                 <div class="col-md-3 footer-left">
-                    <h3>ABOUT US</h3>
+                    <h3>SOBRE NÓS</h3>
                     <ul>
-                        <li><a href="#">Who We Are</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#">Our Sites</a></li>
-                        <li><a href="#">In The News</a></li>
-                        <li><a href="#">Team</a></li>
-                        <li><a href="#">Carrers</a></li>
+                        <li><a href="#">Quem somos nós</a></li>
+                        <li><a href="contact.html">Contatos</a></li>
+                        <li><a href="#">Equipe</a></li>
+                        <li><a href="#">Carreira</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 footer-left">
-                    <h3>YOUR ACCOUNT</h3>
+                    <h3>SUA CONTA</h3>
                     <ul>
-                        <li><a href="account.html">Your Account</a></li>
-                        <li><a href="#">Personal Information</a></li>
-                        <li><a href="contact.html">Addresses</a></li>
-                        <li><a href="#">Discount</a></li>
-                        <li><a href="#">Track your order</a></li>
+                        <li><a ui-sref="login">Sua Conta</a></li>
+                        <li><a ui-sref="login">Informações Pessoais</a></li>
+                        <li><a ui-sref="login">Endereços</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 footer-left">
-                    <h3>CUSTOMER SERVICES</h3>
+                    <h3>SERVIÇOS</h3>
                     <ul>
                         <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Cancellation</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Bulk Orders</a></li>
-                        <li><a href="#">Buying Guides</a></li>
+                        <li><a href="#">Comprar</a></li>
+                        <li><a href="#">Cancelamento</a></li>
+                        <li><a href="#">Guia de Compra</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 footer-left">
-                    <h3>CATEGORIES</h3>
+                    <h3>CATEGORIAS</h3>
                     <ul>
-                        <li><a href="#">Sports Shoes</a></li>
-                        <li><a href="#">Casual Shoes</a></li>
-                        <li><a href="#">Formal Shoes</a></li>
-                        <li><a href="#">Party Shoes</a></li>
-                        <li><a href="#">Ethnic</a></li>
+                        <li><a ui-sref="produtos({type: 'MASCULINO'})">Masculino</a></li>
+                        <li><a ui-sref="produtos({type: 'FEMININO'})">Feminino</a></li>
+                        <li><a ui-sref="produtos({type: 'INFANTIL'})">Infantil</a></li>
+                        <li><a ui-sref="produtos({type: 'ESPORTE'})">Esporte</a></li>
                     </ul>
                 </div>
                 <div class="clearfix"> </div>
@@ -171,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="footer-text">
         <div class="container">
             <div class="footer-main">
-                <p class="footer-class">© 2015 Free Style All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+                <p class="footer-class">© 2016 Todos os direitos Reservados | Design by Zorg</p>
             </div>
         </div>
         <script type="text/javascript">
@@ -203,6 +196,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="components/controllers/LoginController.js"></script>
     <script src="components/controllers/HomeController.js"></script>
     <script src="components/controllers/DetalhesController.js"></script>
+    <script src="components/controllers/ComprarController.js"></script>
     <script src="components/services/cartService.js"></script>
     <script src="components/controllers/CartController.js"></script>
     <!--Bower Validação de CPF-->

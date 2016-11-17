@@ -54,9 +54,9 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
             url: 'api/add/user',
             data: JSON.stringify(usuario)
         }).then(function success(res) {
-            console.log('Usuário Cadastrado com sucesso');
+            alert('Usuário Cadastrado com sucesso');
         }, function error(err) {
-            console.log('Deu ruim =(');
+            alert('Usuário não cadastrado!');
         });
     };
 

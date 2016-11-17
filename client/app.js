@@ -10,6 +10,7 @@ var app = angular.module('app', [
     'app.login',
     'app.detalhes',
     'app.cart',
+    'app.comprar',
     'LocalStorageModule',
     'ngLocale'
 ]);
