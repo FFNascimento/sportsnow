@@ -4,7 +4,7 @@
 // by using Gulp
 'use strict';
 
-angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router'])
+angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCpfCnpj'])
 
 // Routing configuration for this module
 .config(['$stateProvider', function($stateProvider) {
