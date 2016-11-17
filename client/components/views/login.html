@@ -1,5 +1,5 @@
 <!--start-account-->
-<div class="account">
+<div class="account" ng-if="!userLogged">
 	<div class="container">
 		<div class="account-bottom">
 			<div class="col-md-6 account-left">
@@ -41,7 +41,7 @@
 				</form>
 			</div>
 			<div class="col-md-6 account-left">
-				<form name="login">
+				<form name="loginForm">
 					<div class="account-top heading">
 						<h3>Usuário Cadastrado</h3>
 					</div>
@@ -55,7 +55,7 @@
 					</div>
 					<div class="address">
 						<a class="forgot" href="#">Esqueceu sua senha?</a>
-						<input type="submit" value="Login" ng-click="login.$valid && signup()">
+						<input type="submit" value="Login" ng-click="loginForm.$valid && signup()">
 					</div>
 			</div>
 			</form>
@@ -64,3 +64,58 @@
 	</div>
 </div>
 <!--end-account-->
+<div class="my-account" ng-if="userLogged">
+	<div class="container">
+		<div class="account-top heading">
+			<h3>Minha Conta</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="address">
+					<span>Nome:</span>
+					<input type="text" ng-model="userLogged.name">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="address">
+					<span>Email:</span>
+					<input type="text" ng-model="userLogged.email">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="address">
+					<span>CPF:</span>
+					<input type="text" ng-model="userLogged.cpf">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="address">
+					<span>RG:</span>
+					<input type="text" ng-model="userLogged.rg">
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="address">
+					<span>Endereço:</span>
+					<input type="text" ng-model="userLogged.endereco">
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="address">
+					<span>Senha:</span>
+					<input type="password" ng-model="userLogged.password">
+				</div>
+			</div>
+			<div class="col-md-12 ">
+				<div class="row">
+					<div class="col-md-6 logout">
+						<button type="button" class="btn btn-primary" ng-click="update()"><span class="glyphicon glyphicon-floppy-disk"></span> SALVAR</button>
+					</div>
+					<div class="col-md-6 logout text-right">
+						<button type="button" class="btn btn-primary" ng-click="logout()"><span class="glyphicon glyphicon-off"></span> LOGOUT</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
