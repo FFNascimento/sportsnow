@@ -188,6 +188,12 @@ function update_product(product) {
 
 function sell_products(params) {
     var q = Q.defer();
+    var jorge = params;
+
+    if(!(params instanceof Array)) {
+      var params = [];
+      params[0] = jorge;
+    }
 
     for (var i = 0; i < params.length; i++) {
 
@@ -197,8 +203,10 @@ function sell_products(params) {
             include_docs: true
         }, function(err, body) {
 
-            if (obj.quantity <= body.quantity) {
+            if (parseInt(obj.quantity) <= parseInt(body.quantity)) {
                 body.quantity -= obj.quantity;
+
+                console.log("ENTREI!");
 
                 if (body.quantity == 0) {
                     body._deleted = true;
@@ -218,6 +226,8 @@ function sell_products(params) {
                         q.resolve(body);
                     }
                 });
+            } else {
+              q.reject({error: 'Quantidade de produtos maior que a disponivel.'})
             }
         });
     }

@@ -80,17 +80,19 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
         }).then(function success(res) {
             alert("Endereço cadastrado com sucesso!");
             $scope.cart = localStorageService.get('cart');
-            $scope.cart.itens.forEach(function(item) {
-                $http({
-                    method: 'POST',
-                    url: 'api/sell/products',
-                    data: JSON.stringify(item)
-                }).then(function success(res) {
-                  console.log(res);
-                });
+
+            $http({
+                method: 'POST',
+                url: 'api/sell/products',
+                data: JSON.stringify($scope.cart.itens)
+            }).then(function success(res) {
+                console.log(res);
+                localStorageService.remove('cart');
+                $scope.pedido = 'ZORG-' + Date.now();
+            }, function error(err) {
+                alert(err.data.error);
             });
-            localStorageService.remove('cart');
-            $scope.pedido = 'ZORG-' + Date.now();
+
 
         }, function error(err) {
             alert("Endereço não cadastrado!")
