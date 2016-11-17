@@ -76,7 +76,7 @@
     </div>
 </div>
 <!--start-new address-->
-<div class="account" ng-if="userLogged">
+<div class="account" ng-if="userLogged && !pedido">
     <div class="container">
         <div class="account-bottom">
             <div class="col-md-6 account-left">
@@ -121,3 +121,15 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+</div>
+<div class="" ng-if="pedido">
+    <div class="container">
+        <div class="account-top heading">
+            <h3>Compra Realizada!</h3>
+        </div>
+        <p>Pedido: {{pedido}}</p>
+        <a class="btn btn-primary" ui-sref="home">Voltar ao Início</a>
+    </div>
+</div>

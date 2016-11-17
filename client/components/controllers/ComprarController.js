@@ -26,6 +26,7 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     // controller is invoked
     $scope.userLogged = null;
     init();
+    $scope.pedido = null;
 
     function init() {
         $scope.userLogged = localStorageService.get('loggedUser');
@@ -77,7 +78,20 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
             url: 'api/update/user',
             data: JSON.stringify(usuario)
         }).then(function success(res) {
-            alert("Endereço cadastrado com sucesso!")
+            alert("Endereço cadastrado com sucesso!");
+            $scope.cart = localStorageService.get('cart');
+            $scope.cart.itens.forEach(function(item) {
+                $http({
+                    method: 'POST',
+                    url: 'api/sell/products',
+                    data: JSON.stringify(item)
+                }).then(function success(res) {
+                  console.log(res);
+                });
+            });
+            localStorageService.remove('cart');
+            $scope.pedido = 'ZORG-' + Date.now();
+
         }, function error(err) {
             alert("Endereço não cadastrado!")
                 // console.log('Cadastrou não migão');

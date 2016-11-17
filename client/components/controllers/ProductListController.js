@@ -11,9 +11,13 @@ angular.module('app.productList', ['ui.router', 'ngRoute'])
             method: 'GET',
             url: '/api/get/products/filter/' + $stateParams.type
         }).then(function success(res) {
-            $scope.products = res.data;
+            $scope.products = res.data.filter(quantityZero);
         }, function error(err) {});
     };
+
+    function quantityZero(item) {
+        return item.quantity > 0;
+    }
 
     $scope.getAPIData();
 }]);

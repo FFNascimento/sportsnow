@@ -19,7 +19,7 @@
 					<div ng-repeat="product in products" class="col-md-4 product-left single-left">
 						<div class="p-one simpleCart_shelfItem">
 							<a>
-								<img src="{{product.photo}}" alt="{{product.name}}" width="150px" height="150px" />
+								<img src="{{product.photo.name}}" alt="{{product.name}}" width="150px" height="150px" />
 								<div class="mask mask1">
 									<a ui-sref="detalhes({productId:product._id})"><span>Visualizar</span></a>
 								</div>
