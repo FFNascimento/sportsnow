@@ -44,7 +44,7 @@
 					<div class="row items" ng-repeat="item in cart.itens">
 						<!-- Item -->
 						<div class="col-lg-1 col-md-1 text-center remove-block">
-							<span class="glyphicon glyphicon-remove-circle remove-btn" ng-click="remove(item)"></span>
+							<span class="glyphicon glyphicon-remove-circle remove-btn" ng-click="remove($index)"></span>
 						</div>
 						<div class="col-lg-2 col-md-2">
 							<img src="" alt="" class="img-responsive" />
@@ -71,7 +71,7 @@
 				<div class="row" ng-if="cart.itens.length > 0">
 					<div class="col-lg-6 col-md-6 resume">
 						<div class="row">
-							<span class="col-lg-6 col-md-6">Subtotal <ng-pluralize count="cart.itens.length" when="{'0':'Nehum item adicionado ao carrinho','1':'({{cart.itens.length}} item):','other':'({{cart.itens.length}} itens):'}"></ng-pluralize></span>
+							<span class="col-lg-6 col-md-6">Subtotal <ng-pluralize count="cart.itens.length" when="{'0':'Nenhum item adicionado ao carrinho','1':'({{cart.itens.length}} item):','other':'({{cart.itens.length}} itens):'}"></ng-pluralize></span>
 							<span class="col-lg-6 col-md-6 text-right">{{total | currency}}</span>
 						</div>
 						<div class="row">
@@ -90,7 +90,7 @@
 				</div>
 				<div class="row" ng-if="cart.itens.length === 0">
 					<div class="col-lg-12">
-						<span>Não há produtos adicionados ao carrinho</span>
+						<span class="cart-empty">Não há produtos adicionados ao carrinho</span>
 					</div>
 				</div>
 			</div>

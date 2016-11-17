@@ -132,8 +132,15 @@
     padding: 1em 0;
 }
 
-.buy .btn.btn-primary {
+.btn.btn-primary {
     border-radius: 0px!important;
     background-color: #702428;
     border-color: #510F12;
+}
+
+.logout{
+  margin: 1em 0;
+}
+.cart-empty {
+    font-size: 1.5em;
 }

@@ -13,53 +13,69 @@ var cart = angular.module('app.cart', ['ngRoute', 'LocalStorageModule', 'ui.rout
 }])
 
 // Controller definition for this module
-.controller('CartController', ['$scope', '$http', '$timeout', 'localStorageService', '$state', 'cartService', function($scope, $http, $timeout, localStorageService, $state, cartService) {
-    cartService.set('cart', localStorageService.get('cart'));
-    $scope.cart = cartService.value.cart;
-    $scope.total = 0;
-    $scope.frete = 0;
+.controller('CartController', ['$scope', '$http', '$timeout', 'localStorageService', '$state', 'cartService', '$rootScope',
+    function($scope, $http, $timeout, localStorageService, $state, cartService, $rootScope) {
+        cartService.set('cart', localStorageService.get('cart') || []);
+        $scope.cart = cartService.value.cart || {
+            itens: []
+        };
+        $scope.total = 0;
+        $scope.frete = 0;
+        $scope.userLogged = null;
+        init();
 
-    init();
-
-    function init() {
-        getTotal();
-    }
-
-    function updateCart() {
-        localStorageService.set('cart', $scope.cart);
-        cartService.set('cart', localStorageService.get('cart'));
-        getTotal();
-    }
-
-    function getTotal() {
-        var total = 0;
-        if ($scope.cart) {
-            angular.forEach($scope.cart.itens, function(item) {
-                total += item.price * item.quantity;
-            });
-            $scope.total = total;
+        function init() {
+            $scope.userLogged = localStorageService.get('loggedUser');
+            getTotal();
+            $rootScope.$broadcast("update");
         }
-    }
 
-    $scope.increaseQt = function(item) {
-        if (item.quantity < 6) {
-            item.quantity++;
+        $rootScope.$on("update", function() {
+            cartService.set('cart', localStorageService.get('cart') || []);
+            $scope.cart = cartService.value.cart || {
+                itens: []
+            };
+        });
+
+        $rootScope.$on("update-login", function() {
+            $scope.userLogged = localStorageService.get('loggedUser');
+        });
+
+        function updateCart() {
+            localStorageService.set('cart', $scope.cart);
+            cartService.set('cart', localStorageService.get('cart') || []);
+            getTotal();
+            $rootScope.$broadcast("update");
+        }
+
+        function getTotal() {
+            var total = 0;
+            if ($scope.cart) {
+                angular.forEach($scope.cart.itens, function(item) {
+                    total += item.price * item.quantity;
+                });
+                $scope.total = total;
+            }
+        }
+
+        $scope.increaseQt = function(item) {
+            if (item.quantity < 6) {
+                item.quantity++;
+                updateCart();
+            }
+        }
+
+        $scope.decreaseQt = function(item) {
+            if (item.quantity > 1) {
+                item.quantity--;
+                updateCart();
+            }
+        }
+
+        $scope.remove = function(item) {
+            $scope.cart.itens.splice(item, 1);
             updateCart();
         }
+
     }
-
-    $scope.decreaseQt = function(item) {
-        if (item.quantity > 1) {
-            item.quantity--;
-            updateCart();
-        }
-    }
-
-    $scope.remove = function(item) {
-        $scope.cart.itens.splice(item, 1);
-        updateCart();
-    }
-
-
-
-}]);
+]);

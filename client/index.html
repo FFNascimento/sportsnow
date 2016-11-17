@@ -84,6 +84,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </a>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="cart box_1">
+                        <a ui-sref="login">
+                            <h3><span ng-show="userLogged">{{userLogged.name}}</span><span class="glyphicon glyphicon-user"></span></h3>
+                        </a>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -203,6 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="components/controllers/DetalhesController.js"></script>
     <script src="components/services/cartService.js"></script>
     <script src="components/controllers/CartController.js"></script>
+    <!-- <script src="components/controllers/IndexController.js"></script> -->
 </body>
 
 </html>
