@@ -59,7 +59,7 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
 
     $scope.cadastrarEndereco = function() {
         $scope.endereco = $scope.address.tipo + " " + $scope.address.logradouro + ", " + $scope.address.numero + " - " + $scope.address.cidade + "/" + $scope.address.estado
-
+        console.log($scope.userLogged);
         // Ajusta ao padrão do usuário
         var usuario = {
             _id: $scope.userLogged._id,

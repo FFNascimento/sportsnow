@@ -45,18 +45,18 @@
         <div class="banner-bottom-top">
             <div class="col-md-12 banner-bottom-left">
 
-              <div ng-repeat="product in products | limitTo: 2" class="col-md-6 product-left single-left">
-    						<div class="abt-one">
-    							<a ui-sref="detalhes({productId:product._id})">
-    								<img src="{{product.photo}}" alt="{{product.name}}" width="150px" height="150px" />
-    							</a>
-    							<h4><a ui-sref="detalhes({productId:product._id})">{{product.name}}</a></h4>
-    							<p>{{product.description}}</p>
-    						</div>
-    					</div>
+                <div ng-repeat="product in products | limitTo: 2" class="col-md-6 product-left single-left">
+                    <div class="abt-one">
+                        <a ui-sref="detalhes({productId:product._id})">
+                            <img src="{{product.photo}}" alt="{{product.name}}" width="150px" height="150px" />
+                        </a>
+                        <h4><a ui-sref="detalhes({productId:product._id})">{{product.name}}</a></h4>
+                        <p>{{product.description}}</p>
+                    </div>
+                </div>
 
 
-              <!-- <div class="abt-one">
+                <!-- <div class="abt-one">
                   <a href="single.html"><img src="images/abt-1.jpg" alt="" /></a>
                   <h4><a href="single.html">Cras dolor ligula</a></h4>
                   <p>Phasellus auctor vulputate egestas. Nulla facilisi. Cras dolor ligula, pharetra vitae efficitur ac, tempus vitae nisl. Aliquam erat volutpat. </p>
@@ -79,6 +79,7 @@
                 </div>
             </div>
             <div class="clearfix"> </div> -->
+            <div class="clearfix"> </div>
         </div>
     </div>
 </div>
@@ -87,128 +88,97 @@
 <div class="shoes">
     <div class="container">
         <div class="product-one">
-            <div class="col-md-3 product-left">
-                <div class="p-one simpleCart_shelfItem">
-                    <a href="single.html">
-                        <img src="images/shoes-1.png" alt="" />
+
+            <div class="col-md-12 product-left">
+                <div ng-repeat="product in products" class="col-md-3 product-left">
+                    <a ui-sref="detalhes({productId:product._id})">
+                        <img src="{{product.photo.name}}" alt="{{product.name}}" />
                         <div class="mask">
-                            <span>Quick View</span>
+                            <span>Veja Mais</span>
                         </div>
                     </a>
-                    <h4>Aenean placerat</h4>
-                    <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-
+                    <h4>{{product.name}}</h4>
+                    <div class="price_single">
+                        <p>
+                            <a class="item_add" ui-sref="detalhes({productId:product._id})">
+                                <i></i>
+                                <span class=" item_price">{{product.price | currency}}</span>
+                            </a>
+                        </p>
+                    </div>
                 </div>
+
+
+
+
+                <div class="clearfix"> </div>
             </div>
-            <div class="col-md-3 product-left">
-                <div class="p-one simpleCart_shelfItem">
 
-                    <a href="single.html">
-                        <img src="images/shoes-2.png" alt="" />
-                        <div class="mask">
-                            <span>Quick View</span>
-                        </div>
-                    </a>
-                    <h4>Aenean placerat</h4>
-                    <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
+            <!-- <div class="product-one">
+                <div class="col-md-3 product-left">
+                    <div class="p-one simpleCart_shelfItem">
 
+                        <a href="single.html">
+                            <img src="images/shoes-5.png" alt="" />
+                            <div class="mask">
+                                <span>Quick View</span>
+                            </div>
+                        </a>
+                        <h4>Aenean placerat</h4>
+                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
+
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3 product-left">
-                <div class="p-one simpleCart_shelfItem">
+                <div class="col-md-3 product-left">
+                    <div class="p-one simpleCart_shelfItem">
 
-                    <a href="single.html">
-                        <img src="images/shoes-3.png" alt="" />
-                        <div class="mask">
-                            <span>Quick View</span>
-                        </div>
-                    </a>
-                    <h4>Aenean placerat</h4>
-                    <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
+                        <a href="single.html">
+                            <img src="images/shoes-6.png" alt="" />
+                            <div class="mask">
+                                <span>Quick View</span>
+                            </div>
+                        </a>
+                        <h4>Aenean placerat</h4>
+                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3 product-left">
-                <div class="p-one simpleCart_shelfItem">
+                <div class="col-md-3 product-left">
+                    <div class="p-one simpleCart_shelfItem">
 
-                    <a href="single.html">
-                        <img src="images/shoes-13.png" alt="" />
-                        <div class="mask">
-                            <span>Quick View</span>
-                        </div>
-                    </a>
-                    <h4>Aenean placerat</h4>
-                    <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
+                        <a href="single.html">
+                            <img src="images/shoes-7.png" alt="" />
+                            <div class="mask">
+                                <span>Quick View</span>
+                            </div>
+                        </a>
+                        <h4>Aenean placerat</h4>
+                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
 
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-        <div class="product-one">
-            <div class="col-md-3 product-left">
-                <div class="p-one simpleCart_shelfItem">
+                <div class="col-md-3 product-left">
+                    <div class="p-one simpleCart_shelfItem">
 
-                    <a href="single.html">
-                        <img src="images/shoes-5.png" alt="" />
-                        <div class="mask">
-                            <span>Quick View</span>
-                        </div>
-                    </a>
-                    <h4>Aenean placerat</h4>
-                    <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
+                        <a href="single.html">
+                            <img src="images/shoes-8.png" alt="" />
+                            <div class="mask">
+                                <span>Quick View</span>
+                            </div>
+                        </a>
+                        <h4>Aenean placerat</h4>
+                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3 product-left">
-                <div class="p-one simpleCart_shelfItem">
-
-                    <a href="single.html">
-                        <img src="images/shoes-6.png" alt="" />
-                        <div class="mask">
-                            <span>Quick View</span>
-                        </div>
-                    </a>
-                    <h4>Aenean placerat</h4>
-                    <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-
-                </div>
-            </div>
-            <div class="col-md-3 product-left">
-                <div class="p-one simpleCart_shelfItem">
-
-                    <a href="single.html">
-                        <img src="images/shoes-7.png" alt="" />
-                        <div class="mask">
-                            <span>Quick View</span>
-                        </div>
-                    </a>
-                    <h4>Aenean placerat</h4>
-                    <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-
-                </div>
-            </div>
-            <div class="col-md-3 product-left">
-                <div class="p-one simpleCart_shelfItem">
-
-                    <a href="single.html">
-                        <img src="images/shoes-8.png" alt="" />
-                        <div class="mask">
-                            <span>Quick View</span>
-                        </div>
-                    </a>
-                    <h4>Aenean placerat</h4>
-                    <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-
-                </div>
-            </div>
-            <div class="clearfix"> </div>
+                <div class="clearfix"> </div>
+            </div> -->
         </div>
     </div>
-</div>
-<hr>
-<!--end-shoes-->
-<!--start-abt-shoe-->
-<!-- <div class="abt-shoe">
+    <hr>
+    <!--end-shoes-->
+    <!--start-abt-shoe-->
+    <!-- <div class="abt-shoe">
     <div class="container">
         <div class="abt-shoe-main">
             <div class="col-md-4 abt-shoe-left">
@@ -236,4 +206,4 @@
         </div>
     </div>
 </div> -->
-<!--end-abt-shoe-->
+    <!--end-abt-shoe-->
