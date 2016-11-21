@@ -64,7 +64,7 @@
 	</div>
 </div>
 <!--end-account-->
-<div class="my-account" ng-if="userLogged">
+<div class="my-account" ng-if="userLogged" ng-init="getUserInfo()">
 	<div class="container">
 		<div class="account-top heading">
 			<h3>Minha Conta</h3>
@@ -79,43 +79,91 @@
 			<div class="col-md-6">
 				<div class="address">
 					<span>Email:</span>
-					<input type="text" ng-model="userLogged.email">
+					<input type="email" ng-model="userLogged.email">
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="address">
-					<span>CPF:</span>
-					<input type="text" ng-model="userLogged.cpf">
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="address">
-					<span>RG:</span>
-					<input type="text" ng-model="userLogged.rg">
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="address">
-					<span>Endereço:</span>
-					<input type="text" ng-model="userLogged.endereco">
-				</div>
-			</div>
-			<div class="col-md-6">
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
 				<div class="address">
 					<span>Senha:</span>
 					<input type="password" ng-model="userLogged.password">
 				</div>
 			</div>
-			<div class="col-md-12 ">
-				<div class="row">
-					<div class="col-md-6 logout">
-						<button type="button" class="btn btn-primary" ng-click="update()"><span class="glyphicon glyphicon-floppy-disk"></span> SALVAR</button>
-					</div>
-					<div class="col-md-6 logout text-right">
-						<button type="button" class="btn btn-primary" ng-click="logout()"><span class="glyphicon glyphicon-off"></span> LOGOUT</button>
-					</div>
+			<div class="col-md-4">
+				<div class="address">
+					<span>CPF:</span>
+					<input type="text" ng-model="userLogged.cpf">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="address">
+					<span>RG:</span>
+					<input type="text" ng-model="userLogged.rg">
 				</div>
 			</div>
 		</div>
+
+		<div class="row">
+			<h3>Endereços:</h3>
+			<div class="col-md-4 endereco" ng-repeat="end in userLogged.endereco">
+				<p>
+					{{end.rua}}, {{end.numero}}
+				</p>
+				<p>
+					{{end.bairro}}
+				</p>
+				<p>
+					{{end.cidade}} - {{end.uf}}
+				</p>
+				<div class="col-md-12">
+					<button type="button" class="btn btn-primary" ng-click="editAddress()"><span class="glyphicon glyphicon-pencil"></span>Editar</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" ng-if="selectedAddress">
+			<div class="col-md-4">
+				<div class="address">
+					<span>Rua:</span>
+					<input type="text" ng-model="selectedAddress.rua">
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="address">
+					<span>Numero:</span>
+					<input type="text" ng-model="selectedAddress.numero">
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="address">
+					<span>Bairro:</span>
+					<input type="text" ng-model="selectedAddress.bairro">
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="address">
+					<span>Cidade:</span>
+					<input type="text" ng-model="selectedAddress.cidade">
+				</div>
+			</div>
+			<div class="col-md-1">
+				<div class="address">
+					<span>UF:</span>
+					<input type="text" ng-model="selectedAddress.uf">
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 col-xs-6 logout">
+				<button type="button" class="btn btn-primary" ng-click="update()"><span class="glyphicon glyphicon-floppy-disk"></span> SALVAR</button>
+			</div>
+			<div class="col-md-6 col-xs-6 logout text-right">
+				<button type="button" class="btn btn-primary" ng-click="logout()"><span class="glyphicon glyphicon-off"></span> LOGOUT</button>
+			</div>
+		</div>
+
 	</div>
 </div>

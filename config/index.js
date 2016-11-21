@@ -22,7 +22,7 @@ var all = {
 	// Root path of server
 	root: path.normalize(__dirname + '/../..'),
 	// Server port
-	port: (process.env.PORT) || 3001,
+	port: (process.env.PORT) || 6969,
 	// File size
 	fileSize: 2,
 	// Server IP

@@ -14,7 +14,7 @@ module.exports = {
     delete_user: delete_user,
     update_user: update_user,
     get_user: get_user
-}
+};
 
 /**
  * Add a new user in the database.

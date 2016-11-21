@@ -20,6 +20,7 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
 .controller('LoginController', ['$scope', '$http', '$timeout', 'localStorageService', '$state', '$rootScope',
     function($scope, $http, $timeout, localStorageService, $state, $rootScope) {
         $scope.userLogged = null;
+        $scope.selectedAddress = null;
         init();
 
         function init() {
@@ -105,8 +106,43 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
             $rootScope.$broadcast("update-cart");
         }
 
-        $scope.update = function () {
+        $scope.update = function() {
+            $http({
+                method: 'POST',
+                url: 'api/update/user',
+                data: $scope.userLogged
+            }).then(function success(res) {
+                // Recebe a revisão atualizada do documento de usuário
+                $scope.userLogged._id = res.data.id;
+                $scope.userLogged._rev = res.data.rev;
 
+                localStorageService.set('loggedUser', $scope.userLogged);
+                alert("Dados alterados com sucesso!");
+            }, function error(err) {
+                alert("Não foi possível salvar os dados do usuário");
+            });
+        }
+
+        $scope.getUserInfo = function() {
+            $http({
+                method: 'POST',
+                url: 'api/authorize/user',
+                data: {
+                    email: $scope.userLogged.email,
+                    password: $scope.userLogged.password
+                }
+            }).then(function success(res) {
+                // Atualiza dados do usuário
+                $scope.userLogged = res.data;
+                // Salva os dados na localstorage
+                localStorageService.set('loggedUser', $scope.loggedUser);
+            }, function erro(err) {
+                alert("Não foi possível retornar os dados do usuário");
+            });
+        };
+
+        $scope.editAddress = function(address) {
+            $scope.selectedAddress = address;
         }
     }
 ]);
