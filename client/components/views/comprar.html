@@ -85,6 +85,10 @@
                         <h3>Cadastrar Endereço de Entrega</h3>
                     </div>
                     <div class="address">
+                        <span>CEP</span>
+                        <input type="text" ng-model="address.cep" ng-required="true" ng-blur="buscarCEP()">
+                    </div>
+                    <div class="address">
                         <span>Tipo Logradouro</span>
                         <input type="text" ng-model="address.tipo" ng-required="true">
                     </div>
@@ -111,10 +115,6 @@
                     <div class="address">
                         <span>Estado</span>
                         <input type="text" ng-model="address.estado" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>CEP</span>
-                        <input type="text" ng-model="address.cep" ng-required="true">
                     </div>
                     <div class="address new">
                         <input type="submit" value="Finalizar Compra" ng-click="cadastrarEndereco()">

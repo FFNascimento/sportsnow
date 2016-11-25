@@ -31,20 +31,29 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
         // Objeto para criar novo usuário
         $scope.user = {
             permission: 'USER',
-            firstName: '',
-            lastName: '',
-            cpf: '',
-            rg: '',
-            endereco: '',
-            email: '',
-            password: '',
-            passwordConfirmation: ''
+            firstName: null,
+            lastName: null,
+            cpf: null,
+            rg: null,
+            endereco: null,
+            email: null,
+            password: null,
+            passwordConfirmation: null
         };
         // Objeto para login, está separado do de usuário para evitar problemas com o Two way databind
         $scope.login = {
             email: '',
             password: ''
         };
+
+        $scope.addressBase = {
+            cep: null,
+            logradouro: null,
+            numero: null,
+            bairro: null,
+            cidade: null,
+            uf: null
+        }
 
         $scope.cadastrarUsuario = function() {
             // Ajusta ao padrão do usuário
@@ -144,5 +153,31 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
         $scope.editAddress = function(address) {
             $scope.selectedAddress = address;
         }
+
+        $scope.addAddress = function() {
+            // need improvements
+            $scope.user.endereco.push($scope.selectedAddress);
+        }
+
+        $scope.newAddress = function() {
+            $scope.selectedAddress = $scope.addressBase;
+        }
+
+        /*
+        bairro,cep,complemento,gia,ibge,localicade(cidade),logradouro,uf,unidade
+         */
+        $scope.buscarCEP = function() {
+            $http({
+                method: 'GET',
+                url: 'https://viacep.com.br/ws/' + $scope.selectedAddress.cep + '/json/'
+            }).then(function success(res) {
+                $scope.selectedAddress.logradouro = res.data.logradouro;
+                $scope.selectedAddress.bairro = res.data.bairro;
+                $scope.selectedAddress.cidade = res.data.localidade;
+                $scope.selectedAddress.uf = res.data.uf;
+            });
+        }
+
+
     }
 ]);

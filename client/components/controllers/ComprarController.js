@@ -27,6 +27,18 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     $scope.userLogged = null;
     init();
     $scope.pedido = null;
+    // Objeto para criar novo usuário
+    $scope.user = {
+        permission: 'USER',
+        firstName: '',
+        lastName: '',
+        cpf: '',
+        rg: '',
+        endereco: '',
+        email: '',
+        password: '',
+        passwordConfirmation: ''
+    };
 
     function init() {
         $scope.userLogged = localStorageService.get('loggedUser');
@@ -40,15 +52,14 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     //     tipo: 'Rodovia'
     // }];
 
+
     $scope.address = {
-        tipo: '',
-        logradouro: '',
-        numero: '',
-        complemento: '',
-        bairro: '',
-        cidade: '',
-        estado: '',
-        cep: ''
+        cep: null,
+        rua: null,
+        numero: null,
+        bairro: null,
+        cidade: null,
+        uf: null
     };
 
     // Objeto para login, está separado do de usuário para evitar problemas com o Two way databind
@@ -124,5 +135,38 @@ angular.module('app.comprar', ['ngRoute', 'LocalStorageModule', 'ui.router'])
             alert('Dados de login inválidos!');
         });
     };
+
+    $scope.cadastrarUsuario = function() {
+        // Ajusta ao padrão do usuário
+        var usuario = {
+            permission: 'USER',
+            name: $scope.user.firstName + " " + $scope.user.lastName,
+            cpf: $scope.user.cpf,
+            rg: $scope.user.rg,
+            email: $scope.user.email,
+            password: $scope.user.password
+        }
+
+        $http({
+            method: 'PUT',
+            url: 'api/add/user',
+            data: JSON.stringify(usuario)
+        }).then(function success(res) {
+            $scope.login.email = usuario.email;
+            $scope.login.password = usuario.password;
+            $scope.signup();
+        }, function error(err) {
+            alert('Usuário não cadastrado!');
+        });
+    };
+
+    $scope.buscarCEP = function() {
+        $http({
+            method: 'GET',
+            url: 'https://viacep.com.br/ws/' + $scope.address.cep + '/json/'
+        }).then(function success(res) {
+            console.log(res);
+        });
+    }
 
 }]);

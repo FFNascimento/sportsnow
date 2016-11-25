@@ -10,8 +10,10 @@
         cpf: Joi.string().optional(),
         rg: Joi.string().optional(),
         endereco: Joi.array().items(Joi.object().keys({
-            rua: Joi.string().required(),
-						numero: Joi.number().required(),
+            criado: Joi.number().required(),
+            cep: Joi.number().max(8).required(),
+            logradouro: Joi.string().required(),
+            numero: Joi.number().required(),
             bairro: Joi.string().required(),
             cidade: Joi.string().required(),
             uf: Joi.string().max(2).required()

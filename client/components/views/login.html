@@ -109,7 +109,7 @@
 			<h3>Endereços:</h3>
 			<div class="col-md-4 endereco" ng-repeat="end in userLogged.endereco">
 				<p>
-					{{end.rua}}, {{end.numero}}
+					{{end.rua}}, {{end.numero}} - CEP: {{end.cep}}
 				</p>
 				<p>
 					{{end.bairro}}
@@ -121,13 +121,23 @@
 					<button type="button" class="btn btn-primary" ng-click="editAddress()"><span class="glyphicon glyphicon-pencil"></span>Editar</button>
 				</div>
 			</div>
+			<div class="col-md-4" ng-click="newAddress()">
+				<p>Adicionar Endereço</p>
+				<span class="glyphicon glyphicon-plus"></span>
+			</div>
 		</div>
 
 		<div class="row" ng-if="selectedAddress">
 			<div class="col-md-4">
 				<div class="address">
+					<span>CEP:</span>
+					<input type="text" ng-model="selectedAddress.cep" ng-blur="buscarCEP()">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="address">
 					<span>Rua:</span>
-					<input type="text" ng-model="selectedAddress.rua">
+					<input type="text" ng-model="selectedAddress.logradouro">
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -153,6 +163,9 @@
 					<span>UF:</span>
 					<input type="text" ng-model="selectedAddress.uf">
 				</div>
+			</div>
+			<div class="col-md-12">
+				<button type="button" ng-click="addAddress()"><span class="glyphicon glyphicon-plus"></span>Adicionar</button>
 			</div>
 		</div>
 
