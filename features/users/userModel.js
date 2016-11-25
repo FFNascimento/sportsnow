@@ -13,7 +13,8 @@ module.exports = {
     add_user: add_user,
     delete_user: delete_user,
     update_user: update_user,
-    get_user: get_user
+    get_user: get_user,
+    add_user_sell: add_user_sell
 };
 
 /**
@@ -158,6 +159,45 @@ function update_user(user) {
                     error: 'Something is wrong.\n' + err
                 });
             } else {
+                q.resolve(body);
+            }
+        });
+    });
+    return q.promise;
+}
+
+function add_user_sell(id, user, sell) {
+    var q = Q.defer();
+    user.type = type;
+
+    db.get(user, {
+        include_docs: true
+    }, function(err, body) {
+        if (err) {
+            q.reject(err);
+        }
+
+        if(body.sellHistory == null) {
+            body.sellHistory = [];
+        }
+
+        var obj = {
+            sellId: id,
+            products: sell
+        }
+
+        body.sellHistory.push(obj);    
+
+        db.insert(body, {
+            _id: body._id,
+            _rev: body._rev
+        }, function(err, body) {
+            if (err) {
+                q.reject({
+                    error: 'Something is wrong.\n' + err
+                });
+            } else {
+                console.log("deu sucesso");
                 q.resolve(body);
             }
         });

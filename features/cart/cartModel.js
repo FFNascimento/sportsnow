@@ -7,6 +7,7 @@ var couchHelper = require('../../lib/couch.helper');
 var type = "cart";
 var schema = require('../../lib/schema');
 var joiHelper = require('../../lib/joi.helper');
+var UserModel = require('../../features/users/userModel');
 
 module.exports = {
     add_cart: add_cart,

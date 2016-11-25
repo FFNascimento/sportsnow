@@ -8,6 +8,7 @@ var type = "product";
 var schema = require('../../lib/schema');
 var ProductSchema = require('./productSchema');
 var joiHelper = require('../../lib/joi.helper');
+var UserModel = require('../../features/users/userModel');
 
 module.exports = {
     add_product: add_product,
@@ -189,24 +190,22 @@ function update_product(product) {
 function sell_products(params) {
     var q = Q.defer();
     var jorge = params;
+    var date = 'ZORG-' + Date.now();
 
-    if(!(params instanceof Array)) {
+    if(!(params.data instanceof Array)) {
       var params = [];
       params[0] = jorge;
     }
 
-    for (var i = 0; i < params.length; i++) {
+    for (var i = 0; i < params.data.length; i++) {
+        var obj = params.data[i];
 
-        var obj = params[i];
-
-        db.get(params[i]._id, {
+        db.get(params.data[i]._id, {
             include_docs: true
         }, function(err, body) {
 
             if (parseInt(obj.quantity) <= parseInt(body.quantity)) {
                 body.quantity -= obj.quantity;
-
-                console.log("ENTREI!");
 
                 if (body.quantity == 0) {
                     body._deleted = true;
@@ -218,12 +217,15 @@ function sell_products(params) {
                 db.insert(body, {
                     _id: body._id
                 }, function(err, body) {
+                    console.log(body);
                     if (err) {
                         q.reject({
                             error: 'Something is wrong.'
                         });
                     } else {
-                        q.resolve(body);
+                        q.resolve({
+                            id: date
+                        });
                     }
                 });
             } else {
@@ -231,6 +233,12 @@ function sell_products(params) {
             }
         });
     }
+
+    UserModel.add_user_sell(date, params.user, params.data).then(function(body) {
+        q.resolve(array);
+    }, function(err) {
+        q.reject(err);
+    });
 
     return q.promise;
 }
