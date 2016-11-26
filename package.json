@@ -48,7 +48,10 @@
     "node": "6.6.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.18.2",
     "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
     "supertest": "^1.2.0"
   }
 }

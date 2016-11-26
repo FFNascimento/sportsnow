@@ -24,7 +24,16 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
         init();
 
         function init() {
+            if (localStorageService.isSupported) {
+                console.log('Opa funfa que é uma bedjeza');
+            }
             $scope.userLogged = localStorageService.get('loggedUser');
+            if ($scope.userLogged && !$scope.userLogged.endereco) {
+                $scope.userLogged.endereco = [];
+                console.log('Xibiu');
+                console.log($scope.userLogged.endereco);
+            }
+            console.log($scope.userLogged);
         };
 
         $scope.pwdMatch = true;
@@ -35,7 +44,7 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
             lastName: null,
             cpf: null,
             rg: null,
-            endereco: null,
+            endereco: [],
             email: null,
             password: null,
             passwordConfirmation: null
@@ -150,17 +159,26 @@ angular.module('app.login', ['ngRoute', 'LocalStorageModule', 'ui.router', 'ngCp
             });
         };
 
-        $scope.editAddress = function(address) {
+        $scope.selectAddress = function(address, index) {
             $scope.selectedAddress = address;
+            $scope.selectedAddress.index = $index;
+        }
+
+        $scope.editAddress = function() {
+            $scope.userLogged.endereco[$scope.selectedAddress.index] = $scope.selectedAddress;
+            $scope.update();
         }
 
         $scope.addAddress = function() {
-            // need improvements
-            $scope.user.endereco.push($scope.selectedAddress);
+            console.log($scope.userLogged);
+            $scope.selectedAddress.criado = Date.now();
+            console.log($scope.userLogged.endereco);
+            $scope.userLogged.endereco.push($scope.selectedAddress);
+            $scope.update();
         }
 
         $scope.newAddress = function() {
-            $scope.selectedAddress = $scope.addressBase;
+            $scope.selectedAddress = $scope.addressBase
         }
 
         /*

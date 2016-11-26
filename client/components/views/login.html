@@ -53,8 +53,7 @@
 						<span>Senha</span>
 						<input type="password" ng-model="login.password" ng-required="true">
 					</div>
-					<div class="address">
-						<a class="forgot" href="#">Esqueceu sua senha?</a>
+					<div class="address">						
 						<input type="submit" value="Login" ng-click="loginForm.$valid && signup()">
 					</div>
 			</div>
@@ -118,7 +117,7 @@
 					{{end.cidade}} - {{end.uf}}
 				</p>
 				<div class="col-md-12">
-					<button type="button" class="btn btn-primary" ng-click="editAddress()"><span class="glyphicon glyphicon-pencil"></span>Editar</button>
+					<button type="button" class="btn btn-primary" ng-click="selectAddress(end, $index)"><span class="glyphicon glyphicon-pencil"></span>Editar</button>
 				</div>
 			</div>
 			<div class="col-md-4" ng-click="newAddress()">
@@ -165,7 +164,8 @@
 				</div>
 			</div>
 			<div class="col-md-12">
-				<button type="button" ng-click="addAddress()"><span class="glyphicon glyphicon-plus"></span>Adicionar</button>
+				<button type="button" ng-click="addAddress()" ng-hide="selectedAddress.criado"><span class="glyphicon glyphicon-plus"></span>Adicionar</button>
+				<button type="button" ng-click="editAddress()" ng-show="selectedAddress.criado"><span class="glyphicon glyphicon-plus"></span>Adicionar</button>
 			</div>
 		</div>
 

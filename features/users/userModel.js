@@ -120,7 +120,7 @@ function get_user(params) {
             return;
         }
         var body = couchHelper.onlyDocs(body);
-        console.log(params);
+
         for (var i = 0; i < body.length; i++) {
             if (body[i].email === params.email && body[i].password === params.password) {
                 q.resolve(body[i]);
@@ -186,7 +186,7 @@ function add_user_sell(id, user, sell) {
             products: sell
         }
 
-        body.sellHistory.push(obj);    
+        body.sellHistory.push(obj);
 
         db.insert(body, {
             _id: body._id,
