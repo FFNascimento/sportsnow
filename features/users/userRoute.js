@@ -18,4 +18,8 @@ router
 	.route('/authorize/user')
 	.post(controller.getUser);
 
+router
+	.route('/get/users')
+	.get(controller.getUsers);
+
 module.exports = router;

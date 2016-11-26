@@ -11,4 +11,6 @@ router.use(require('./users/userRoute'));
 router.use(require('./products/productRoute'));
 router.use(require('./cart/cartRoute'));
 
+router.use(require('./report/reportRoute'));
+
 module.exports = router;

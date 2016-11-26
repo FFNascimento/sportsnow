@@ -8,13 +8,15 @@ var type = "user";
 var schema = require('../../lib/schema');
 var UserSchema = require('./userSchema');
 var joiHelper = require('../../lib/joi.helper');
+var ReportModel = require('../../features/report/reportModel');
 
 module.exports = {
     add_user: add_user,
     delete_user: delete_user,
     update_user: update_user,
     get_user: get_user,
-    add_user_sell: add_user_sell
+    add_user_sell: add_user_sell,
+    get_users: get_users
 };
 
 /**
@@ -27,8 +29,7 @@ function add_user(user) {
     user.type = type;
 
     var query = {
-        include_docs: true,
-        key: user.email
+        include_docs: true
     };
 
     db.view('users', 'getAllUsers', query, function(err, body) {
@@ -40,12 +41,23 @@ function add_user(user) {
 
         if (body.length == 0) {
             db.insert(user, uuid.v1(), function(err, body) {
+                var response = body;
                 if (err) {
                     q.reject({
                         error: 'Something is wrong.'
                     });
                 } else {
-                    q.resolve(body);
+                    ReportModel.add_report("user", body, "ADD").then(function() {
+                        q.resolve({
+                            _id: response.user_id,
+                            _rev: response.user_rev
+                        });
+                    }, function() {
+                        q.resolve({
+                            _id: response.user_id,
+                            _rev: response.user_rev
+                        });
+                    });
                 }
             });
         } else {
@@ -59,12 +71,23 @@ function add_user(user) {
 
             if (!prevented) {
                 db.insert(user, uuid.v1(), function(err, body) {
+                    var response = body;
                     if (err) {
                         q.reject({
                             error: 'Something is wrong.'
                         });
                     } else {
-                        q.resolve(body);
+                        ReportModel.add_report("user", body, "ADD").then(function() {
+                            q.resolve({
+                                _id: response.user_id,
+                                _rev: response.user_rev
+                            });
+                        }, function() {
+                            q.resolve({
+                                _id: response.user_id,
+                                _rev: response.user_rev
+                            });
+                        });
                     }
                 });
             } else {
@@ -99,7 +122,12 @@ function delete_user(_id) {
                 q.reject(err);
                 return;
             }
-            q.resolve(body);
+
+            ReportModel.add_report("user", body, "DELETE").then(function() {
+                q.resolve(body);
+            }, function() {
+                q.resolve(body);
+            });
         });
     });
     return q.promise;
@@ -120,7 +148,7 @@ function get_user(params) {
             return;
         }
         var body = couchHelper.onlyDocs(body);
-
+        console.log(params);
         for (var i = 0; i < body.length; i++) {
             if (body[i].email === params.email && body[i].password === params.password) {
                 q.resolve(body[i]);
@@ -159,7 +187,11 @@ function update_user(user) {
                     error: 'Something is wrong.\n' + err
                 });
             } else {
-                q.resolve(body);
+                ReportModel.add_report("user", body, "UPDATE").then(function() {
+                    q.resolve(body);
+                }, function() {
+                    q.resolve(body);
+                });
             }
         });
     });
@@ -186,7 +218,7 @@ function add_user_sell(id, user, sell) {
             products: sell
         }
 
-        body.sellHistory.push(obj);
+        body.sellHistory.push(obj);    
 
         db.insert(body, {
             _id: body._id,
@@ -197,10 +229,41 @@ function add_user_sell(id, user, sell) {
                     error: 'Something is wrong.\n' + err
                 });
             } else {
-                console.log("deu sucesso");
                 q.resolve(body);
             }
         });
+    });
+    return q.promise;
+}
+
+function get_users() {
+    var q = Q.defer();
+
+    var query = {
+        include_docs: true
+    };
+
+    db.view('users', 'getAllUsers', query, function(err, body) {
+        if (err) {
+            q.reject(err);
+        }
+
+        body = couchHelper.onlyDocs(body);
+        var obj = [];
+
+        for(var i = 0; i < body.length; i++) {
+            var data = {
+                _id: body[i]._id,
+                _rev: body[i]._rev,
+                permission: body[i].permission,
+                email: body[i].email,
+                name: body[i].name
+            };
+
+            obj.push(data);
+        }
+
+        q.resolve(obj);
     });
     return q.promise;
 }

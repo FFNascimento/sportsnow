@@ -9,6 +9,7 @@ var schema = require('../../lib/schema');
 var ProductSchema = require('./productSchema');
 var joiHelper = require('../../lib/joi.helper');
 var UserModel = require('../../features/users/userModel');
+var ReportModel = require('../../features/report/reportModel');
 
 module.exports = {
     add_product: add_product,
@@ -46,7 +47,11 @@ function add_product(product) {
                         error: 'Something is wrong.'
                     });
                 } else {
-                    q.resolve(body);
+                    ReportModel.add_report("product", body, "ADD").then(function() {
+                        q.resolve(body);
+                    }, function() {
+                        q.resolve(body);
+                    });
                 }
             });
         } else {
@@ -65,7 +70,11 @@ function add_product(product) {
                             error: 'Something is wrong.'
                         });
                     } else {
+                    ReportModel.add_report("product", body, "ADD").then(function() {
                         q.resolve(body);
+                    }, function() {
+                        q.resolve(body);
+                    });
                     }
                 });
             } else {
@@ -100,7 +109,12 @@ function delete_product(_id) {
                 q.reject(err);
                 return;
             }
-            q.resolve(body);
+
+            ReportModel.add_report("product", body, "DELETE").then(function() {
+                q.resolve(body);
+            }, function() {
+                q.resolve(body);
+            });
         });
     });
     return q.promise;
@@ -179,7 +193,11 @@ function update_product(product) {
                     error: 'Something is wrong.'
                 });
             } else {
-                q.resolve(body);
+                ReportModel.add_report("product", body, "UPDATE").then(function() {
+                    q.resolve(body);
+                }, function() {
+                    q.resolve(body);
+                });
             }
         });
     });
@@ -223,8 +241,14 @@ function sell_products(params) {
                             error: 'Something is wrong.'
                         });
                     } else {
-                        q.resolve({
-                            id: date
+                        ReportModel.add_report("product", body, "SELL").then(function() {
+                            q.resolve({
+                                id: date
+                            });
+                        }, function() {
+                            q.resolve({
+                                id: date
+                            });
                         });
                     }
                 });

@@ -11,7 +11,8 @@ module.exports = {
 	addUser: addUser,
 	deleteUser: deleteUser,
 	updateUser: updateUser,
-	getUser: getUser
+	getUser: getUser,
+	getUsers: getUsers
 };
 
 function addUser(req, res) {
@@ -44,6 +45,14 @@ function getUser(req, res) {
 		res.status(403).json(err);
 	});
 };
+
+function getUsers(req, res) {
+	User.get_users().then(function(body) {
+		res.status(200).json(body);
+	}).fail(function(err) {
+		res.status(403).json(err);
+	});	
+}
 
 function updateUser(req, res) {
 	var parameters = req.body;
