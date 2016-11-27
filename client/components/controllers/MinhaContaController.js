@@ -17,8 +17,8 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
 }])
 
 // Controller definition for this module
-.controller('MinhaContaController', ['$scope', '$http', '$timeout', 'LocalStorageService', '$state', '$rootScope',
-    function($scope, $http, $timeout, LocalStorageService, $state, $rootScope) {
+.controller('MinhaContaController', ['$scope', '$http', '$timeout', 'LocalStorageService', '$state', '$rootScope', 'userService',
+    function($scope, $http, $timeout, LocalStorageService, $state, $rootScope, userService) {
         $scope.selectedAddress = null;
         init();
 
@@ -38,11 +38,7 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
 
 
         $scope.update = function() {
-            $http({
-                method: 'POST',
-                url: 'api/update/user',
-                data: $scope.userLogged
-            }).then(function success(res) {
+            userService.updateUser($scope.userLogged).then(function success(res) {
                 // Recebe a revisão atualizada do documento de usuário
                 $scope.userLogged._id = res.data.id;
                 $scope.userLogged._rev = res.data.rev;
@@ -56,13 +52,9 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
         }
 
         $scope.getUserInfo = function() {
-            $http({
-                method: 'POST',
-                url: 'api/authorize/user',
-                data: {
-                    email: $scope.userLogged.email,
-                    password: $scope.userLogged.password
-                }
+            userService.getUserInfo({
+                email: $scope.userLogged.email,
+                password: $scope.userLogged.password
             }).then(function success(res) {
                 // Atualiza dados do usuário
                 $scope.userLogged = res.data;

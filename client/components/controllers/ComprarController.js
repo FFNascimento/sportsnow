@@ -44,15 +44,6 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router'])
         $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
     };
 
-    // $scope.tipoLogradouro = [{
-    //     tipo: 'Avenida'
-    // }, {
-    //     tipo: 'Rua'
-    // }, {
-    //     tipo: 'Rodovia'
-    // }];
-
-
     $scope.address = {
         cep: null,
         rua: null,
@@ -123,6 +114,10 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router'])
         }).then(function success(res) {
             console.log(res);
         });
+    }
+
+    $scope.selectAddress = function(end, $index) {
+
     }
 
 }]);

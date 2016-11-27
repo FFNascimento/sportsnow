@@ -170,3 +170,10 @@
     margin-top: 1.5em;
     margin-bottom: 1.5em;
 }
+
+.cart.box_1{
+  padding: 0em 0.75em;
+}
+.cart.box_1:first-of-type{
+  padding-right: 0em;
+}

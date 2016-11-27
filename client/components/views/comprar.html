@@ -79,52 +79,36 @@
 <div class="account" ng-if="userLogged && !pedido">
     <div class="container">
         <div class="account-bottom">
-            <div class="col-md-6 account-left">
+            <div class="col-md-12 account-left">
+                <div class="account-top heading">
+                    <h3>Selecione o endereço de entrega</h3>
+                </div>
+                <div class="row selected-address-ctrl">
+                    <div class="col-md-4 text-center" ng-repeat="end in userLogged.endereco">
+                        <p>{{end.logradouro}}, {{end.numero}}</p>
+                        <p>CEP: {{end.cep}}</p>
+                        <p>{{end.bairro}}</p>
+                        <p>{{end.cidade}} - {{end.uf}}</p>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary" ng-click="selectAddress(end, $index)"><span class="glyphicon glyphicon-ok"></span> UTILIZAR</button>
+                        </div>
+                    </div>
+                </div>
                 <form name="criarEndereco">
-                    <div class="account-top heading">
-                        <h3>Cadastrar Endereço de Entrega</h3>
-                    </div>
-                    <div class="address">
-                        <span>CEP</span>
-                        <input type="text" ng-model="address.cep" ng-required="true" ng-blur="buscarCEP()">
-                    </div>
-                    <div class="address">
-                        <span>Tipo Logradouro</span>
-                        <input type="text" ng-model="address.tipo" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Endereço</span>
-                        <input type="text" ng-model="address.logradouro" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Número</span>
-                        <input type="text" ng-model="address.numero" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Complemento</span>
-                        <input type="text" ng-model="address.complemento" ng-required="false">
-                    </div>
-                    <div class="address">
-                        <span>Bairro</span>
-                        <input type="text" ng-model="address.bairro" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Cidade</span>
-                        <input type="text" ng-model="address.cidade" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Estado</span>
-                        <input type="text" ng-model="address.estado" ng-required="true">
-                    </div>
-                    <div class="address new">
-                        <input type="submit" value="Finalizar Compra" ng-click="cadastrarEndereco()">
-                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div class="" ng-if="pedido">
+<!-- Payment Screen -->
+<div class="payment" ng-if="">
+
+</div>
+<!-- Resume Screen -->
+<div class="resume" ng-if="">
+
+</div>
+<div class="conclusion" ng-if="pedido">
     <div class="container">
         <div class="account-top heading">
             <h3>Compra Realizada!</h3>

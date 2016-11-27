@@ -4,7 +4,7 @@
 // by using Gulp
 'use strict';
 
-angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfCnpj'])
+angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfCnpj', 'app.user.service'])
 
 // Routing configuration for this module
 .config(['$stateProvider', function($stateProvider) {
@@ -17,8 +17,8 @@ angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfC
 }])
 
 // Controller definition for this module
-.controller('LoginController', ['$scope', '$http', '$timeout', 'LocalStorageService', '$state', '$rootScope',
-    function($scope, $http, $timeout, LocalStorageService, $state, $rootScope) {
+.controller('LoginController', ['$scope', '$http', '$timeout', 'LocalStorageService', '$state', '$rootScope', 'userService',
+    function($scope, $http, $timeout, LocalStorageService, $state, $rootScope, userService) {
         $scope.userLogged = null;
         init();
 
@@ -58,11 +58,7 @@ angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfC
                 password: $scope.user.password
             }
 
-            $http({
-                method: 'PUT',
-                url: 'api/add/user',
-                data: JSON.stringify(usuario)
-            }).then(function success(res) {
+            userService.createUser(usuario).then(function success(res) {
                 $scope.login.email = usuario.email;
                 $scope.login.password = usuario.password;
                 $scope.signin();
@@ -76,12 +72,7 @@ angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfC
         };
 
         $scope.signin = function() {
-            console.log($scope.login);
-            $http({
-                method: 'POST',
-                url: 'api/authorize/user',
-                data: JSON.stringify($scope.login)
-            }).then(function success(res) {
+            userService.logInUser($scope.login).then(function success(res) {
                 // Armazenar em localstorage
                 LocalStorageService.setData(LocalStorageService.storeMap.USER, {
                     _id: res.data._id,
