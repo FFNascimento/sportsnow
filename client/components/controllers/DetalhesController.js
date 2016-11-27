@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule', 'ui.router'])
+angular.module('app.detalhes', ['ngRoute', 'app.localstorage', 'ui.router'])
 
 // Routing configuration for this module
 .config(['$stateProvider', function($stateProvider) {
@@ -18,7 +18,7 @@ angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule', 'ui.router'])
 }])
 
 // Controller definition for this module
-.controller('DetalhesController', ['$scope', 'localStorageService', '$stateParams', '$state', '$http', function($scope, localStorageService, $stateParams, $state, $http) {
+.controller('DetalhesController', ['$scope', 'LocalStorageService', '$stateParams', '$state', '$http', function($scope, LocalStorageService, $stateParams, $state, $http) {
     // Just a housekeeping.
     // In the init method we are declaring all the
     // neccesarry settings and assignments to be run once
@@ -31,7 +31,7 @@ angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     init();
 
     function init() {
-        $scope.userLogged = localStorageService.get('loggedUser');
+        $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
         var _id = $stateParams.productId;
         if (_id) {
             // Pega dados do produto selecionado
@@ -86,21 +86,21 @@ angular.module('app.detalhes', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     }
 
     $scope.addCarrinho = function() {
-        $scope.sendCartStructure = localStorageService.get('cart');
+        $scope.sendCartStructure = LocalStorageService.getData(LocalStorageService.storeMap.CART);
         if (!$scope.sendCartStructure) {
             $scope.sendCartStructure = {
                 itens: []
             }
             $scope.sendCartStructure.itens.push(getBasicStructure());
             console.log($scope.sendCartStructure.itens);
-            localStorageService.set('cart', $scope.sendCartStructure);
+            LocalStorageService.setData(LocalStorageService.storeMap.CART, $scope.sendCartStructure);
             $state.go('cart');
 
         } else {
             if (!$scope.sendCartStructure.itens.some(alreadyOnCart)) {
                 $scope.sendCartStructure.itens.push(getBasicStructure());
                 console.log($scope.sendCartStructure.itens);
-                localStorageService.set('cart', $scope.sendCartStructure);
+                LocalStorageService.setData(LocalStorageService.storeMap.CART, $scope.sendCartStructure);
                 $state.go('cart');
             } else {
                 $state.go('cart');

@@ -1,5 +1,5 @@
 <!--start-account-->
-<div class="account" ng-if="!userLogged">
+<div class="account">
 	<div class="container">
 		<div class="account-bottom">
 			<div class="col-md-6 account-left">
@@ -53,8 +53,8 @@
 						<span>Senha</span>
 						<input type="password" ng-model="login.password" ng-required="true">
 					</div>
-					<div class="address">						
-						<input type="submit" value="Login" ng-click="loginForm.$valid && signup()">
+					<div class="address">
+						<input type="submit" value="Login" ng-click="loginForm.$valid && signin()">
 					</div>
 			</div>
 			</form>
@@ -63,120 +63,3 @@
 	</div>
 </div>
 <!--end-account-->
-<div class="my-account" ng-if="userLogged" ng-init="getUserInfo()">
-	<div class="container">
-		<div class="account-top heading">
-			<h3>Minha Conta</h3>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="address">
-					<span>Nome:</span>
-					<input type="text" ng-model="userLogged.name">
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="address">
-					<span>Email:</span>
-					<input type="email" ng-model="userLogged.email">
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-4">
-				<div class="address">
-					<span>Senha:</span>
-					<input type="password" ng-model="userLogged.password">
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="address">
-					<span>CPF:</span>
-					<input type="text" ng-model="userLogged.cpf">
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="address">
-					<span>RG:</span>
-					<input type="text" ng-model="userLogged.rg">
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<h3>Endereços:</h3>
-			<div class="col-md-4 endereco" ng-repeat="end in userLogged.endereco">
-				<p>
-					{{end.rua}}, {{end.numero}} - CEP: {{end.cep}}
-				</p>
-				<p>
-					{{end.bairro}}
-				</p>
-				<p>
-					{{end.cidade}} - {{end.uf}}
-				</p>
-				<div class="col-md-12">
-					<button type="button" class="btn btn-primary" ng-click="selectAddress(end, $index)"><span class="glyphicon glyphicon-pencil"></span>Editar</button>
-				</div>
-			</div>
-			<div class="col-md-4" ng-click="newAddress()">
-				<p>Adicionar Endereço</p>
-				<span class="glyphicon glyphicon-plus"></span>
-			</div>
-		</div>
-
-		<div class="row" ng-if="selectedAddress">
-			<div class="col-md-4">
-				<div class="address">
-					<span>CEP:</span>
-					<input type="text" ng-model="selectedAddress.cep" ng-blur="buscarCEP()">
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="address">
-					<span>Rua:</span>
-					<input type="text" ng-model="selectedAddress.logradouro">
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="address">
-					<span>Numero:</span>
-					<input type="text" ng-model="selectedAddress.numero">
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="address">
-					<span>Bairro:</span>
-					<input type="text" ng-model="selectedAddress.bairro">
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="address">
-					<span>Cidade:</span>
-					<input type="text" ng-model="selectedAddress.cidade">
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div class="address">
-					<span>UF:</span>
-					<input type="text" ng-model="selectedAddress.uf">
-				</div>
-			</div>
-			<div class="col-md-12">
-				<button type="button" ng-click="addAddress()" ng-hide="selectedAddress.criado"><span class="glyphicon glyphicon-plus"></span>Adicionar</button>
-				<button type="button" ng-click="editAddress()" ng-show="selectedAddress.criado"><span class="glyphicon glyphicon-plus"></span>Adicionar</button>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-6 col-xs-6 logout">
-				<button type="button" class="btn btn-primary" ng-click="update()"><span class="glyphicon glyphicon-floppy-disk"></span> SALVAR</button>
-			</div>
-			<div class="col-md-6 col-xs-6 logout text-right">
-				<button type="button" class="btn btn-primary" ng-click="logout()"><span class="glyphicon glyphicon-off"></span> LOGOUT</button>
-			</div>
-		</div>
-
-	</div>
-</div>

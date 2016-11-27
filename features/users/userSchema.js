@@ -11,7 +11,7 @@
         rg: Joi.string().optional(),
         endereco: Joi.array().items(Joi.object().keys({
             criado: Joi.number().required(),
-            cep: Joi.number().max(8).required(),
+            cep: Joi.number().required(),
             logradouro: Joi.string().required(),
             numero: Joi.number().required(),
             bairro: Joi.string().required(),

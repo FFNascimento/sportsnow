@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('app.home', ['ngRoute', 'LocalStorageModule', 'ui.router'])
+angular.module('app.home', ['ngRoute', 'app.localstorage', 'ui.router'])
 
 // Routing configuration for this module
 .config(['$stateProvider', function($stateProvider) {
@@ -18,7 +18,7 @@ angular.module('app.home', ['ngRoute', 'LocalStorageModule', 'ui.router'])
 }])
 
 // Controller definition for this module
-.controller('HomeController', ['$scope', '$http', 'localStorageService', '$rootScope', function($scope, $http, localStorageService, $rootScope) {
+.controller('HomeController', ['$scope', '$http', 'LocalStorageService', '$rootScope', function($scope, $http, LocalStorageService, $rootScope) {
 
     // Just a housekeeping.
     // In the init method we are declaring all the
@@ -28,7 +28,7 @@ angular.module('app.home', ['ngRoute', 'LocalStorageModule', 'ui.router'])
     init();
 
     function init() {
-        $scope.userLogged = localStorageService.get('loggedUser');
+        $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
         $rootScope.$broadcast("update-login");
     };
 

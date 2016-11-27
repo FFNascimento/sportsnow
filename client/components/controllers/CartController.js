@@ -1,6 +1,6 @@
 'use strict';
 
-var cart = angular.module('app.cart', ['ngRoute', 'LocalStorageModule', 'ui.router', 'app.cart.service'])
+var cart = angular.module('app.cart', ['ngRoute', 'app.localstorage', 'ui.router', 'app.cart.service'])
 
 // Routing configuration for this module
 .config(['$stateProvider', function($stateProvider) {
@@ -13,9 +13,9 @@ var cart = angular.module('app.cart', ['ngRoute', 'LocalStorageModule', 'ui.rout
 }])
 
 // Controller definition for this module
-.controller('CartController', ['$scope', '$http', '$timeout', 'localStorageService', '$state', 'cartService', '$rootScope',
-    function($scope, $http, $timeout, localStorageService, $state, cartService, $rootScope) {
-        cartService.set('cart', localStorageService.get('cart') || []);
+.controller('CartController', ['$scope', '$http', '$timeout', 'LocalStorageService', '$state', 'cartService', '$rootScope',
+    function($scope, $http, $timeout, LocalStorageService, $state, cartService, $rootScope) {
+        cartService.set('cart', LocalStorageService.getData(LocalStorageService.storeMap.CART) || []);
         $scope.cart = cartService.value.cart || {
             itens: []
         };
@@ -25,25 +25,25 @@ var cart = angular.module('app.cart', ['ngRoute', 'LocalStorageModule', 'ui.rout
         init();
 
         function init() {
-            $scope.userLogged = localStorageService.get('loggedUser');
+            $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
             getTotal();
             $rootScope.$broadcast("update-cart");
         }
 
         $rootScope.$on("update-cart", function() {
-            cartService.set('cart', localStorageService.get('cart') || []);
+            cartService.set('cart', LocalStorageService.getData(LocalStorageService.storeMap.CART) || []);
             $scope.cart = cartService.value.cart || {
                 itens: []
             };
         });
 
         $rootScope.$on("update-login", function() {
-            $scope.userLogged = localStorageService.get('loggedUser');
+            $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
         });
 
         function updateCart() {
-            localStorageService.set('cart', $scope.cart);
-            cartService.set('cart', localStorageService.get('cart') || []);
+            LocalStorageService.setData(LocalStorageService.storeMap.CART, $scope.cart);
+            cartService.set('cart', LocalStorageService.getData(LocalStorageService.storeMap.CART) || []);
             getTotal();
             $rootScope.$broadcast("update-cart");
         }

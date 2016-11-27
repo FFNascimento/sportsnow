@@ -1,7 +1,11 @@
-angular.module("app")
-.constant("LocalStorageConstants", {
-    MY_ASSETS: {
-        KEY: 'myassets',
-        PARSED: true
-    }
-});
+angular.module("app.localstorage.constants", [])
+    .constant("LocalStorageConstants", {
+        USER: {
+            KEY: 'userLoggedIn',
+            PARSED: true
+        },
+        CART: {
+            KEY: 'cart',
+            PARSED: true
+        }
+    });

@@ -138,9 +138,35 @@
     border-color: #510F12;
 }
 
-.logout{
-  margin: 1em 0;
+.logout {
+    margin: 1em 0;
 }
+
 .cart-empty {
     font-size: 1.5em;
+}
+
+.endereco {
+    padding: 1.5em 1em;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
+.endereco:hover {
+    border: 1px solid #702428;
+}
+
+.selected-address {
+    border-top: 1px solid #dedede;
+    padding-top: 1.5em;
+    margin-top: 1.5em;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+
+}
+
+.selected-address-ctrl {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
 }

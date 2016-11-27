@@ -92,7 +92,8 @@ function add_user(user) {
                 });
             } else {
                 q.reject({
-                    error: 'User already exists.'
+                    error: 'User already exists.',
+                    exists: true
                 });
             }
         }
@@ -209,7 +210,7 @@ function add_user_sell(id, user, sell) {
             q.reject(err);
         }
 
-        if(body.sellHistory == null) {
+        if (body.sellHistory == null) {
             body.sellHistory = [];
         }
 
@@ -218,7 +219,7 @@ function add_user_sell(id, user, sell) {
             products: sell
         }
 
-        body.sellHistory.push(obj);    
+        body.sellHistory.push(obj);
 
         db.insert(body, {
             _id: body._id,
@@ -251,7 +252,7 @@ function get_users() {
         body = couchHelper.onlyDocs(body);
         var obj = [];
 
-        for(var i = 0; i < body.length; i++) {
+        for (var i = 0; i < body.length; i++) {
             var data = {
                 _id: body[i]._id,
                 _rev: body[i]._rev,

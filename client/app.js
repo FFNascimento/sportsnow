@@ -11,24 +11,20 @@ var app = angular.module('app', [
     'app.detalhes',
     'app.cart',
     'app.comprar',
-    'LocalStorageModule',
+    'app.minhaConta',
+    'app.localstorage',
     'ngLocale'
 ]);
 
-app.run(function($rootScope, $location, localStorageService) {
+app.run(function($rootScope, $location, LocalStorageService) {
     $rootScope.$on('signout', function() {
-        localStorageService.clearAll();
+        LocalStorageService.unset(LocalStorageService.storeMap.USER);
         $location.path('/');
     })
 })
 
 
-app.config(function($routeProvider, $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
-
-    localStorageServiceProvider
-        .setPrefix('myApp')
-        .setStorageType('sessionStorage')
-        .setNotify(true, true)
+app.config(function($routeProvider, $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
 
     // Settings for http communications
     $httpProvider.defaults.useXDomain = true;
