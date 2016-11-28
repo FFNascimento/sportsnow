@@ -69,14 +69,14 @@
                         <a class="forgot" href="#">Esqueceu sua senha?</a>
                         <input type="submit" value="Login" ng-click="loginForm.$valid && signup()">
                     </div>
+                </form>
             </div>
-            </form>
             <div class="clearfix"> </div>
         </div>
     </div>
 </div>
 <!--start-new address-->
-<div class="account" ng-if="userLogged && !pedido">
+<div class="account" ng-if="userLogged && passo === passoBase.endereco">
     <div class="container">
         <div class="account-bottom">
             <div class="col-md-12 account-left">
@@ -94,18 +94,31 @@
                         </div>
                     </div>
                 </div>
-                <form name="criarEndereco">
+                <form name="criarEndereco" ng-if="creatingAddress">
+
                 </form>
             </div>
         </div>
     </div>
 </div>
 <!-- Payment Screen -->
-<div class="payment" ng-if="">
+<div class="payment" ng-if="userLogged && !pedido && selectedAddress">
+    <h3>Informe os dados do cartão</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="credit-card">
 
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="credit-card-back">
+
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Resume Screen -->
-<div class="resume" ng-if="">
+<div class="resume" ng-if="resume">
 
 </div>
 <div class="conclusion" ng-if="pedido">

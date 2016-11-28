@@ -26,7 +26,7 @@ angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfC
             if (LocalStorageService.getData(LocalStorageService.storeMap.USER)) {
                 $state.go('minhaConta');
             }
-        };
+        }
 
         $scope.pwdMatch = true;
         // Objeto para criar novo usuário
@@ -95,6 +95,6 @@ angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfC
         $scope.compare = function() {
             $scope.pwdMatch = $scope.user.password === $scope.user.passwordConfirmation;
             console.log($scope.pwdMatch);
-        }
+        };
     }
 ]);
