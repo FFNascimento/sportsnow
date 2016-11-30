@@ -94,15 +94,73 @@
                         </div>
                     </div>
                 </div>
-                <form name="criarEndereco" ng-if="creatingAddress">
 
-                </form>
+                <!--Caso usuário não possua endereços cadastrados-->
+                <div name="criarEndereco" ng-if="userLogged.endereco.length <= 0">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Você ainda não possui endereços cadastrados!</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <h4>Cadastrar Endereço</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <label for="cep">CEP:</label>
+                            <input type="text" id="cep" class="form-control" ng-model="address.cep" ng-blur="buscarCEP()" placeholder="Ex.: 0000000">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <label for="logradouro">Rua:</label>
+                            <input type="text" id="logradouro" class="form-control" ng-model="address.logradouro" placeholder="Busque pelo CEP">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="input-group">
+                            <label for="numero">Numero:</label>
+                            <input type="text" id="numero" class="form-control" ng-model="address.numero">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <label for="bairro">Bairro:</label>
+                            <input type="text" id="bairro" class="form-control" ng-model="address.bairro">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <label for="cidade">Cidade:</label>
+                            <input type="text" id="cidade" class="form-control" ng-model="address.cidade">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="input-group">
+                            <label for="uf">UF:</label>
+                            <input type="text" id="uf" class="form-control" ng-model="address.uf">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row selected-address-ctrl">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary" ng-click="addAddress()"><span class="glyphicon glyphicon-plus"></span><span> Adicionar</span></button>
+                                <button type="button" class="btn btn-primary" ng-click="cancelEdit()" name="button"><span class="glyphicon glyphicon-remove"></span><span> Cancelar</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 <!-- Payment Screen -->
-<div class="payment" ng-if="userLogged && !pedido && selectedAddress">
+<div class="payment" ng-if="userLogged && selectedAddress">
     <h3>Informe os dados do cartão</h3>
     <div class="row">
         <div class="col-md-6">

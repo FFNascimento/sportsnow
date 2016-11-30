@@ -34,6 +34,7 @@ angular.module('app.home', ['ngRoute', 'app.localstorage', 'ui.router'])
 
     $scope.products = {};
 
+
     $scope.getAPIData = function() {
         $http({
             method: 'GET',
@@ -41,6 +42,10 @@ angular.module('app.home', ['ngRoute', 'app.localstorage', 'ui.router'])
         }).then(function success(res) {
             $scope.products = res.data;
         }, function error(err) {});
+    };
+
+    $scope.random = function() {
+        return 0.5 - Math.random();
     };
 
     $scope.getAPIData();

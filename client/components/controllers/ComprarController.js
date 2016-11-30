@@ -126,15 +126,45 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
                 method: 'GET',
                 url: 'https://viacep.com.br/ws/' + $scope.address.cep + '/json/'
             }).then(function success(res) {
-                console.log(res);
+                $scope.address.logradouro = res.data.logradouro;
+                $scope.address.bairro = res.data.bairro;
+                $scope.address.cidade = res.data.localidade;
+                $scope.address.uf = res.data.uf;
             });
         };
+
+        $scope.addAddress = function() {
+            console.log($scope.userLogged);
+            $scope.address.criado = Date.now();
+            console.log($scope.userLogged.endereco);
+            if ($scope.userLogged && !$scope.userLogged.endereco) {
+                $scope.userLogged.endereco = [];
+                console.log('Entrou no IFÃO papai ');
+            }
+            $scope.userLogged.endereco.push($scope.address);
+            $scope.update();
+            $scope.selectedAddress = null;
+        }
 
         $scope.selectAddress = function(end, index) {
             $scope.selectAddress = end;
             $scope.selectAddress.index = index;
         };
-        
+
+        $scope.update = function() {
+            userService.updateUser($scope.userLogged).then(function success(res) {
+                // Recebe a revisão atualizada do documento de usuário
+                $scope.userLogged._id = res.data.id;
+                $scope.userLogged._rev = res.data.rev;
+                // Atualiza localstorage
+                LocalStorageService.setData(LocalStorageService.storeMap.USER, $scope.userLogged);
+                alert("Dados alterados com sucesso!");
+                console.log(LocalStorageService.getData(LocalStorageService.storeMap.USER));
+            }, function error(err) {
+                alert("Não foi possível salvar os dados do usuário");
+            });
+        }
+
         init();
     }
 ]);

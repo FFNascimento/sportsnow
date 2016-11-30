@@ -79,8 +79,8 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
                 $scope.userLogged.endereco = [];
             }
             $scope.userLogged.endereco.push($scope.selectedAddress);
-            $scope.update();
             $scope.selectedAddress = null;
+            $scope.update();
         }
 
         $scope.newAddress = function() {
