@@ -13,7 +13,7 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
             url: '/minha-conta',
             controller: 'MinhaContaController',
             templateUrl: 'components/views/minha-conta.html'
-        })
+        });
 }])
 
 // Controller definition for this module
@@ -30,12 +30,11 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
             bairro: null,
             cidade: null,
             uf: null
-        }
+        };
 
         function init() {
             $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
-        };
-
+        }
 
         $scope.update = function() {
             userService.updateUser($scope.userLogged).then(function success(res) {
@@ -47,6 +46,7 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
                 alert("Dados alterados com sucesso!");
                 console.log(LocalStorageService.getData(LocalStorageService.storeMap.USER));
             }, function error(err) {
+                console.log(err);
                 alert("Não foi possível salvar os dados do usuário");
             });
         }
@@ -72,20 +72,22 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
 
 
         $scope.addAddress = function() {
-            console.log($scope.userLogged);
-            $scope.selectedAddress.criado = Date.now();
-            console.log($scope.userLogged.endereco);
-            if ($scope.userLogged && !$scope.userLogged.endereco) {
-                $scope.userLogged.endereco = [];
+            if ($scope.selectedAddress.index !== null) {
+                delete $scope.selectedAddress.index;
+            } else {
+                $scope.selectedAddress.criado = Date.now();
+                if ($scope.userLogged && !$scope.userLogged.endereco) {
+                    $scope.userLogged.endereco = [];
+                }
+                $scope.userLogged.endereco.push($scope.selectedAddress);
             }
-            $scope.userLogged.endereco.push($scope.selectedAddress);
             $scope.selectedAddress = null;
             $scope.update();
-        }
+        };
 
         $scope.newAddress = function() {
             $scope.selectedAddress = $scope.addressBase
-        }
+        };
 
         $scope.removeAddress = function(address) {
             console.log($scope.selectedAddress.index);
@@ -96,7 +98,7 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
 
         $scope.cancelEdit = function() {
             $scope.selectedAddress = null;
-        }
+        };
 
         /*
         bairro,cep,complemento,gia,ibge,localicade(cidade),logradouro,uf,unidade
@@ -111,7 +113,7 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
                 $scope.selectedAddress.cidade = res.data.localidade;
                 $scope.selectedAddress.uf = res.data.uf;
             });
-        }
+        };
 
         $scope.logout = function() {
             LocalStorageService.unset(LocalStorageService.storeMap.USER);
@@ -119,6 +121,6 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
             $rootScope.$broadcast("update-login");
             $rootScope.$broadcast("update-cart");
             $state.go("home");
-        }
+        };
     }
 ]);

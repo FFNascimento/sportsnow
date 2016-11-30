@@ -96,9 +96,9 @@
                 </div>
 
                 <!--Caso usuário não possua endereços cadastrados-->
-                <div name="criarEndereco" ng-if="userLogged.endereco.length <= 0">
+                <div name="criarEndereco">
 
-                    <div class="row">
+                    <div class="row" ng-if="userLogged.endereco.length <= 0">
                         <div class="col-md-12">
                             <h3>Você ainda não possui endereços cadastrados!</h3>
                         </div>
@@ -107,52 +107,52 @@
                     <div class="col-md-12">
                         <h4>Cadastrar Endereço</h4>
                     </div>
-                    <div class="col-md-2">
-                        <div class="input-group">
-                            <label for="cep">CEP:</label>
-                            <input type="text" id="cep" class="form-control" ng-model="address.cep" ng-blur="buscarCEP()" placeholder="Ex.: 0000000">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="input-group">
-                            <label for="logradouro">Rua:</label>
-                            <input type="text" id="logradouro" class="form-control" ng-model="address.logradouro" placeholder="Busque pelo CEP">
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="input-group">
-                            <label for="numero">Numero:</label>
-                            <input type="text" id="numero" class="form-control" ng-model="address.numero">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="input-group">
-                            <label for="bairro">Bairro:</label>
-                            <input type="text" id="bairro" class="form-control" ng-model="address.bairro">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="input-group">
-                            <label for="cidade">Cidade:</label>
-                            <input type="text" id="cidade" class="form-control" ng-model="address.cidade">
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="input-group">
-                            <label for="uf">UF:</label>
-                            <input type="text" id="uf" class="form-control" ng-model="address.uf">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="row selected-address-ctrl">
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-primary" ng-click="addAddress()"><span class="glyphicon glyphicon-plus"></span><span> Adicionar</span></button>
-                                <button type="button" class="btn btn-primary" ng-click="cancelEdit()" name="button"><span class="glyphicon glyphicon-remove"></span><span> Cancelar</span></button>
+                    <form class="novoEndereco">
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <label for="cep">CEP:</label>
+                                <input type="text" id="cep" class="form-control" ng-model="address.cep" ng-blur="buscarCEP()" placeholder="Ex.: 0000000">
                             </div>
                         </div>
-                    </div>
-
-
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <label for="logradouro">Rua:</label>
+                                <input type="text" id="logradouro" class="form-control" ng-model="address.logradouro" placeholder="Busque pelo CEP">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="input-group">
+                                <label for="numero">Numero:</label>
+                                <input type="text" id="numero" class="form-control" ng-model="address.numero">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <label for="bairro">Bairro:</label>
+                                <input type="text" id="bairro" class="form-control" ng-model="address.bairro">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <label for="cidade">Cidade:</label>
+                                <input type="text" id="cidade" class="form-control" ng-model="address.cidade">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="input-group">
+                                <label for="uf">UF:</label>
+                                <input type="text" id="uf" class="form-control" ng-model="address.uf">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row selected-address-ctrl">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary" ng-click="addAddress()"><span class="glyphicon glyphicon-plus"></span><span> Adicionar</span></button>
+                                    <button type="button" class="btn btn-primary" ng-click="cancelEdit()" name="button"><span class="glyphicon glyphicon-remove"></span><span> Cancelar</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
             </div>
@@ -160,24 +160,125 @@
     </div>
 </div>
 <!-- Payment Screen -->
-<div class="payment" ng-if="userLogged && selectedAddress">
-    <h3>Informe os dados do cartão</h3>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="credit-card">
+<div class="payment" ng-if="userLogged && passo === passoBase.pagamento">
+    <div class="container">
+        <h3>Informe os dados do cartão</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container-fluid">
+                    <form class="ccForm">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <label for="numero-cartao">Numero do cartão</label>
+                                    <input id="numero-cartao" type="text" name="ccNumber" class="form-control" ng-model="dadosCartao.numero" placeholder="0000 0000 0000 0000" ng-required="true" ng-min="16">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <label for="validade-mes">Val. mês</label>
+                                            <input id="validade-mes" type="text" name="validade" class="form-control" ng-model="dadosCartao.mes" ng-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <label for="validade-ano">Val. ano</label>
+                                            <input id="validade-ano" type="text" name="validade" class="form-control" ng-model="dadosCartao.ano" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <label for="proprietario">Proprietario</label>
+                                    <input id="proprietario" type="text" name="prop" class="form-control" placeholder="PROPRIETARIO DO CARTAO" ng-required="true" ng-model="dadosCartao.proprietario">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <label for="codigo">Codigo de segurança</label>
+                                    <input id="codigo" type="text" name="prop" class="form-control" placeholder="XXX" ng-model="dadosCartao.codigoSeguranca" ng-required="true" ng-max="3" maxlength="3">
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-1">
+                                <p>Bandeira</p>
+                                <p>{{ccForm.numero.$ccType || 'Unknown'}}</p>
+                            </div> -->
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary" ng-click="selecionarPagamento()">COMPRAR</button>
+                            </div>
+                        </div>
 
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="credit-card-back">
-
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Resume Screen -->
-<div class="resume" ng-if="resume">
+<div class="resumo" ng-if="passo === passoBase.resumo">
+    <div class="container">
+        <h3>Resumo da compra</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Produtos</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Nome Produto
+                        </th>
+                        <th>
+                            Qtd
+                        </th>
+                        <th>
+                            Preço Total
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr class="" ng-repeat="prod in produtos">
+                            <td>{{$index + 1}}</td>
+                            <td>{{prod.name}}</td>
+                            <td>{{prod.quantity}}</td>
+                            <td>{{prod.price * prod.quantity}}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
+            </div>
+            <div class="col-md-4 text-center">
+                <h4>Endereço de entrega</h4>
+                <div class="">
+                    <p>{{selectedAddress.logradouro}}, {{selectedAddress.numero}}</p>
+                    <p>CEP: {{selectedAddress.cep}}</p>
+                    <p>{{selectedAddress.bairro}}</p>
+                    <p>{{selectedAddress.cidade}} - {{selectedAddress.uf}}</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <h4>Pagamento</h4>
+                <div class="">
+                    <p>Cartão</p>
+                    <p>Número: {{dadosCartao.numero}}</p>
+                    <p>Validade: {{dadosCartao.mes}} / {{dadosCartao.ano}}</p>
+                    <p>Proprietario: {{dadosCartao.proprietario}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span>Total da compra:</span><span ng-bind="getTotalCompra()"></span>
+          </div>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-primary">FINALIZAR COMPRA</button>
+        </div>
+    </div>
+</div>
 </div>
 <div class="conclusion" ng-if="pedido">
     <div class="container">

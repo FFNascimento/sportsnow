@@ -30,6 +30,7 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
         $scope.creatingAddress = null;
         $scope.pwdMatch = true;
         $scope.pedido = null;
+        $scope.produtos = null;
         // Objeto para criar novo usuário
         $scope.user = {
             permission: 'USER',
@@ -49,9 +50,18 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
             concluido: 'concluido'
         };
         $scope.passo = null;
+        $scope.dadosCartao = {
+            numero: null,
+            mes: null,
+            ano: null,
+            proprietario: null,
+            codigoSeguranca: null
+        };
 
         function init() {
             $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
+            $scope.produtos = LocalStorageService.getData(LocalStorageService.storeMap.CART).itens;
+            console.log($scope.produtos);
             $scope.passo = $scope.passoBase.endereco;
         }
 
@@ -147,8 +157,9 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
         }
 
         $scope.selectAddress = function(end, index) {
-            $scope.selectAddress = end;
-            $scope.selectAddress.index = index;
+            $scope.selectedAddress = end;
+            $scope.selectedAddress.index = index;
+            $scope.passo = $scope.passoBase.pagamento;
         };
 
         $scope.update = function() {
@@ -163,7 +174,19 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
             }, function error(err) {
                 alert("Não foi possível salvar os dados do usuário");
             });
-        }
+        };
+
+        $scope.selecionarPagamento = function() {
+            $scope.passo = $scope.passoBase.resumo;
+        };
+
+        $scope.getTotalCompra = function() {
+            var total = 0;
+            $scope.produtos.forEach(function(prod) {
+                total += prod.price * prod.quantity;
+            });
+            return total;
+        };
 
         init();
     }
