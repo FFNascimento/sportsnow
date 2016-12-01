@@ -54,133 +54,41 @@
                         <p>{{product.description}}</p>
                     </div>
                 </div>
-
-
-                <!-- <div class="abt-one">
-                  <a href="single.html"><img src="images/abt-1.jpg" alt="" /></a>
-                  <h4><a href="single.html">Cras dolor ligula</a></h4>
-                  <p>Phasellus auctor vulputate egestas. Nulla facilisi. Cras dolor ligula, pharetra vitae efficitur ac, tempus vitae nisl. Aliquam erat volutpat. </p>
-              </div> -->
-
             </div>
-            <!-- <div class="col-md-6 banner-bottom-right">
-                <div class="bnr-two">
-                    <div class="bnr-left">
-                        <h2><a href="single.html">Phasellus quis nunc</a></h2>
-                        <p>Nulla tempus facilisis purus at.</p>
-                        <div class="b-btn">
-                            <a href="single.html">SHOP NOW</a>
-                        </div>
-                    </div>
-                    <div class="bnr-right">
-                        <a href="single.html"><img src="images/b-2.jpg" alt="" /></a>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-            </div>
-            <div class="clearfix"> </div> -->
             <div class="clearfix"> </div>
         </div>
     </div>
 </div>
 <!--end-banner-bottom-->
 <!--start-shoes-->
-<div class="shoes">
+<div class="product">
     <div class="container">
-        <div class="product-one">
-
-            <div class="col-md-12 product-left">
-                <div ng-repeat="product in products" class="col-md-3 product-left">
-                    <a ui-sref="detalhes({productId:product._id})">
-                        <img src="{{product.photo.name}}" alt="{{product.name}}" />
-                    </a>
-                    <a ui-sref="detalhes({productId:product._id})">
-                        <div class="mask">
-                            <span>Veja Mais</span>
-                        </div>
-                    </a>
-                    <h4>{{product.name}}</h4>
-                    <div class="price_single">
-                        <p>
-                            <a class="item_add" ui-sref="detalhes({productId:product._id})">
-                                <i></i>
-                                <span class=" item_price">{{product.price | currency}}</span>
+        <div class="product-main">
+            <div class="col-md-12 p-left">
+                <div class="product-one">
+                    <div ng-repeat="product in products" class="col-md-3 product-left single-left">
+                        <div class="p-one simpleCart_shelfItem">
+                            <a>
+                                <img src="{{product.photo.name}}" alt="{{product.name}}" />
+                                <div class="mask mask1">
+                                    <a ui-sref="detalhes({productId:product._id})"><span>Veja Mais</span></a>
+                                </div>
                             </a>
-                        </p>
+                            <h4>{{product.name}}</h4>
+                            <p><span class=" item_price">R${{product.price}}</span></p>
+                        </div>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
-
-
-
-
-                <div class="clearfix"> </div>
             </div>
-
-            <!-- <div class="product-one">
-                <div class="col-md-3 product-left">
-                    <div class="p-one simpleCart_shelfItem">
-
-                        <a href="single.html">
-                            <img src="images/shoes-5.png" alt="" />
-                            <div class="mask">
-                                <span>Quick View</span>
-                            </div>
-                        </a>
-                        <h4>Aenean placerat</h4>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-
-                    </div>
-                </div>
-                <div class="col-md-3 product-left">
-                    <div class="p-one simpleCart_shelfItem">
-
-                        <a href="single.html">
-                            <img src="images/shoes-6.png" alt="" />
-                            <div class="mask">
-                                <span>Quick View</span>
-                            </div>
-                        </a>
-                        <h4>Aenean placerat</h4>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-
-                    </div>
-                </div>
-                <div class="col-md-3 product-left">
-                    <div class="p-one simpleCart_shelfItem">
-
-                        <a href="single.html">
-                            <img src="images/shoes-7.png" alt="" />
-                            <div class="mask">
-                                <span>Quick View</span>
-                            </div>
-                        </a>
-                        <h4>Aenean placerat</h4>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-
-                    </div>
-                </div>
-                <div class="col-md-3 product-left">
-                    <div class="p-one simpleCart_shelfItem">
-
-                        <a href="single.html">
-                            <img src="images/shoes-8.png" alt="" />
-                            <div class="mask">
-                                <span>Quick View</span>
-                            </div>
-                        </a>
-                        <h4>Aenean placerat</h4>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div> -->
+            <div class="clearfix"></div>
         </div>
     </div>
-    <hr>
-    <!--end-shoes-->
-    <!--start-abt-shoe-->
-    <!-- <div class="abt-shoe">
+</div>
+<hr>
+<!--end-shoes-->
+<!--start-abt-shoe-->
+<!-- <div class="abt-shoe">
     <div class="container">
         <div class="abt-shoe-main">
             <div class="col-md-4 abt-shoe-left">
@@ -208,4 +116,4 @@
         </div>
     </div>
 </div> -->
-    <!--end-abt-shoe-->
+<!--end-abt-shoe-->

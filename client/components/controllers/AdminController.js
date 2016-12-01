@@ -29,7 +29,7 @@ angular.module('app.admin', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfC
 
         $scope.loadHome = function() {
             document.getElementById("content").innerHTML = '<ul><li ng-repeat="entry in list"> {{entry._id}} </li></ul>';
-            reportService.products().then(function(res) {
+            reportService.users().then(function(res) {
                 $scope.list = res.data;
             }, function(fail) {
                 alert(JSON.stringify(fail));
