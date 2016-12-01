@@ -13,6 +13,7 @@ var app = angular.module('app', [
     'app.comprar',
     'app.minhaConta',
     'app.localstorage',
+    'app.admin',
     'ngLocale'
 ]);
 
