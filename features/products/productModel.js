@@ -258,7 +258,7 @@ function sell_products(params) {
         });
     }
 
-    UserModel.add_user_sell(date, params.user, params.data).then(function(body) {
+    UserModel.add_user_sell(date, params.user, params.data, params.cartao).then(function(body) {
         q.resolve(array);
     }, function(err) {
         q.reject(err);

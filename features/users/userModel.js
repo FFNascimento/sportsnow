@@ -199,7 +199,7 @@ function update_user(user) {
     return q.promise;
 }
 
-function add_user_sell(id, user, sell) {
+function add_user_sell(id, user, sell, payment) {
     var q = Q.defer();
     user.type = type;
 
@@ -216,7 +216,8 @@ function add_user_sell(id, user, sell) {
 
         var obj = {
             sellId: id,
-            products: sell
+            products: sell,
+            cartao: payment
         }
 
         body.sellHistory.push(obj);
