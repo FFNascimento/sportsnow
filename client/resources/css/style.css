@@ -252,7 +252,9 @@ a.simpleCart_empty {
 }
 
 .rslides img {
-    height: auto;
+    margin: 10px;
+    width: 98%;
+    height: 98%;
 }
 
 .callbacks_tabs {
