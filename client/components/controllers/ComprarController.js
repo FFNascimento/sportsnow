@@ -55,7 +55,8 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
             mes: null,
             ano: null,
             proprietario: null,
-            codigoSeguranca: null
+            codigoSeguranca: null,
+            parcelas: null
         };
 
         function init() {
@@ -186,6 +187,10 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
                 total += prod.price * prod.quantity;
             });
             return total;
+        };
+
+        $scope.finalizarCompra = function() {
+
         };
 
         init();

@@ -166,12 +166,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="container-fluid">
-                    <form class="ccForm">
+                    <form name="ccForm">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="input-group">
                                     <label for="numero-cartao">Numero do cartão</label>
-                                    <input id="numero-cartao" type="text" name="ccNumber" class="form-control" ng-model="dadosCartao.numero" placeholder="0000 0000 0000 0000" ng-required="true" ng-min="16">
+                                    <input id="numero-cartao" type="text" name="ccNumber" class="form-control" ng-model="dadosCartao.numero" placeholder="0000 0000 0000 0000" ng-required="true" ng-minlenght="16">
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -179,13 +179,13 @@
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <label for="validade-mes">Val. mês</label>
-                                            <input id="validade-mes" type="text" name="validade" class="form-control" ng-model="dadosCartao.mes" ng-required="true">
+                                            <input id="validade-mes" type="text" name="validade" class="form-control" ng-model="dadosCartao.mes" ng-required="true" maxlength="2">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <label for="validade-ano">Val. ano</label>
-                                            <input id="validade-ano" type="text" name="validade" class="form-control" ng-model="dadosCartao.ano" ng-required="true">
+                                            <input id="validade-ano" type="text" name="validade" class="form-control" ng-model="dadosCartao.ano" ng-required="true" maxlength="2">
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@
                             <div class="col-md-2">
                                 <div class="input-group">
                                     <label for="codigo">Codigo de segurança</label>
-                                    <input id="codigo" type="text" name="prop" class="form-control" placeholder="XXX" ng-model="dadosCartao.codigoSeguranca" ng-required="true" ng-max="3" maxlength="3">
+                                    <input id="codigo" type="text" name="prop" class="form-control" placeholder="XXX" ng-model="dadosCartao.codigoSeguranca" ng-required="true" maxlength="3">
                                 </div>
                             </div>
                             <!-- <div class="col-md-1">
@@ -207,7 +207,11 @@
                                 <p>{{ccForm.numero.$ccType || 'Unknown'}}</p>
                             </div> -->
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary" ng-click="selecionarPagamento()">COMPRAR</button>
+                                <div class="row selected-address-ctrl">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary" ng-click="selecionarPagamento()" ng-disabled="!ccForm.$valid">COMPRAR</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -270,12 +274,16 @@
             </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
-            <span>Total da compra:</span><span ng-bind="getTotalCompra()"></span>
-          </div>
+            <div class="col-md-12">
+                <span>Total da compra:</span><span ng-bind="getTotalCompra()"></span>
+            </div>
         </div>
         <div class="row">
-            <button type="button" class="btn btn-primary">FINALIZAR COMPRA</button>
+            <div class="row selected-address-ctrl">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary" ng-click="finalizarCompra()">FINALIZAR COMPRA</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
