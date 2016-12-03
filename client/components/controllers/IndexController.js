@@ -13,7 +13,6 @@ angular.module('app.home', ['ngRoute', 'app.localstorage', 'ui.router'])
 
     function init() {
         $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
-        console.log($scope.userLogged);
-    };
+    }
 
 }]);

@@ -19,7 +19,7 @@ angular.module('app.user.service', []).factory('userService', ['$http', function
                 method: 'POST',
                 url: 'api/authorize/user',
                 data: user
-            })
+            });
         },
         logInUser: function(user) {
             return $http({
@@ -31,7 +31,7 @@ angular.module('app.user.service', []).factory('userService', ['$http', function
         logOutUser: function(user) {
 
         }
-    }
+    };
 
     return user;
 }]);

@@ -4,7 +4,7 @@ var router = express.Router();
 var path = require('path');
 
 router.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '../../client/components/views/', 'dash.html'));
+    res.sendFile(path.join(__dirname, '../../client/components/views/admin/', 'dash.html'));
 });
 
 module.exports = router;

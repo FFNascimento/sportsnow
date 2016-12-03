@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="dashboard">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/dashboard.css">
+
+    <title>Painel de Controle Sports Now</title>
+</head>
+
+<body>
+    <!-- Onde todas as telas serão carregadas -->
+    <ui-view></ui-view>
+    <!-- jQuery (necessary for materializecss's JavaScript plugins) -->
+    <script src="resources/js/jquery-2.2.4.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script src="resources/bower/angular/angular.js"></script>
+    <script src="resources/bower/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="resources/js/angular-locale_pt-br.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="components/directives/materialize-directives.js" charset="utf-8"></script>
+    <script src="components/controllers/admin/MainController.js"></script>
+    <script src="components/controllers/admin/GerirProdutoController.js"></script>
+    <script src="components/helpers/localstorage.constants.js"></script>
+    <script src="components/helpers/localstorage.service.js"></script>
+    <!--Bower Validação de CPF-->
+    <script src="resources/js/cpf.min.js"></script>
+    <script src="resources/js/ngCpfCnpj.js"></script>
+</body>
+
+</html>

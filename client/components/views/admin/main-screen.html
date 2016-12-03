@@ -1,0 +1,40 @@
+<ul id="slide-out" class="side-nav fixed">
+    <li>
+        <div class="branchView">
+            <div class="background">
+                <img src="resources/img/sportsnow-logo.png" class="responsive-img">
+            </div>
+        </div>
+        <a class="subheader">Painel de Controle do Administrador</a>
+        <a href="#!name">
+            <i class="material-icons">account_circle</i>{{admin.name}}
+        </a>
+        <a href="#!email">
+            <i class="material-icons">email</i>{{admin.email}}
+        </a>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <!-- Funcionalidades do painel de controle -->
+    <li><a class="subheader">Administração</a></li>
+    <li><a ui-sref="produtos"><i class="material-icons">add_box</i>Gerenciar Produtos</i></a></li>
+    <li><a ui-sref="administradores"><i class="material-icons">group</i>Gerenciar Administradores</i></a></li>
+    <li><a href="relatorioProdutos"><i class="material-icons">show_chart</i>Relatório de Produtos</a></li>
+    <li><a href="relatorioUsuario"><i class="material-icons">show_chart</i>Relatório de Usuários</a></li>
+    <!-- Outras funcionalidades -->
+    <li><a class="subheader">Controles</a></li>
+    <li><a class="waves-effect" href="/"><i class="material-icons">store</i>Voltar para loja</a></li>
+</ul>
+<main>
+    <nav class="nav-sportsnow">
+        <div class="nav-wrapper">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="row">
+      <div ui-view="funcionalidades">
+
+      </div>
+    </div>
+</main>

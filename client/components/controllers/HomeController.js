@@ -30,10 +30,9 @@ angular.module('app.home', ['ngRoute', 'app.localstorage', 'ui.router'])
     function init() {
         $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
         $rootScope.$broadcast("update-login");
-    };
+    }
 
     $scope.products = {};
-
 
     $scope.getAPIData = function() {
         $http({

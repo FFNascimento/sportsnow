@@ -1,12 +1,10 @@
-var dashboard = angular.module('dashboard', ['ui.router']);
+var dashboard = angular.module('dashboard', [
+    'ui.router',
+    'dashboard.main',
+    'dashboard.materialize',
+    'dashboard.gerirProdutos'
+]);
 
-app.config(function($stateProvider, $urlRouterProvider) {
+dashboard.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
-
-    $stateProvider
-        .state('login', {
-            url: '/',
-            templateUrl: 'components/views/admin/login.html',
-            controller: 'components/controller/admin/LoginController.js'
-        })
-})
+});

@@ -12,7 +12,7 @@ angular.module('app.admin.service', []).factory('reportService', ['$http', funct
                 url: 'api/get/report/products'
             });
         }
-    }
+    };
 
     return report;
 }]);
