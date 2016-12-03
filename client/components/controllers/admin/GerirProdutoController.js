@@ -15,5 +15,4 @@ angular.module('dashboard.gerirProdutos', [])
 }])
 
 .controller('gerirProdutosController', ['$scope', function($scope) {
-
 }]);
