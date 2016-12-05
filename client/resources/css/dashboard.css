@@ -16,3 +16,30 @@ header, main, footer {
 .nav-sportsnow {
     background: #702428;
 }
+
+.btn, .btn-floating {
+    background-color: #702428;
+}
+
+.btn:hover, .btn-floating:hover {
+    background-color: #510F12;
+}
+
+[type="radio"]:not(:checked)+label, [type="radio"]:checked+label, [type="checkbox"]:not(:checked)+label, [type="checkbox"]:checked+label {
+    top: 0;
+    color: #000;
+}
+
+.card-action .btn:not(.right) {
+    margin-right: 1em;
+}
+
+.card-action .btn:last-of-type {
+    margin-right: 0;
+}
+
+.nav-header {
+    width: 100%;
+    display: block;
+    font-size: 1.2em;
+}

@@ -47,7 +47,7 @@ function getProduct(req, res) {
     }).fail(function(err) {
         res.status(400).json(err);
     });
-};
+}
 
 function getProducts(req, res) {
     Product.get_products().then(function(body) {

@@ -1,20 +1,111 @@
 <!-- Tela de gerenciamento de produtos -->
 <div class="col s12 m12 l12">
-    <h4>Gerenciar Produtos</h4>
-    <div class="row">
+    <h4>
+      {{title}}
+      <div class="right">
+          <a class="btn-floating btn-large waves-effect waves-light horizontal" ng-click="creatingProduct()">
+            <i class="material-icons">add</i>
+          </a>
+      </div>
+    </h4>
+
+    <div class="row" ng-show="!currentProduct">
         <div class="col s12 m12 l12">
             <div class="card">
                 <div class="card-content">
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" name="user" value="">
-                        </div>
-                        <div class="input-field col s12">
-                            <input type="password" name="password" value="">
+                        <div class="input-field col s12 m12 l12" ng-init="getAllProducts()">
+                            <div class="row">
+                                <div class="col s6 m4 l3">
+                                    <h5>Produto</h5>
+                                </div>
+                                <div class="col s2 m1 l1">
+                                    <h5>Qtd</h5>
+                                </div>
+                                <div class="col m5 l5 hide-on-small-only">
+                                    <h5>Descrição</h5>
+                                </div>
+                                <div class="col m2 l3 hide-on-small-only">
+                                    <h5>Tipo</h5>
+                                </div>
+                            </div>
+                            <div class="row" ng-repeat="product in products">
+                                <div class="col s6 m4 l3">
+                                    <input type="checkbox" name="produto" class="with-gap" id="produto_{{$index}}" ng-model="product.selected" ng-click="updateSelection($index, products)">
+                                    <label for="produto_{{$index}}">{{product.name}}</label>
+                                </div>
+                                <div class="col s2 m1 l1">
+                                    <span>{{product.quantity}}</span>
+                                </div>
+                                <div class="col m5 l5 hide-on-small-only">
+                                    <span class="truncate">{{product.description}}</span>
+                                </div>
+                                <div class="col m2 l3 hide-on-small-only">
+                                    <span>{{product.productType}}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="card-action">
+                    <a class="btn" ng-click="editingProduct()"><i class="material-icons left">mode_edit</i>Editar</a>
+                    <a class="btn" ng-click="deleteProduct()"><i class="material-icons left">delete_forever</i>Remover</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<!-- Tela de cadastro/edição produto -->
+<div class="row" ng-show="currentProduct">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <form name="productForm">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="input-field col s12 m4 l4">
+                            <input type="text" name="name" ng-model="currentProduct.name" id="produto" ng-required="true" placeholder="Nome do produto">
+                            <label for="produto" class="active">Produto</label>
+                        </div>
+                        <div class="input-field col s12 m2 l2">
+                            <input type="number" name="quantity" ng-model="currentProduct.quantity" id="quantity" ng-required="true" placeholder="Qtd do produto">
+                            <label for="quantity" class="active">Quantidade</label>
+                        </div>
+                        <div class="input-field col s12 m4 l4">
+                            <select material-select ng-model="currentProduct.productType" ng-required="true" name="productType">
+                                <option value="" selected>Selecione um Setor</option>
+                                <option value="FEMININO">FEMININO</option>
+                                <option value="INFANTIL">INFANTIL</option>
+                                <option value="MASCULINO">MASCULINO</option>
+                                <option value="ESPORTE">ESPORTE</option>
+                              </select>
+                            <label>Setor</label>
+                        </div>
+                        <div class="input-field col s12 m2 l2">
+                            <input type="number" id="price" ng-model="currentProduct.price" ng-required="true" name="price" placeholder="Preço do produto">
+                            <label for="price" class="active">Preço</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea id="description" ng-model="currentProduct.description" name="description" class="materialize-textarea" ng-required="true" placeholder="Descrição do produto"></textarea>
+                            <label for="description" class="active">Descrição do Produto</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <button class="btn waves-effect waves-light" type="button" name="save" ng-click="saveProduct()" ng-if="!currentProduct._id" ng-disabled="!productForm.$valid">
+                          <i class="material-icons left">save</i>
+                          Gravar
+                    </button>
+                    <button class="btn waves-effect waves-light" type="button" name="save" ng-click="updateProduct()" ng-if="currentProduct._id" ng-disabled="!productForm.$valid">
+                          <i class="material-icons left">save</i>
+                          Alterar
+                    </button>
+                    <button class="btn waves-effect waves-light right" type="button" name="cancel" ng-click="cancelSelection()">
+                          <i class="material-icons left">cancel</i>
+                          Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </div>

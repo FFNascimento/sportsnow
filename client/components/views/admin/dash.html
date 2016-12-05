@@ -15,6 +15,34 @@
 <body>
     <!-- Onde todas as telas serão carregadas -->
     <ui-view></ui-view>
+
+    <!-- All modals goes here -->
+    <div id="infoModal" class="modal" material-modal>
+        <div class="modal-content">
+            <h4>{{title}}</h4>
+            <p>
+                {{message}}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close btn">OK</a>
+        </div>
+    </div>
+
+    <div id="decisionModal" class="modal" material-modal>
+        <div class="modal-content">
+            <h4>{{title}}</h4>
+            <p>
+                {{message}}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close btn-flat left" ng-click="ok()">OK</a>
+            <a class="modal-action modal-close btn-flat right" ng-click="cancel()">CANCELAR</a>
+        </div>
+    </div>
+    <!-- /Modals -->
+
     <!-- jQuery (necessary for materializecss's JavaScript plugins) -->
     <script src="resources/js/jquery-2.2.4.min.js"></script>
     <!-- Compiled and minified JavaScript -->
@@ -23,6 +51,7 @@
     <script src="resources/bower/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="resources/js/angular-locale_pt-br.js"></script>
     <script src="dashboard.js"></script>
+    <script src="components/services/productService.js"></script>
     <script src="components/directives/materialize-directives.js" charset="utf-8"></script>
     <script src="components/controllers/admin/MainController.js"></script>
     <script src="components/controllers/admin/GerirProdutoController.js"></script>
