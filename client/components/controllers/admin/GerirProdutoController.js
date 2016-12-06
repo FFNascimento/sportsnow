@@ -16,8 +16,6 @@ angular.module('dashboard.gerirProdutos', [
         });
 }])
 
-<<
-<< << < HEAD
     .controller('gerirProdutosController', ['$scope', 'productService', '$rootScope',
         function($scope, productService, $rootScope) {
             $scope.products = null;
