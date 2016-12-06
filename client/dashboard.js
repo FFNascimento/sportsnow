@@ -3,7 +3,8 @@ var dashboard = angular.module('dashboard', [
     'dashboard.main',
     'dashboard.materialize',
     'dashboard.gerirProdutos',
-    'dashboard.adminUsuarios'
+    'dashboard.adminUsuarios',
+    'dashboard.relatorioProdutos'
 ]);
 
 dashboard.config(function($stateProvider, $urlRouterProvider) {

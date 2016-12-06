@@ -45,7 +45,8 @@ angular.module('dashboard.productService', [])
                     deletingMsgTitle: "Atenção",
                     deletingMsg: "Produto removido com sucesso!",
                     errorMsgTitle: "Erro!",
-                    errorMsg: "Não foi possível realizar a opção desejada!"
+                    errorMsg: "Não foi possível realizar a opção desejada!",
+                    reportProductTittle: "Relatório de Produtos"
                 };
             }
         };
