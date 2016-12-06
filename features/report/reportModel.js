@@ -81,7 +81,9 @@ function get_reports_by_time(from, to, type) {
         var body = couchHelper.onlyDocs(body);
         
         for(var i = 0; i < body.length; i++) {
-            if(body[i].timestamp >= from && body[i].timestamp <= to && body[i].reportType === type) {
+            var compare = new Date(body[i].timestamp.substring(0, 10).split("-").reverse().join("-")).getTime() / 1000;
+
+            if(compare >= from && compare <= to && body[i].reportType === type) {
                 obj.push(body[i]);
             }
         }
