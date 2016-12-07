@@ -204,7 +204,7 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
             }, $scope.prodData);
 
             var venda = {
-                user: $scope.userLogged._id,
+                user: LocalStorageService.getData(LocalStorageService.storeMap.ID),
                 data: $scope.prodData,
                 cartao: $scope.dadosCartao
             }
