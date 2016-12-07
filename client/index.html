@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <a ui-sref="login">
                             <h3><span ng-show="userLogged">{{userLogged.name}} </span><span class="glyphicon glyphicon-user"></span></h3>
                         </a>
-                        <div ng-if="userLogged.permission === 'ADMIN'">
+                        <div ng-if="userLogged && userLogged.permission === 'ADMIN'">
                             <a href="/admin">Administração</a>
                         </div>
                     </div>
@@ -208,6 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="components/services/cartService.js"></script>
     <script src="components/services/userService.js"></script>
     <script src="components/services/reportService.js"></script>
+    <script src="components/services/sellService.js"></script>
     <script src="components/controllers/CartController.js"></script>
     <script src="components/helpers/localstorage.constants.js"></script>
     <script src="components/helpers/localstorage.service.js"></script>

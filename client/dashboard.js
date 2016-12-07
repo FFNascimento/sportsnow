@@ -5,9 +5,28 @@ var dashboard = angular.module('dashboard', [
     'dashboard.gerirProdutos',
     'dashboard.adminUsuarios',
     'dashboard.relatorioProdutos',
-    'dashboard.relatorioUsuarios'
+    'dashboard.relatorioUsuarios',
+    'app.localstorage'
 ]);
 
 dashboard.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 });
+
+dashboard.run(['$rootScope', '$window', 'LocalStorageService',
+    function($rootScope, $window, LocalStorageService) {
+        $rootScope.$on('$stateChangeStart', function(e, to) {
+            var user = LocalStorageService.getData(LocalStorageService.storeMap.USER);
+            if (!user) {
+                console.log('sem user');
+                e.preventDefault();
+                $window.location.href = '/';
+            } else {
+                if (to.data && to.data.needAdmin && user.permission !== 'ADMIN') {
+                    e.preventDefault();
+                    $window.location.href = '/';
+                }
+            }
+        });
+    }
+]);

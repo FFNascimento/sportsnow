@@ -37,6 +37,11 @@ var cart = angular.module('app.cart', ['ngRoute', 'app.localstorage', 'ui.router
             };
         });
 
+        $rootScope.$on("clearCart", function() {
+            LocalStorageService.unset(LocalStorageService.storeMap.CART);
+            $rootScope.$broadcast("update-cart");
+        });
+
         $rootScope.$on("update-login", function() {
             $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
         });

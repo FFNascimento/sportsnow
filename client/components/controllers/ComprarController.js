@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'credit-cards', 'app.user.service'])
+angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'credit-cards', 'app.user.service', 'app.sellService'])
 
 // Routing configuration for this module
 .config(['$stateProvider', function($stateProvider) {
@@ -18,8 +18,8 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
 }])
 
 // Controller definition for this module
-.controller('ComprarController', ['$scope', '$http', 'LocalStorageService', '$rootScope', 'userService',
-    function($scope, $http, LocalStorageService, $rootScope, userService) {
+.controller('ComprarController', ['$scope', '$http', 'LocalStorageService', '$rootScope', 'userService', 'sellService', '$state',
+    function($scope, $http, LocalStorageService, $rootScope, userService, sellService, $state) {
 
         // Just a housekeeping.
         // In the init method we are declaring all the
@@ -60,10 +60,15 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
         };
 
         function init() {
-            $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
-            $scope.produtos = LocalStorageService.getData(LocalStorageService.storeMap.CART).itens;
-            console.log($scope.produtos);
-            $scope.passo = $scope.passoBase.endereco;
+            var produtosCarrinho = LocalStorageService.getData(LocalStorageService.storeMap.CART);
+            if (produtosCarrinho) {
+                $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
+                $scope.produtos = produtosCarrinho.itens;
+                console.log($scope.produtos);
+                $scope.passo = $scope.passoBase.endereco;
+            } else {
+                $state.go("home");
+            }
         }
 
         $scope.address = {
@@ -190,7 +195,28 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
         };
 
         $scope.finalizarCompra = function() {
+            $scope.prodData = [];
+            angular.forEach($scope.produtos, function(prod) {
+                this.push({
+                    _id: prod._id,
+                    quantity: prod.quantity
+                });
+            }, $scope.prodData);
 
+            var venda = {
+                user: $scope.userLogged._id,
+                data: $scope.prodData,
+                cartao: $scope.dadosCartao
+            }
+
+            sellService.sellProducts(venda).then(function success(res) {
+                $scope.pedido = res.data.id;
+                $rootScope.$broadcast("clearCart");
+                $scope.passo = $scope.passoBase.concluido;
+            }, function error(err) {
+                alert('Compra não pode ser realizada!');
+                console.log(err);
+            });
         };
 
         init();

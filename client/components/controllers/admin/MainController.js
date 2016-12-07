@@ -6,7 +6,10 @@ angular.module('dashboard.main', ['app.localstorage', 'ui.router'])
         .state('mainAdmin', {
             url: '/',
             controller: 'LoginAdminController',
-            templateUrl: 'components/views/admin/main-screen.html'
+            templateUrl: 'components/views/admin/main-screen.html',
+            data: {
+                needAdmin: true
+            }
         });
 }])
 

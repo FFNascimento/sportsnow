@@ -17,12 +17,21 @@ var app = angular.module('app', [
     'ngLocale'
 ]);
 
-app.run(function($rootScope, $location, LocalStorageService) {
+app.run(['$rootScope', 'LocalStorageService', '$state', function($rootScope, LocalStorageService, $state) {
     $rootScope.$on('signout', function() {
         LocalStorageService.unset(LocalStorageService.storeMap.USER);
-        $location.path('/');
-    })
-})
+        $state.go('home');
+    });
+
+    $rootScope.$on('$stateChangeStart', function(e, to) {
+        var user = LocalStorageService.getData(LocalStorageService.storeMap.USER);
+
+        if (to.data && to.data.needUserLogged && !user) {
+            e.preventDefault();
+            $state.go('login');
+        }
+    });
+}])
 
 
 app.config(function($routeProvider, $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {

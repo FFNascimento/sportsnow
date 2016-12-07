@@ -12,7 +12,10 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
         .state('minhaConta', {
             url: '/minha-conta',
             controller: 'MinhaContaController',
-            templateUrl: 'components/views/minha-conta.html'
+            templateUrl: 'components/views/minha-conta.html',
+            data: {
+                needUserLogged: true
+            }
         });
 }])
 
@@ -72,7 +75,7 @@ angular.module('app.minhaConta', ['ngRoute', 'app.localstorage', 'ui.router', 'n
 
 
         $scope.addAddress = function() {
-            if ($scope.selectedAddress.index !== null) {
+            if ($scope.selectedAddress.index) {
                 delete $scope.selectedAddress.index;
             } else {
                 $scope.selectedAddress.criado = Date.now();

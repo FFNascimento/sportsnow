@@ -288,10 +288,10 @@
     </div>
 </div>
 </div>
-<div class="conclusion" ng-if="pedido">
+<div class="conclusion" ng-if="passo === passoBase.concluido">
     <div class="container">
         <div class="account-top heading">
-            <h3>Compra Realizada!</h3>
+            <h3>Compra Realizada com sucesso!</h3>
         </div>
         <p>Pedido: {{pedido}}</p>
         <a class="btn btn-primary" ui-sref="home">Voltar ao Início</a>
