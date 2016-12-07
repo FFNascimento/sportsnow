@@ -225,10 +225,6 @@ function sell_products(params) {
             if (parseInt(obj.quantity) <= parseInt(body.quantity)) {
                 body.quantity -= obj.quantity;
 
-                if (body.quantity == 0) {
-                    body._deleted = true;
-                }
-
                 if (err) {
                     q.reject(err);
                 }
@@ -281,7 +277,7 @@ function get_products_filter(params) {
 
         var array = [];
         for (var i = 0; i < body.length; i++) {
-            if (body[i].productType === params) {
+            if (body[i].productType === params && parseInt(body[i].quantity) > 0) {
                 array.push(body[i]);
             }
         }
