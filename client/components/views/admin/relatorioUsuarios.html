@@ -1,12 +1,12 @@
 <div class="col s12 m12 l12">
   <h4>Relatorio de Usuários</h4>
 </div>
-<div class="row" ng-show="!currentProduct">
+<div class="row" ng-show="!currentUser">
   <div class="col s12 m12 l12">
       <div class="card">
           <div class="card-content">
               <div class="row">
-                  <div class="input-field col s12 m12 l12" ng-init="users()">
+                  <div class="input-field col s12 m12 l12" ng-init="getAllUsers()">
                     <div class="row">
                         <div class="col s6 m4 l3">
                             <h5>Nome</h5>
@@ -21,9 +21,17 @@
                             <h5>Status</h5>
                         </div>
                     </div>
+                    <div class="row" ng-repeat="user in users">
+                      <div class="col s6 m4 l3">
+                        <span>{{user.name}}</span>
+                      </div>
+                      <div class="col s6 m4 l3">
+                        <span>{{user.permission}}</span>
+                      </div>
                   </div>
               </div>
           </div>
       </div>
   </div>
+</div>
 </div>

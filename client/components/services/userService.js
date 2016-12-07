@@ -14,6 +14,12 @@ angular.module('app.user.service', []).factory('userService', ['$http', function
                 data: user
             });
         },
+        getAllUsers: function() {
+          return $http({
+            method: 'GET',
+            url: 'api/get/report/users'
+          });
+        },
         getUserInfo: function(user) {
             return $http({
                 method: 'POST',
@@ -30,6 +36,11 @@ angular.module('app.user.service', []).factory('userService', ['$http', function
         },
         logOutUser: function(user) {
 
+        },
+        messageList: function() {
+          return {
+            mainTitle: "Relatório de Usuários",
+          }
         }
     };
 
