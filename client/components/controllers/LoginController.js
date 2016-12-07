@@ -74,6 +74,8 @@ angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfC
         $scope.signin = function() {
             userService.logInUser($scope.login).then(function success(res) {
                 // Armazenar em localstorage
+                LocalStorageService.setData(LocalStorageService.storeMap.ID, res.data._id);
+                
                 LocalStorageService.setData(LocalStorageService.storeMap.USER, {
                     _id: res.data._id,
                     _rev: res.data._rev,
@@ -85,7 +87,7 @@ angular.module('app.login', ['ngRoute', 'app.localstorage', 'ui.router', 'ngCpfC
                     cpf: res.data.cpf
                 });
                 console.log(LocalStorageService.getData(LocalStorageService.storeMap.USER));
-                $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER)
+                $scope.userLogged = LocalStorageService.getData(LocalStorageService.storeMap.USER);
                 $state.go('home');
             }, function error(err) {
                 alert('Dados de login inválidos!');

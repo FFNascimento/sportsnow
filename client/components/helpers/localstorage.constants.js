@@ -7,5 +7,9 @@ angular.module("app.localstorage.constants", [])
         CART: {
             KEY: 'cart',
             PARSED: true
+        },
+        ID: {
+            KEY: 'id',
+            PARSED: true
         }
     });
