@@ -45,7 +45,7 @@
         <div class="banner-bottom-top">
             <div class="col-md-12 banner-bottom-left">
 
-                <div ng-repeat="product in products | orderBy:random | limitTo: 2" class="col-md-6 product-left single-left">
+                <div ng-repeat="product in products | limitTo: 2 | orderBy: random" class="col-md-6 product-left single-left">
                     <div class="abt-one">
                         <a ui-sref="detalhes({productId:product._id})">
                             <img src="{{product.photo}}" alt="{{product.name}}" width="150px" height="150px" />
