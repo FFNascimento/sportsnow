@@ -17,7 +17,7 @@ angular.module('app.user.service', []).factory('userService', ['$http', function
         getAllUsers: function() {
           return $http({
             method: 'GET',
-            url: 'api/get/report/users'
+            url: 'api/get/users'
           });
         },
         getUserInfo: function(user) {
