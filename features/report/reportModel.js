@@ -56,8 +56,6 @@ function get_reports_by_type(type) {
         var obj = [];
         var body = couchHelper.onlyDocs(body);
 
-        console.log(body);
-        
         for(var i = 0; i < body.length; i++) {
             if(body[i].reportType === type) {
                 obj.push(body[i]);

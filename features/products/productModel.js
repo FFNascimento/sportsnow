@@ -47,7 +47,7 @@ function add_product(product) {
                         error: 'Something is wrong.'
                     });
                 } else {
-                    ReportModel.add_report("product", body, "ADD").then(function() {
+                    ReportModel.add_report("product", product, "ADD").then(function() {
                         q.resolve(body);
                     }, function() {
                         q.resolve(body);
@@ -70,7 +70,7 @@ function add_product(product) {
                             error: 'Something is wrong.'
                         });
                     } else {
-                    ReportModel.add_report("product", body, "ADD").then(function() {
+                    ReportModel.add_report("product", product, "ADD").then(function() {
                         q.resolve(body);
                     }, function() {
                         q.resolve(body);
@@ -193,7 +193,7 @@ function update_product(product) {
                     error: 'Something is wrong.'
                 });
             } else {
-                ReportModel.add_report("product", body, "UPDATE").then(function() {
+                ReportModel.add_report("product", product, "UPDATE").then(function() {
                     q.resolve(body);
                 }, function() {
                     q.resolve(body);
@@ -209,6 +209,7 @@ function sell_products(params) {
     var q = Q.defer();
     var jorge = params;
     var date = 'ZORG-' + Date.now();
+    var getEntry = {};
 
     if(!(params.data instanceof Array)) {
       var params = [];
@@ -222,6 +223,8 @@ function sell_products(params) {
             include_docs: true
         }, function(err, body) {
 
+            getEntry = body;
+
             if (parseInt(obj.quantity) <= parseInt(body.quantity)) {
                 body.quantity -= obj.quantity;
 
@@ -231,13 +234,12 @@ function sell_products(params) {
                 db.insert(body, {
                     _id: body._id
                 }, function(err, body) {
-                    console.log(body);
                     if (err) {
                         q.reject({
                             error: 'Something is wrong.'
                         });
                     } else {
-                        ReportModel.add_report("product", body, "SELL").then(function() {
+                        ReportModel.add_report("product", getEntry, "SELL").then(function() {
                             q.resolve({
                                 id: date
                             });

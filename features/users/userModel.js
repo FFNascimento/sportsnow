@@ -149,7 +149,6 @@ function get_user(params) {
             return;
         }
         var body = couchHelper.onlyDocs(body);
-        console.log(params);
         for (var i = 0; i < body.length; i++) {
             if (body[i].email === params.email && body[i].password === params.password) {
                 q.resolve(body[i]);
