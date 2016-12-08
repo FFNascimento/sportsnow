@@ -43,9 +43,9 @@
 <div class="banner-bottom">
     <div class="container">
         <div class="banner-bottom-top">
-            <div class="col-md-12 banner-bottom-left">
+            <!-- <div class="col-md-12 banner-bottom-left"> -->
 
-                <div ng-repeat="product in products | limitTo: 2 | orderBy: random" class="col-md-6 product-left single-left">
+                <div ng-repeat="product in products | limitTo: 2 | orderBy: random" class="col-md-6 banner-bottom-left">
                     <div class="abt-one">
                         <a ui-sref="detalhes({productId:product._id})">
                             <img src="{{product.photo}}" alt="{{product.name}}" width="150px" height="150px" />
@@ -54,7 +54,7 @@
                         <p>{{product.description}}</p>
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
             <div class="clearfix"> </div>
         </div>
     </div>
@@ -63,10 +63,10 @@
 <!--start-shoes-->
 <div class="product">
     <div class="container">
-        <div class="product-main">
-            <div class="col-md-12 p-left">
+        <!-- <div class="product-main">
+            <div class="col-md-12 p-left"> -->
                 <div class="product-one">
-                    <div ng-repeat="product in products" class="col-md-3 product-left single-left">
+                    <div ng-repeat="product in products" class="col-md-3 product-left">
                         <div class="p-one simpleCart_shelfItem">
                             <a>
                                 <img src="{{product.photo.name}}" alt="{{product.name}}" />
@@ -80,9 +80,9 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-            </div>
+            <!-- </div> -->
             <div class="clearfix"></div>
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 <hr>

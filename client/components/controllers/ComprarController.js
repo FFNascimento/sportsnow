@@ -199,6 +199,8 @@ angular.module('app.comprar', ['ngRoute', 'app.localstorage', 'ui.router', 'cred
             angular.forEach($scope.produtos, function(prod) {
                 this.push({
                     _id: prod._id,
+                    name: prod.name,
+                    price: prod.price,
                     quantity: prod.quantity
                 });
             }, $scope.prodData);

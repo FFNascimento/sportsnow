@@ -8,25 +8,25 @@
               <div class="row">
                   <div class="input-field col s12 m12 l12" ng-init="getAllUsers()">
                     <div class="row">
-                        <div class="col s6 m4 l3">
+                        <div class="col s7 m4 l4">
                             <h5>Nome</h5>
                         </div>
-                        <div class="col s6 m4 l3">
-                            <h5>Acesso</h5>
-                        </div>
-                        <div class="col m5 l3 hide-on-small-only">
+                        <div class="col m7 l5 s6">
                             <h5>Email</h5>
+                        </div>
+                        <div class="col hide-on-small-only m4 l3">
+                            <h5>Acesso</h5>
                         </div>
                     </div>
                     <div class="row" ng-repeat="user in users">
-                      <div class="col s6 m4 l3">
+                      <div class="col s7 m4 l4">
                         <span>{{user.name}}</span>
                       </div>
-                      <div class="col s6 m4 l3">
-                        <span>{{user.permission}}</span>
-                      </div>
-                      <div class="col m5 l3 hide-on-small-only">
+                      <div class="col m7 l5 s6">
                           <span>{{user.email}}</span>
+                      </div>
+                      <div class="col hide-on-small-only m4 l3">
+                        <span>{{user.permission}}</span>
                       </div>
                   </div>
               </div>

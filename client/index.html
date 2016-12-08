@@ -70,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
                 <div class="col-md-4 top-header-middle">
-                    <a ui-sref="home"><img src="resources/img/sportsnow-logo.png" alt="Sports Now" /></a>
+                    <a ui-sref="home"><img src="resources/img/sportsnow-logo.png" alt="Sports Now" class="img-responsive"/></a>
                 </div>
                 <div class="col-md-4 top-header-right" ng-controller="CartController">
                     <div class="cart box_1">
@@ -80,6 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ng-pluralize count="cart.itens.length" when="{'0':'Vazio','1':'({{cart.itens.length}} item)','other':'({{cart.itens.length}} itens)'}"></ng-pluralize>
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
                             </div>
+                            <div class="clearfix"></div>
                           </h3>
                         </a>
                         <div class="clearfix"></div>
