@@ -40,6 +40,7 @@ if (process.env.VCAP_APP_PORT) {
 app.use('/api/', require('./features'));
 app.use('/', express.static(__dirname + '/client/'));
 app.use('/admin', require('./features/admin/adminRoutes'));
+app.use('/file', require('./features/fileUpload/imageUpload'));
 
 // Start Server
 var server = require('http').createServer(app);

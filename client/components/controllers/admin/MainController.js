@@ -4,7 +4,7 @@ angular.module('dashboard.main', ['app.localstorage', 'ui.router'])
 .config(['$stateProvider', function($stateProvider) {
     $stateProvider
         .state('mainAdmin', {
-            url: '/',
+            url: '/dashboard',
             controller: 'LoginAdminController',
             templateUrl: 'components/views/admin/main-screen.html',
             data: {
