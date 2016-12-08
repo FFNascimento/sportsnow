@@ -239,6 +239,7 @@ function sell_products(params) {
                             error: 'Something is wrong.'
                         });
                     } else {
+                        getEntry.quantity = obj.quantity;
                         ReportModel.add_report("product", getEntry, "SELL").then(function() {
                             q.resolve({
                                 id: date
