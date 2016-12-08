@@ -258,7 +258,8 @@ function get_users() {
                 _rev: body[i]._rev,
                 permission: body[i].permission,
                 email: body[i].email,
-                name: body[i].name
+                name: body[i].name,
+                sellHistory: body[i].sellHistory
             };
 
             obj.push(data);
