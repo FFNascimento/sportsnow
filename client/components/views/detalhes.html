@@ -21,16 +21,7 @@
 						<div class="flexslider">
 							<ul class="slides">
 								<li data-thumb="images/s1.jpg">
-									<img src="images/s1.jpg" />
-								</li>
-								<li data-thumb="images/s2.jpg">
-									<img src="images/s2.jpg" />
-								</li>
-								<li data-thumb="images/s3.jpg">
-									<img src="images/s3.jpg" />
-								</li>
-								<li data-thumb="images/s4.jpg">
-									<img src="images/s4.jpg" />
+									<img ng-src="resources/img/{{produto.photo[0].name}}" width="250px" height="250px"/>
 								</li>
 							</ul>
 						</div>
@@ -102,7 +93,7 @@
 						<div class="col-md-4 product-left single-left" ng-repeat="relacionado in relacionados | limitTo: maxRelated">
 							<div class="p-one simpleCart_shelfItem">
 								<a href="#">
-									<img src="{{relacionado.photo}}" alt="{{relacionado.name}}" width="150px" height="150px" />
+									<img src="resources/img/{{relacionado.photo[0].name}}" alt="{{relacionado.name}}" width="100px" height="100px" />
 									<div class="mask mask1">
 										<a ui-sref="detalhes({productId:relacionado._id})"><span>Visualizar</span></a>
 									</div>
