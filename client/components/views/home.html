@@ -48,7 +48,7 @@
                 <div ng-repeat="product in products | limitTo: 2 | orderBy: random" class="col-md-6 banner-bottom-left">
                     <div class="abt-one">
                         <a ui-sref="detalhes({productId:product._id})">
-                            <img ng-src="resources/img/{{product.photo[0].name}}" alt="{{product.name}}" width="150px" height="150px" />
+                            <img ng-src="resources/img/{{product.photo[0].name}}" class="img-responsive" alt="{{product.name}}" width="200px" height="200px" />
                         </a>
                         <h4><a ui-sref="detalhes({productId:product._id})">{{product.name}}</a></h4>
                         <p>{{product.description}}</p>
@@ -66,10 +66,10 @@
         <!-- <div class="product-main">
             <div class="col-md-12 p-left"> -->
                 <div class="product-one">
-                    <div ng-repeat="product in products" class="col-md-3 product-left">
+                    <div ng-repeat="product in products | limitTo: 4 | orderBy: random" class="col-md-3 product-left">
                         <div class="p-one simpleCart_shelfItem">
                             <a>
-                                <img ng-src="resources/img/{{product.photo[0].name}}" alt="{{product.name}}" width="100px" height="100px" />
+                                <img ng-src="resources/img/{{product.photo[0].name}}" alt="{{product.name}}" class="img-responsive" width="120px" height="120px" />
                                 <div class="mask mask1">
                                     <a ui-sref="detalhes({productId:product._id})"><span>Veja Mais</span></a>
                                 </div>
