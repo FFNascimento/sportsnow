@@ -43,7 +43,7 @@
                             <h5>Tipo</h5>
                         </div>
                     </div>
-                    <div class="row" ng-repeat="product in produtosVendidos">
+                    <div class="row" ng-repeat="product in produtosVendidos" ng-if="product.operation === 'SELL'">
                         <div class="col s7 m5 l4">
                             <span>{{product.name}}</span>
                         </div>
