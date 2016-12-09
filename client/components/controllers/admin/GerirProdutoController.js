@@ -66,6 +66,7 @@ angular.module('dashboard.gerirProdutos', [
                 return product.selected;
             }).shift();
             $scope.title = productService.messageList().editingTitle;
+            console.log($scope.currentProduct);
         };
 
         $scope.cancelSelection = function() {
@@ -97,6 +98,8 @@ angular.module('dashboard.gerirProdutos', [
                         message: productService.messageList().successMsg
                     });
                     $scope.currentProduct = null;
+                    $scope.files = null;
+                    $scope.errFiles = null;
                     $scope.getAllProducts();
                 }, function error(err) {
                     console.log(err);
@@ -118,6 +121,8 @@ angular.module('dashboard.gerirProdutos', [
                     message: productService.messageList().editingMsg
                 });
                 $scope.currentProduct = null;
+                $scope.files = null;
+                $scope.errFiles = null;
                 $scope.getAllProducts();
             }, function error(err) {
                 console.log(err);
@@ -174,15 +179,18 @@ angular.module('dashboard.gerirProdutos', [
 
 
         $scope.setMain = function (file) {
-          files.forEach(function (f) {
+          $scope.files.forEach(function (f) {
             delete file.principal;
           });
-
           file.principal = true;
         }
 
 
-        $scope.removeImg= function (index) {
+        $scope.removeImg = function (index) {
+
+        }
+
+        $scope.removeImgDB = function (index) {
 
         }
     }
