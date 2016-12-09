@@ -1,14 +1,14 @@
 var express = require('express');
 var multer = require('multer');
 var upload = multer({
-    dest: 'uploads/'
+    dest: 'img/'
 });
 var router = express.Router();
 var maxSize = 3 * 1000 * 1000;
 
 var storage = multer.diskStorage({ //multers disk storage settings
     destination: function(req, file, cb) {
-        cb(null, './uploads/');
+        cb(null, './client/resources/img/');
     },
     filename: function(req, file, cb) {
         var datetimestamp = Date.now();

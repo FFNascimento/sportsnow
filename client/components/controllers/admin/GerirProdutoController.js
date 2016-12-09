@@ -89,7 +89,7 @@ angular.module('dashboard.gerirProdutos', [
                 }
 
                 $scope.currentProduct.photo = $scope.fotos;
-                
+
                 productService.createProduct($scope.currentProduct).then(function success(res) {
                     console.log(res);
                     $rootScope.$broadcast('infoModal', {

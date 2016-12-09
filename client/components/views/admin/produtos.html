@@ -104,6 +104,11 @@
                                 <img ngf-thumbnail="file || '/noimage.jpg'" class="responsive-img" />
                                 <button type="button" ng-click="setMain(file)" ng-show="!file.principal">Principal</button>
                             </div>
+                            <div ng-repeat="photo in currentProduct.photo" class="col m3 l2 img-block">
+                                <span ng-click="removeImg($index)"><i class="material-icons left">delete_forever</i>Remover</span>
+                                <img ng-src="" class="responsive-img" />
+                                <button type="button" ng-click="setMain(file)" ng-show="!file.principal">Principal</button>
+                            </div>
                         </div>
                         <div class="col s12" ng-show="errFiles">
                             <h5>Erro nas imagens:</h5>
