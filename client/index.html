@@ -65,12 +65,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="top-header-main">
                 <div class="col-md-4 top-header-left">
                     <div class="search-bar">
-                        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                        <input type="submit" value=""><span class="glyphicon glyphicon-search"></span>
+                        <form>
+                            <input type="text" value="Pesquisar" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                            <input type="submit" value="&#8981;">
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-4 top-header-middle">
-                    <a ui-sref="home"><img src="resources/img/sportsnow-logo.png" alt="Sports Now" class="img-responsive"/></a>
+                    <a ui-sref="home"><img src="resources/img/sportsnow-logo.png" alt="Sports Now" class="img-responsive" /></a>
                 </div>
                 <div class="col-md-4 top-header-right" ng-controller="CartController">
                     <div class="cart box_1">
