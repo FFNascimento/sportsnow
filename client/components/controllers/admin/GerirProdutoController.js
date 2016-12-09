@@ -75,10 +75,21 @@ angular.module('dashboard.gerirProdutos', [
 
         $scope.saveProduct = function() {
             $scope.fileUpload().then(function success(res) {
+                $scope.fotos = [];
                 if (res) {
                     console.log(res);
-                    return true;
+                    console.log($scope.files[0].name);
+                    res.data.uploadedFiles.forEach(function (file) {
+                      var found = $scope.files.find(function (arq) {
+                        return arq.name = file.originalname;
+                      });
+                      var fileType = found.principal ? "PRINCIPAL" : "DETALHES";
+                      $scope.fotos.push({name: file.filename, type:fileType});
+                    });
                 }
+
+                $scope.currentProduct.photo = $scope.fotos;
+                
                 productService.createProduct($scope.currentProduct).then(function success(res) {
                     console.log(res);
                     $rootScope.$broadcast('infoModal', {
@@ -172,7 +183,7 @@ angular.module('dashboard.gerirProdutos', [
 
 
         $scope.removeImg= function (index) {
-          
+
         }
     }
 ]);
