@@ -1,5 +1,6 @@
 angular.module('dashboard.gerirProdutos', [
-    'dashboard.productService'
+    'dashboard.productService',
+    'ngFileUpload'
 ])
 
 .config(['$stateProvider', function($stateProvider) {
@@ -16,8 +17,8 @@ angular.module('dashboard.gerirProdutos', [
         });
 }])
 
-.controller('gerirProdutosController', ['$scope', 'productService', '$rootScope',
-    function($scope, productService, $rootScope) {
+.controller('gerirProdutosController', ['$scope', 'productService', '$rootScope', 'Upload', '$http',
+    function($scope, productService, $rootScope, Upload, $http) {
         $scope.products = null;
         $scope.productBase = {
             name: "",
@@ -43,6 +44,8 @@ angular.module('dashboard.gerirProdutos', [
             id: 4,
             name: 'ESPORTE'
         }];
+        $scope.files = [];
+        $scope.errFiles = [];
 
         $scope.getAllProducts = function() {
             productService.getAllProducts().then(function success(res) {
@@ -71,20 +74,28 @@ angular.module('dashboard.gerirProdutos', [
         };
 
         $scope.saveProduct = function() {
-            productService.createProduct($scope.currentProduct).then(function success(res) {
-                console.log(res);
-                $rootScope.$broadcast('infoModal', {
-                    title: productService.messageList().successMsgTitle,
-                    message: productService.messageList().successMsg
+            $scope.fileUpload().then(function success(res) {
+                if (res) {
+                    console.log(res);
+                    return true;
+                }
+                productService.createProduct($scope.currentProduct).then(function success(res) {
+                    console.log(res);
+                    $rootScope.$broadcast('infoModal', {
+                        title: productService.messageList().successMsgTitle,
+                        message: productService.messageList().successMsg
+                    });
+                    $scope.currentProduct = null;
+                    $scope.getAllProducts();
+                }, function error(err) {
+                    console.log(err);
+                    $rootScope.$broadcast('infoModal', {
+                        title: productService.messageList().errorMsgTitle,
+                        message: productService.messageList().errorMsg
+                    });
                 });
-                $scope.currentProduct = null;
-                $scope.getAllProducts();
             }, function error(err) {
                 console.log(err);
-                $rootScope.$broadcast('infoModal', {
-                    title: productService.messageList().errorMsgTitle,
-                    message: productService.messageList().errorMsg
-                });
             });
         };
 
@@ -132,5 +143,36 @@ angular.module('dashboard.gerirProdutos', [
                     product.selected = false;
             });
         };
+
+        $scope.setFiles = function(files, errFiles) {
+            $scope.files = files;
+            $scope.errFiles = errFiles;
+        };
+
+        $scope.fileUpload = function() {
+            if ($scope.files && $scope.files.length) {
+                return Upload.upload({
+                    url: '/file/upload',
+                    arrayKey: '',// Thnkx to https://goo.gl/QVDL0D
+                    data: {
+                        files: $scope.files
+                    }
+                });
+            }
+        };
+
+
+        $scope.setMain = function (file) {
+          files.forEach(function (f) {
+            delete file.principal;
+          });
+
+          file.principal = true;
+        }
+
+
+        $scope.removeImg= function (index) {
+          
+        }
     }
 ]);

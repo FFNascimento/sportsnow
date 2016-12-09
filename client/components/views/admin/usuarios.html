@@ -1,50 +1,94 @@
-<!-- Tela de gerenciamento de produtos -->
+<!-- Tela de gerenciamento de administradores -->
 <div class="col s12 m12 l12">
-        <!--start-account-->
-<div class="account">
-    <div class="container">
-        <div class="account-bottom">
-            <div class="col m12 account-left">
-                <form name="criarUsuario">
-                    <div class="account-top heading">
-                        <h3>Novo Administrador</h3>
+    <h4>
+      {{title}}
+      <div class="right">
+          <a class="btn-floating btn-large waves-effect waves-light horizontal" ng-click="creatingAdmin()">
+            <i class="material-icons">add</i>
+          </a>
+      </div>
+    </h4>
+
+    <div class="row" ng-show="!currentProduct">
+        <div class="col s12 m12 l12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="input-field col s12 m12 l12" ng-init="getAllUsers()">
+                            <div class="row">
+                                <div class="col s6 m4 l3">
+                                    <h5>Nome</h5>
+                                </div>
+                                <div class="col s2 m1 l1">
+                                    <h5>Email</h5>
+                                </div>
+                            </div>
+                            <div class="row" ng-repeat="usr in users">
+                                <div class="col s6 m4 l3">
+                                    <input type="checkbox" name="produto" class="with-gap" id="produto_{{$index}}" ng-model="usr.selected" ng-click="updateSelection($index, users)">
+                                    <label for="admin_{{$index}}">{{usr.name}}</label>
+                                </div>
+                                <div class="col s6 m4 l3">
+                                    <span>{{usr.email}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="address">
-                        <span>Nome</span>
-                        <input type="text" ng-model="user.firstName" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Sobrenome</span>
-                        <input type="text" ng-model="user.lastName" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>CPF</span>
-                        <input type="text" name="cpf" ng-model="user.cpf" ng-class="{'erro-campo':!criarUsuario.cpf.$valid && criarUsuario.cpf.$dirty}" ui-mask="999.999.999-99" ng-cpf ng-required="true" maxlength="11">
-                    </div>
-                    <div class="address">
-                        <span>RG</span>
-                        <input type="text" name="rg" ng-model="user.rg" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Email</span>
-                        <input type="email" ng-model="user.email" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Senha</span>
-                        <input type="password" name="password" ng-model="user.password" ng-class="{'erro-campo':!pwdMatch && criarUsuario.password.$dirty}" ng-required="true">
-                    </div>
-                    <div class="address">
-                        <span>Confirme a senha</span>
-                        <input type="password" ng-model="user.passwordConfirmation" name="confirmpwd" ng-blur="compare()" ng-class="{'erro-campo':!pwdMatch && criarUsuario.confirmpwd.$dirty}" ng-required="true">
-                    </div>
-                    <div class="card-action">
-                        <input class="btn" type="submit" value="Cadastrar" ng-click="criarUsuario.$valid && cadastrarUsuario()" ng-disabled="!pwdMatch">
-                    </div>
-                </form>
+                </div>
+                <div class="card-action">
+                    <a class="btn" ng-click="editingUser()"><i class="material-icons left">mode_edit</i>Editar</a>
+                    <a class="btn" ng-click="deleteUser()"><i class="material-icons left">delete_forever</i>Remover</a>
+                </div>
             </div>
+        </div>
     </div>
 </div>
-<!--end-account-->
+<div class="col s12 m12 l12">
+    <!--start-account-->
+    <div class="account">
+        <div class="container">
+            <div class="account-bottom">
+                <div class="col m12">
+                    <form name="criarUsuario">
+                        <div class="account-top heading">
+                            <h3>Novo Administrador</h3>
+                        </div>
+                        <div class="address">
+                            <span>Nome</span>
+                            <input type="text" ng-model="user.firstName" ng-required="true">
+                        </div>
+                        <div class="address">
+                            <span>Sobrenome</span>
+                            <input type="text" ng-model="user.lastName" ng-required="true">
+                        </div>
+                        <div class="address">
+                            <span>CPF</span>
+                            <input type="text" name="cpf" ng-model="user.cpf" ng-class="{'erro-campo':!criarUsuario.cpf.$valid && criarUsuario.cpf.$dirty}" ui-mask="999.999.999-99" ng-cpf ng-required="true" maxlength="11">
+                        </div>
+                        <div class="address">
+                            <span>RG</span>
+                            <input type="text" name="rg" ng-model="user.rg" ng-required="true">
+                        </div>
+                        <div class="address">
+                            <span>Email</span>
+                            <input type="email" ng-model="user.email" ng-required="true">
+                        </div>
+                        <div class="address">
+                            <span>Senha</span>
+                            <input type="password" name="password" ng-model="user.password" ng-class="{'erro-campo':!pwdMatch && criarUsuario.password.$dirty}" ng-required="true">
+                        </div>
+                        <div class="address">
+                            <span>Confirme a senha</span>
+                            <input type="password" ng-model="user.passwordConfirmation" name="confirmpwd" ng-blur="compare()" ng-class="{'erro-campo':!pwdMatch && criarUsuario.confirmpwd.$dirty}" ng-required="true">
+                        </div>
+                        <div class="card-action">
+                            <input class="btn" type="submit" value="Cadastrar" ng-click="criarUsuario.$valid && cadastrarUsuario()" ng-disabled="!pwdMatch">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--end-account-->
 
     </div>
 </div>

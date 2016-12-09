@@ -10,7 +10,7 @@ var dashboard = angular.module('dashboard', [
 ]);
 
 dashboard.config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/dashboard');
 });
 
 dashboard.run(['$rootScope', '$window', 'LocalStorageService',
