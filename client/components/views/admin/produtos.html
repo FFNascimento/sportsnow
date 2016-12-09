@@ -88,6 +88,27 @@
                             <textarea id="description" ng-model="currentProduct.description" name="description" class="materialize-textarea" ng-required="true" placeholder="Descrição do produto"></textarea>
                             <label for="description" class="active">Descrição do Produto</label>
                         </div>
+                        <div class="file-field input-field col s12">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100" ngf-resize="{width: 1280, height: 720}" ngf-select="setFiles($files, $invalidFiles)">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                            </div>
+                        </div>
+                        <div class="col s12" ng-show="files">
+                            <h5>Imagens do Produto</h5>
+                            <div ng-repeat="file in files" class="col m3 l2 img-block">
+                                <span ng-click="removeImg($index)"><i class="material-icons left">delete_forever</i>Remover</span>
+                                <img ngf-thumbnail="file || '/noimage.jpg'" class="responsive-img" />
+                                <button type="button" ng-click="setMain(file)" ng-show="!file.principal">Principal</button>
+                            </div>
+                        </div>
+                        <div class="col s12" ng-show="errFiles">
+                            <h5>Erro nas imagens:</h5>
+                            <p ng-repeat="f in errFiles">{{f.name}} {{f.$error}} {{f.$errorParam}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card-action">

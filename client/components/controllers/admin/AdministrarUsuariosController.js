@@ -16,7 +16,7 @@ angular.module('dashboard.adminUsuarios', ['app.user.service'])
 
 .controller('administrarUsuariosController', ['$scope', 'userService', function($scope, userService) {
 
-     $scope.pwdMatch = true;
+    $scope.pwdMatch = true;
     // Objeto para criar novo usuário
     $scope.user = {
         permission: 'USER',
@@ -29,11 +29,13 @@ angular.module('dashboard.adminUsuarios', ['app.user.service'])
         password: null,
         passwordConfirmation: null
     };
+    $scope.users = null;
     // Objeto para login, está separado do de usuário para evitar problemas com o Two way databind
     $scope.login = {
         email: '',
         password: ''
     };
+    $scope.title = "Gerenciar Administradores";
 
     $scope.cadastrarUsuario = function() {
         // Ajusta ao padrão do usuário
@@ -56,6 +58,14 @@ angular.module('dashboard.adminUsuarios', ['app.user.service'])
             }
         });
     };
+
+    $scope.getAllUsers = function() {
+        userService.getAllUsers().then(function success(res) {
+            $scope.users = res.data;
+        }, function error(err) {
+
+        })
+    }
 
     $scope.compare = function() {
         $scope.pwdMatch = $scope.user.password === $scope.user.passwordConfirmation;

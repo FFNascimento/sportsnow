@@ -43,3 +43,6 @@ header, main, footer {
     display: block;
     font-size: 1.2em;
 }
+.img-block{
+  position: relative;
+}
